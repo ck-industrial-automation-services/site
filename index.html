@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CK Industrial Automation Services – Freiberuflicher Automatisierungsingenieur</title>
+  <meta name="description" content="Christoph Korn – Freiberuflicher Ingenieur für Automatisierungstechnik in Paderborn. SPS-Programmierung, Robotik, Inbetriebnahme, IIoT und Cybersecurity-Beratung.">
+  <meta name="keywords" content="SPS Programmierung, Automatisierungstechnik, Freelancer, Ingenieur, Paderborn, Siemens, Beckhoff, TwinCAT, TIA Portal, KUKA, Roboter, Inbetriebnahme, IIoT, OPC UA, MQTT, Node-RED, Cybersecurity, NIS-2, CRA">
+  <meta name="author" content="Christoph Korn">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="CK Industrial Automation Services">
+  <meta property="og:description" content="Freiberuflicher Ingenieur für Automatisierungstechnik – SPS, Robotik, IIoT, Inbetriebnahme">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/logo_simple_long.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/logo_simple_short.png">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #0f1117;
+      --color-bg-alt: #161921;
+      --color-surface: #1c1f2a;
+      --color-surface-hover: #242838;
+      --color-primary: #3b82f6;
+      --color-primary-light: #60a5fa;
+      --color-accent: #22d3ee;
+      --color-text: #e2e8f0;
+      --color-text-muted: #94a3b8;
+      --color-text-heading: #f8fafc;
+      --color-border: #2d3348;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-width: 1140px;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--color-primary-light); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--color-accent); }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo img { height: 40px; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text-heading); }
+
+    .nav-toggle { display: none; background: none; border: none; color: var(--color-text); cursor: pointer; }
+    .nav-toggle svg { width: 28px; height: 28px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+
+    .hero-logo { margin-bottom: 32px; }
+    .hero-logo img { max-width: 400px; width: 100%; filter: invert(1); }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--color-text-heading);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--color-primary-light); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .hero-tag {
+      padding: 6px 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-light);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+    .btn-outline:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 100px 0; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-section { background: var(--color-bg-alt); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-text p { margin-bottom: 16px; color: var(--color-text); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-primary-light);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: all 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== TECHNOLOGIES ===== */
+    .tech-section { background: var(--color-bg-alt); }
+
+    .tech-categories { display: flex; flex-direction: column; gap: 48px; }
+
+    .tech-category h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-tag {
+      padding: 8px 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .tech-tag:hover {
+      border-color: var(--color-primary);
+      background: rgba(59, 130, 246, 0.08);
+    }
+    .tech-tag.highlight {
+      border-color: var(--color-primary);
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-primary-light);
+    }
+
+    /* ===== INDUSTRIES ===== */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .industry-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .industry-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .industry-icon { font-size: 2rem; margin-bottom: 12px; }
+    .industry-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 8px; }
+    .industry-card p { font-size: 0.82rem; color: var(--color-text-muted); }
+
+    /* ===== CONTACT ===== */
+    .contact-section { background: var(--color-bg-alt); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.3rem;
+      color: var(--color-text-heading);
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--color-text-heading);
+      margin-bottom: 2px;
+    }
+
+    .contact-item-text span, .contact-item-text a {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    .contact-cta {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .contact-cta h3 {
+      font-size: 1.2rem;
+      color: var(--color-text-heading);
+      margin-bottom: 16px;
+    }
+
+    .contact-cta p {
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .contact-cta ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .contact-cta li {
+      padding: 6px 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+    .contact-cta li::before {
+      content: '✓';
+      color: var(--color-accent);
+      margin-right: 10px;
+      font-weight: 700;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.85rem; color: var(--color-text-muted); }
+    .footer-links a:hover { color: var(--color-text); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px; left: 0; right: 0;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+        padding: 24px;
+        gap: 16px;
+      }
+      .nav-toggle { display: block; }
+
+      .hero h1 { font-size: 1.8rem; }
+      .hero-logo img { max-width: 280px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .industries-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .industries-grid { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="img/logo_simple_short.png" alt="CK IAS" style="filter: invert(1);">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#ueber">Über mich</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#technologien">Technologien</a></li>
+        <li><a href="#branchen">Branchen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menü">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-logo">
+          <img src="img/logo_simple_long.png" alt="CK Industrial Automation Services">
+        </div>
+        <h1>Ihr Partner für <span>Automatisierungstechnik</span></h1>
+        <p class="hero-subtitle">
+          Freiberuflicher Elektroingenieur mit über 13 Jahren Praxiserfahrung.
+          Von der SPS-Programmierung über Robotik bis zur Inbetriebnahme – alles aus einer Hand.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">SPS-Programmierung</span>
+          <span class="hero-tag">Roboterprogrammierung</span>
+          <span class="hero-tag">Inbetriebnahme</span>
+          <span class="hero-tag">IIoT / Industry 4.0</span>
+          <span class="hero-tag">Cybersecurity</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
+          <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER MICH -->
+  <section class="about-section" id="ueber">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Über mich</span>
+        <h2 class="section-title">Erfahrung trifft Leidenschaft</h2>
+        <p class="section-subtitle">Automatisierungstechnik ist nicht nur mein Beruf – es ist das, was mich antreibt.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Mein Name ist Christoph Korn. Als ausgebildeter Elektroingenieur (B.Eng.) mit Schwerpunkt Automatisierungstechnik
+            bringe ich über 13 Jahre Praxiserfahrung aus echten Produktionsumgebungen mit.
+          </p>
+          <p>
+            Meine Haupttätigkeit als Applikationsingenieur bei einem namhaften Steuerungshersteller gibt mir täglich tiefe
+            Einblicke in die neuesten Technologien und Kundenherausforderungen. Dieses Wissen bringe ich in meine freiberuflichen
+            Projekte ein.
+          </p>
+          <p>
+            Ich bin nicht auf einen Hersteller festgelegt – ob Siemens, Beckhoff oder CODESYS-basierte Systeme: Ich finde
+            die passende Lösung für Ihre Anforderung. Ergänzt wird mein Profil durch Kompetenzen in Robotik (KUKA, ABB),
+            IIoT-Technologien und industrieller Cybersecurity.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">13+</div>
+            <div class="stat-label">Jahre Berufserfahrung</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">7+</div>
+            <div class="stat-label">Steuerungsplattformen</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Branchen</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Praxisorientiert</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEISTUNGEN -->
+  <section id="leistungen">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Leistungen</span>
+        <h2 class="section-title">Was ich für Sie tun kann</h2>
+        <p class="section-subtitle">Vom Konzept über die Programmierung bis zur Inbetriebnahme – durchgängige Engineering-Kompetenz.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>SPS-Programmierung</h3>
+          <p>Neuprogrammierung, Erweiterung und Migration von SPS-Programmen. Siemens TIA Portal, Beckhoff TwinCAT, CODESYS – alle IEC 61131-3 Sprachen.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🤖</div>
+          <h3>Roboterprogrammierung</h3>
+          <p>KUKA (KRL) und ABB (RAPID) Roboterprogrammierung inkl. Zellenintegration in Ihre Gesamtanlage.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Inbetriebnahme</h3>
+          <p>Inbetriebnahme von Neu- und Bestandsanlagen, Fehlersuche, Troubleshooting und Performance-Optimierung.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Antriebstechnik</h3>
+          <p>Parametrierung von Frequenzumrichtern und Servoantrieben (SEW, Lenze, Siemens). Achsabstimmung und Optimierung.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>IIoT &amp; Industry 4.0</h3>
+          <p>Datenerfassung aus Produktionsanlagen, MQTT/OPC-UA-Infrastruktur, Node-RED Flows, Grafana-Dashboards und Monitoring.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔒</div>
+          <h3>Cybersecurity-Beratung</h3>
+          <p>Unterstützung bei CRA- und NIS-2-Konformität, OT-Security-Konzepte, Netzwerksegmentierung und Audit-Vorbereitung.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔌</div>
+          <h3>Netzwerktechnik</h3>
+          <p>Aufbau industrieller Netzwerke (PROFINET, EtherCAT, Modbus), VLAN-Konzepte, Firewall-Konfiguration und Diagnose.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Softwareentwicklung</h3>
+          <p>Kundenspezifische Applikationen mit JavaScript und Python, webbasierte HMI, Schnittstellen-Integration und Datenakquisition.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📋</div>
+          <h3>Dokumentation &amp; Schulung</h3>
+          <p>Funktionsbeschreibungen, Bedienungsanleitungen, Schulung und Einweisung des Bedienpersonals.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIEN -->
+  <section class="tech-section" id="technologien">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Technologien</span>
+        <h2 class="section-title">Mein Technologie-Stack</h2>
+        <p class="section-subtitle">Herstellerübergreifendes Know-how für maximale Flexibilität.</p>
+      </div>
+      <div class="tech-categories">
+
+        <div class="tech-category">
+          <h3>SPS / Steuerungstechnik</h3>
+          <div class="tech-tags">
+            <span class="tech-tag highlight">Siemens TIA Portal</span>
+            <span class="tech-tag highlight">Beckhoff TwinCAT 3</span>
+            <span class="tech-tag highlight">CODESYS V3</span>
+            <span class="tech-tag">S7-1500</span>
+            <span class="tech-tag">S7-1200</span>
+            <span class="tech-tag">S7-300/400</span>
+            <span class="tech-tag">STEP 7 Classic</span>
+            <span class="tech-tag">TwinCAT 2</span>
+            <span class="tech-tag">CX-Steuerungen</span>
+            <span class="tech-tag">Weidmüller u-control</span>
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h3>Programmiersprachen (SPS)</h3>
+          <div class="tech-tags">
+            <span class="tech-tag highlight">Strukturierter Text (ST/SCL)</span>
+            <span class="tech-tag">Kontaktplan (KOP)</span>
+            <span class="tech-tag">Funktionsbaustein (FUP/FBD)</span>
+            <span class="tech-tag">Ablaufsprache (AS/SFC)</span>
+            <span class="tech-tag">Anweisungsliste (AWL)</span>
+            <span class="tech-tag">CFC</span>
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h3>Robotik</h3>
+          <div class="tech-tags">
+            <span class="tech-tag highlight">KUKA (KRL)</span>
+            <span class="tech-tag highlight">ABB (RAPID)</span>
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h3>Industrielle Kommunikation</h3>
+          <div class="tech-tags">
+            <span class="tech-tag highlight">PROFINET</span>
+            <span class="tech-tag highlight">EtherCAT</span>
+            <span class="tech-tag">EtherNet/IP</span>
+            <span class="tech-tag">Modbus TCP/RTU</span>
+            <span class="tech-tag highlight">OPC UA</span>
+            <span class="tech-tag highlight">MQTT</span>
+            <span class="tech-tag">Sparkplug B</span>
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h3>IIoT &amp; Software</h3>
+          <div class="tech-tags">
+            <span class="tech-tag highlight">Node-RED</span>
+            <span class="tech-tag">Grafana</span>
+            <span class="tech-tag">InfluxDB</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Linux</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Git</span>
+          </div>
+        </div>
+
+        <div class="tech-category">
+          <h3>Antriebstechnik</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">SEW-Eurodrive</span>
+            <span class="tech-tag">Lenze</span>
+            <span class="tech-tag">Siemens SINAMICS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANCHEN -->
+  <section id="branchen">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Branchenerfahrung</span>
+        <h2 class="section-title">In diesen Branchen bin ich zu Hause</h2>
+      </div>
+      <div class="industries-grid">
+
+        <div class="industry-card">
+          <div class="industry-icon">🔬</div>
+          <h3>Halbleiterindustrie</h3>
+          <p>Prototypen-Produktionsanlagen</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-icon">🚗</div>
+          <h3>Automotive / ADAS</h3>
+          <p>Fahrassistenzkamera-Produktion</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-icon">🏗️</div>
+          <h3>Baustoffindustrie</h3>
+          <p>Pulver- und Baustoffabfüllung</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-icon">🏭</div>
+          <h3>Steuerungshersteller</h3>
+          <p>Applikation &amp; Kundenlösungen</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="contact-section" id="kontakt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-title">Projekt besprechen?</h2>
+        <p class="section-subtitle">Ich freue mich auf Ihre Anfrage – ob kleines Projekt oder langfristige Zusammenarbeit.</p>
+      </div>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <h3>Christoph Korn</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div class="contact-item-text">
+              <strong>E-Mail</strong>
+              <a href="mailto:christoph.korn@proton.me">christoph.korn@proton.me</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <strong>Standort</strong>
+              <span>Paderborn, NRW</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🌍</div>
+            <div class="contact-item-text">
+              <strong>Einsatzgebiet</strong>
+              <span>Schwerpunkt OWL / NRW, deutschlandweit möglich, Remote</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-text">
+              <strong>Verfügbarkeit</strong>
+              <span>Abends, Wochenende, Urlaub – nach Absprache</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <h3>Unverbindlich anfragen</h3>
+          <p>Schildern Sie mir Ihr Projekt und ich melde mich mit einem konkreten Vorschlag bei Ihnen:</p>
+          <ul>
+            <li>Kostenlose Erstberatung</li>
+            <li>Individuelles Angebot</li>
+            <li>Flexible Einsatzmodelle (Vor Ort / Remote / Hybrid)</li>
+            <li>Projekte von 1 Tag bis mehrere Wochen</li>
+          </ul>
+          <a href="mailto:christoph.korn@proton.me?subject=Projektanfrage%20–%20CK%20Industrial%20Automation%20Services" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            E-Mail schreiben
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <span class="footer-text">&copy; 2026 CK Industrial Automation Services – Christoph Korn</span>
+        <div class="footer-links">
+          <a href="#ueber">Über mich</a>
+          <a href="#leistungen">Leistungen</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
