@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="currentColor">
+  <style>
+    .ground { stroke: currentColor; stroke-width: 2; fill: none; }
+    .arm-base, .arm-seg1, .arm-seg2, .arm-seg3, .arm-gripper { fill: currentColor; }
+    .arm-joint { fill: currentColor; }
+    .conveyor-belt { fill: currentColor; }
+    .box { fill: currentColor; }
+    .laptop-screen { fill: none; stroke: currentColor; stroke-width: 3; }
+    .laptop-base { fill: currentColor; }
+    .laptop-dash { stroke: currentColor; stroke-width: 1.5; fill: none; }
+    .logo-text { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-weight: 700; fill: currentColor; }
+
+    @keyframes armSwing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-8deg); }
+    }
+    @keyframes boxMove {
+      0% { transform: translateX(-40px); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateX(40px); opacity: 0; }
+    }
+    @keyframes rollerSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes screenPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drawLine {
+      from { stroke-dashoffset: 700; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .arm-group { transform-origin: 145px 195px; animation: armSwing 3s ease-in-out infinite 1.5s; }
+    .box1 { animation: boxMove 4s ease-in-out infinite; }
+    .box2 { animation: boxMove 4s ease-in-out infinite 1.3s; }
+    .box3 { animation: boxMove 4s ease-in-out infinite 2.6s; }
+    .roller { transform-origin: center; animation: rollerSpin 2s linear infinite; }
+    .laptop-dash { animation: screenPulse 2.5s ease-in-out infinite; }
+    .ground-line { stroke-dasharray: 700; animation: drawLine 1.5s ease-out forwards; }
+    .robot-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.3s forwards; }
+    .conveyor-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.6s forwards; }
+    .laptop-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.9s forwards; }
+    .text-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 1.2s forwards; }
+  </style>
+
+  <line class="ground ground-line" x1="60" y1="220" x2="740" y2="220" />
+
+  <g class="robot-group">
+    <rect x="100" y="195" width="90" height="25" rx="4" class="arm-base" />
+    <rect x="120" y="185" width="50" height="15" rx="3" class="arm-base" />
+    <g class="arm-group">
+      <circle cx="145" cy="185" r="10" class="arm-joint" />
+      <rect x="140" y="120" width="10" height="65" rx="3" class="arm-seg1" />
+      <circle cx="145" cy="120" r="9" class="arm-joint" />
+      <rect x="145" y="108" width="70" height="10" rx="3" class="arm-seg2" transform="rotate(15, 145, 113)" />
+      <circle cx="212" cy="117" r="7" class="arm-joint" />
+      <rect x="210" y="117" width="8" height="35" rx="2" class="arm-seg3" transform="rotate(-5, 214, 117)" />
+      <polygon points="206,150 222,150 226,162 202,162" class="arm-gripper" />
+      <rect x="204" y="162" width="6" height="10" rx="1" class="arm-gripper" />
+      <rect x="216" y="162" width="6" height="10" rx="1" class="arm-gripper" />
+    </g>
+  </g>
+
+  <g class="conveyor-group">
+    <rect x="280" y="195" width="200" height="22" rx="11" class="conveyor-belt" />
+    <circle cx="291" cy="206" r="8" class="roller" style="fill:none;stroke:currentColor;stroke-width:2;opacity:0.3" />
+    <circle cx="340" cy="210" r="3" class="roller" style="opacity:0.4" />
+    <circle cx="380" cy="210" r="3" class="roller" style="opacity:0.4" />
+    <circle cx="420" cy="210" r="3" class="roller" style="opacity:0.4" />
+    <circle cx="469" cy="206" r="8" class="roller" style="fill:none;stroke:currentColor;stroke-width:2;opacity:0.3" />
+    <rect x="288" y="190" width="184" height="8" rx="2" class="conveyor-belt" />
+    <rect x="315" y="165" width="26" height="25" rx="2" class="box box1" />
+    <rect x="365" y="165" width="26" height="25" rx="2" class="box box2" />
+    <rect x="415" y="165" width="26" height="25" rx="2" class="box box3" />
+  </g>
+
+  <g class="laptop-group">
+    <rect x="560" y="130" width="110" height="75" rx="5" class="laptop-screen" />
+    <line x1="572" y1="150" x2="610" y2="150" class="laptop-dash" style="animation-delay:0s" />
+    <line x1="572" y1="162" x2="625" y2="162" class="laptop-dash" style="animation-delay:0.4s" />
+    <line x1="572" y1="174" x2="600" y2="174" class="laptop-dash" style="animation-delay:0.8s" />
+    <line x1="572" y1="186" x2="618" y2="186" class="laptop-dash" style="animation-delay:1.2s" />
+    <rect x="635" y="175" width="6" height="18" rx="1" class="laptop-dash" style="animation-delay:0.2s;fill:currentColor;stroke:none;" />
+    <rect x="644" y="168" width="6" height="25" rx="1" class="laptop-dash" style="animation-delay:0.6s;fill:currentColor;stroke:none;" />
+    <rect x="653" y="178" width="6" height="15" rx="1" class="laptop-dash" style="animation-delay:1.0s;fill:currentColor;stroke:none;" />
+    <path d="M545,207 L555,205 L675,205 L685,207 L690,217 L540,217 Z" class="laptop-base" />
+    <rect x="600" y="203" width="30" height="4" rx="2" class="laptop-base" />
+  </g>
+
+  <g class="text-group">
+    <text x="400" y="268" text-anchor="middle" font-size="28" class="logo-text">CK Industrial Automation Services</text>
+  </g>
+</svg>
