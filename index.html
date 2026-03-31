@@ -347,6 +347,139 @@
     .industry-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 8px; }
     .industry-card p { font-size: 0.82rem; color: var(--color-text-muted); }
 
+    /* ===== AGRICULTURE SHOWCASE ===== */
+    .agri-section { background: var(--color-bg-alt); }
+
+    .agri-showcase {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      aspect-ratio: 16 / 9;
+    }
+
+    .agri-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .agri-slide.active { opacity: 1; }
+
+    .agri-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .agri-slide-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(transparent, rgba(15, 17, 23, 0.92));
+    }
+
+    .agri-slide-caption h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      margin-bottom: 4px;
+    }
+
+    .agri-slide-caption p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .agri-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .agri-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--color-border);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+    }
+
+    .agri-dot.active {
+      background: var(--color-primary-light);
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+    }
+
+    .agri-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 17, 23, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1.1rem;
+      z-index: 2;
+      padding: 0;
+    }
+
+    .agri-nav:hover {
+      background: rgba(59, 130, 246, 0.3);
+      border-color: var(--color-primary);
+    }
+
+    .agri-nav-prev { left: 12px; }
+    .agri-nav-next { right: 12px; }
+
+    .agri-features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .agri-feature {
+      text-align: center;
+      padding: 20px 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      transition: all 0.3s;
+    }
+
+    .agri-feature:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .agri-feature-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .agri-feature h4 { font-size: 0.9rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 4px; }
+    .agri-feature p { font-size: 0.8rem; color: var(--color-text-muted); }
+
+    @media (max-width: 768px) {
+      .agri-features { grid-template-columns: 1fr 1fr; }
+      .agri-nav { width: 32px; height: 32px; font-size: 0.9rem; }
+    }
+
+    @media (max-width: 480px) {
+      .agri-features { grid-template-columns: 1fr; }
+    }
+
     /* ===== CONTACT ===== */
     .contact-section { background: var(--color-bg-alt); }
 
@@ -503,6 +636,7 @@
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#technologien">Technologien</a></li>
         <li><a href="#branchen">Branchen</a></li>
+        <li><a href="#landwirtschaft">Landwirtschaft</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
       <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menü">
@@ -779,6 +913,84 @@
     </div>
   </section>
 
+  <!-- LANDWIRTSCHAFT & SMART FARMING -->
+  <section class="agri-section" id="landwirtschaft">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Neues Geschäftsfeld</span>
+        <h2 class="section-title">Smart Farming &amp; Agrar-IoT</h2>
+        <p class="section-subtitle">Datenerfassung und Automatisierung für die Landwirtschaft – von der Pflanze bis zur Verarbeitung.</p>
+      </div>
+
+      <div class="agri-showcase" id="agriShowcase">
+        <button class="agri-nav agri-nav-prev" onclick="agriSlide(-1)" aria-label="Vorheriges Bild">&#10094;</button>
+        <button class="agri-nav agri-nav-next" onclick="agriSlide(1)" aria-label="Nächstes Bild">&#10095;</button>
+
+        <div class="agri-slide active">
+          <img src="img/agri_plant.png" alt="IoT-Überwachung von Pflanzenwachstum" loading="lazy">
+          <div class="agri-slide-caption">
+            <h3>Gewächshaus-Monitoring</h3>
+            <p>Temperatur, Feuchtigkeit, Licht und Bewässerung – alle Parameter in Echtzeit erfasst und visualisiert.</p>
+          </div>
+        </div>
+
+        <div class="agri-slide">
+          <img src="img/agri_livestock.png" alt="IoT-Überwachung in der Viehzucht" loading="lazy">
+          <div class="agri-slide-caption">
+            <h3>Viehzucht &amp; Stallklima</h3>
+            <p>Futter- und Wasserverbrauch, Stalltemperatur, Tieraktivität – Sensorik für gesunde Tierhaltung.</p>
+          </div>
+        </div>
+
+        <div class="agri-slide">
+          <img src="img/agri_dairy.png" alt="IoT in der Milchverarbeitung" loading="lazy">
+          <div class="agri-slide-caption">
+            <h3>Milch- &amp; Lebensmittelverarbeitung</h3>
+            <p>Durchfluss, Temperatur und Füllstand – HACCP-konforme Prozessüberwachung mit lückenloser Dokumentation.</p>
+          </div>
+        </div>
+
+        <div class="agri-slide">
+          <img src="img/agri_storage.png" alt="IoT für Erntelagerung" loading="lazy">
+          <div class="agri-slide-caption">
+            <h3>Ernte- &amp; Lagerhaltung</h3>
+            <p>Temperatur, Feuchtigkeit, CO₂ und Füllstand – optimale Lagerbedingungen automatisch überwacht.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="agri-dots" id="agriDots">
+        <button class="agri-dot active" onclick="agriGoTo(0)" aria-label="Bild 1"></button>
+        <button class="agri-dot" onclick="agriGoTo(1)" aria-label="Bild 2"></button>
+        <button class="agri-dot" onclick="agriGoTo(2)" aria-label="Bild 3"></button>
+        <button class="agri-dot" onclick="agriGoTo(3)" aria-label="Bild 4"></button>
+      </div>
+
+      <div class="agri-features">
+        <div class="agri-feature">
+          <div class="agri-feature-icon">🌡️</div>
+          <h4>Sensorik</h4>
+          <p>Temperatur, Feuchte, Licht, CO₂, Druck, Füllstand</p>
+        </div>
+        <div class="agri-feature">
+          <div class="agri-feature-icon">📡</div>
+          <h4>Funkübertragung</h4>
+          <p>LoRaWAN, WLAN, MQTT – kabellose Datenerfassung im Feld</p>
+        </div>
+        <div class="agri-feature">
+          <div class="agri-feature-icon">📊</div>
+          <h4>Visualisierung</h4>
+          <p>Echtzeit-Dashboards auf Tablet, Smartphone oder PC</p>
+        </div>
+        <div class="agri-feature">
+          <div class="agri-feature-icon">☁️</div>
+          <h4>Cloud &amp; Datenbank</h4>
+          <p>Langzeitarchivierung, Trendanalysen und Fernzugriff</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- KONTAKT -->
   <section class="contact-section" id="kontakt">
     <div class="container">
@@ -862,6 +1074,32 @@
         document.getElementById('navLinks').classList.remove('open');
       });
     });
+
+    // Agriculture slideshow
+    var agriCurrent = 0;
+    var agriSlides = document.querySelectorAll('.agri-slide');
+    var agriDotEls = document.querySelectorAll('.agri-dot');
+    var agriTimer;
+
+    function agriGoTo(index) {
+      agriSlides[agriCurrent].classList.remove('active');
+      agriDotEls[agriCurrent].classList.remove('active');
+      agriCurrent = (index + agriSlides.length) % agriSlides.length;
+      agriSlides[agriCurrent].classList.add('active');
+      agriDotEls[agriCurrent].classList.add('active');
+      agriResetTimer();
+    }
+
+    function agriSlide(direction) {
+      agriGoTo(agriCurrent + direction);
+    }
+
+    function agriResetTimer() {
+      clearInterval(agriTimer);
+      agriTimer = setInterval(function() { agriSlide(1); }, 5000);
+    }
+
+    agriResetTimer();
   </script>
 
 </body>
