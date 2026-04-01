@@ -177,7 +177,8 @@
     .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 
     /* ===== SECTIONS ===== */
-    section { padding: 100px 0; }
+    section { padding: 60px 0; }
+    @media (min-width: 769px) { section { padding: 100px 0; } }
 
     .section-header {
       text-align: center;
@@ -249,15 +250,15 @@
     /* ===== SERVICES ===== */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
     .service-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 36px 28px;
+      padding: 24px 20px;
       transition: all 0.3s;
     }
     .service-card:hover {
@@ -291,18 +292,47 @@
     /* ===== TECHNOLOGIES ===== */
     .tech-section { background: var(--color-bg-alt); }
 
-    .tech-categories { display: flex; flex-direction: column; gap: 48px; }
+    .tech-categories { display: flex; flex-direction: column; gap: 8px; }
+
+    .tech-category { border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
+
+    .tech-category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--color-surface);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .tech-category-header:hover { background: var(--color-surface-hover); }
 
     .tech-category h3 {
       font-size: 1rem;
       font-weight: 600;
       color: var(--color-text-heading);
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--color-border);
+      margin: 0;
+      padding: 0;
+      border: none;
     }
 
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-chevron {
+      width: 20px; height: 20px;
+      transition: transform 0.3s;
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+    .tech-category.open .tech-chevron { transform: rotate(180deg); }
+
+    .tech-tags-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .tech-category.open .tech-tags-wrapper { max-height: 300px; }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 20px 20px; }
     .tech-tag {
       padding: 8px 18px;
       background: var(--color-surface);
@@ -586,7 +616,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -608,7 +637,7 @@
       .hero-logo img { max-width: 280px; }
 
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; gap: 12px; }
       .industries-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
 
@@ -688,9 +717,9 @@
             bringe ich über 13 Jahre Praxiserfahrung aus echten Produktionsumgebungen mit.
           </p>
           <p>
-            Meine Haupttätigkeit als Applikationsingenieur bei einem namhaften Steuerungshersteller gibt mir täglich tiefe
-            Einblicke in die neuesten Technologien und Kundenherausforderungen. Dieses Wissen bringe ich in meine freiberuflichen
-            Projekte ein.
+            Neben meiner langjährigen Berufserfahrung in der Industrieautomation halte ich mich kontinuierlich
+            auf dem neuesten Stand der Technik. Dieses breite Praxiswissen aus unterschiedlichsten Projekten
+            und Branchen kommt meinen freiberuflichen Kunden direkt zugute.
           </p>
           <p>
             Ich bin nicht auf einen Hersteller festgelegt – ob Siemens, Beckhoff oder CODESYS-basierte Systeme: Ich finde
@@ -812,7 +841,6 @@
             <span class="tech-tag">STEP 7 Classic</span>
             <span class="tech-tag">TwinCAT 2</span>
             <span class="tech-tag">CX-Steuerungen</span>
-            <span class="tech-tag">Weidmüller u-control</span>
           </div>
         </div>
 
@@ -905,8 +933,8 @@
 
         <div class="industry-card">
           <div class="industry-icon">🏭</div>
-          <h3>Steuerungshersteller</h3>
-          <p>Applikation &amp; Kundenlösungen</p>
+          <h3>Maschinenbau</h3>
+          <p>Sonder- &amp; Serienmaschinen</p>
         </div>
 
       </div>
