@@ -1,86 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="white">
   <style>
     .ground { stroke: white; stroke-width: 2; fill: none; }
-    .arm-base, .arm-seg1, .arm-seg2, .arm-seg3, .arm-gripper { fill: white; }
-    .arm-joint { fill: white; stroke: none; }
-    .conveyor-belt { fill: white; }
+    .metal { fill: white; }
+    .joint { fill: white; stroke: none; }
     .box { fill: white; }
     .laptop-screen { fill: none; stroke: white; stroke-width: 3; }
     .laptop-base { fill: white; }
     .laptop-dash { stroke: white; stroke-width: 1.5; fill: none; }
     .logo-text { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-weight: 700; fill: white; }
 
-    /* Robot arm pick-and-place: reach over conveyor, pick box, place on other side */
-    @keyframes armPickPlace {
+    @keyframes armSwing {
       0%   { transform: rotate(0deg); }
-      /* Reach over to conveyor (tilt right) */
-      15%  { transform: rotate(-25deg); }
-      /* Hold at pick position */
-      25%  { transform: rotate(-25deg); }
-      /* Lift up */
-      40%  { transform: rotate(-5deg); }
-      /* Swing to place position (tilt further right, past conveyor) */
-      55%  { transform: rotate(-45deg); }
-      /* Hold at place position */
-      65%  { transform: rotate(-45deg); }
-      /* Release and return */
-      80%  { transform: rotate(-10deg); }
+      8%   { transform: rotate(30deg); }
+      18%  { transform: rotate(30deg); }
+      30%  { transform: rotate(0deg); }
+      46%  { transform: rotate(-40deg); }
+      56%  { transform: rotate(-40deg); }
+      70%  { transform: rotate(0deg); }
       100% { transform: rotate(0deg); }
     }
 
-    /* Gripper open/close */
-    @keyframes gripperLeft {
+    @keyframes gripL {
       0%   { transform: translateX(0); }
-      15%  { transform: translateX(0); }
-      /* Close gripper to grab */
-      22%  { transform: translateX(3px); }
-      55%  { transform: translateX(3px); }
-      /* Open gripper to release */
-      62%  { transform: translateX(0); }
+      13%  { transform: translateX(0); }
+      17%  { transform: translateX(3px); }
+      52%  { transform: translateX(3px); }
+      55%  { transform: translateX(0); }
       100% { transform: translateX(0); }
     }
-    @keyframes gripperRight {
+    @keyframes gripR {
       0%   { transform: translateX(0); }
-      15%  { transform: translateX(0); }
-      22%  { transform: translateX(-3px); }
-      55%  { transform: translateX(-3px); }
-      62%  { transform: translateX(0); }
+      13%  { transform: translateX(0); }
+      17%  { transform: translateX(-3px); }
+      52%  { transform: translateX(-3px); }
+      55%  { transform: translateX(0); }
       100% { transform: translateX(0); }
     }
 
-    /* Box being picked up and placed */
-    @keyframes boxPickPlace {
-      0%   { transform: translate(0, 0); opacity: 1; }
-      15%  { transform: translate(0, 0); opacity: 1; }
-      /* Lift up with arm */
-      30%  { transform: translate(20px, -40px); opacity: 1; }
-      40%  { transform: translate(40px, -60px); opacity: 1; }
-      /* Move to other side */
-      55%  { transform: translate(130px, -30px); opacity: 1; }
-      /* Set down */
-      65%  { transform: translate(130px, 0); opacity: 1; }
-      /* Fade and reset */
-      80%  { transform: translate(130px, 0); opacity: 0; }
-      95%  { transform: translate(0, 0); opacity: 0; }
-      100% { transform: translate(0, 0); opacity: 1; }
+    @keyframes srcBox {
+      0%   { opacity: 1; }
+      15%  { opacity: 1; }
+      17%  { opacity: 0; }
+      86%  { opacity: 0; }
+      92%  { opacity: 1; }
+      100% { opacity: 1; }
     }
 
-    /* Static boxes on belt scroll slowly */
-    @keyframes boxScroll {
-      0%   { transform: translateX(-30px); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translateX(30px); opacity: 0; }
+    @keyframes carryBox {
+      0%   { transform: translate(0, 0); opacity: 0; }
+      15%  { transform: translate(0, 0); opacity: 0; }
+      17%  { transform: translate(0, 0); opacity: 1; }
+      28%  { transform: translate(-100px, -55px); opacity: 1; }
+      38%  { transform: translate(-200px, -40px); opacity: 1; }
+      46%  { transform: translate(-300px, 0); opacity: 1; }
+      54%  { transform: translate(-300px, 0); opacity: 1; }
+      56%  { transform: translate(-300px, 0); opacity: 0; }
+      100% { transform: translate(0, 0); opacity: 0; }
     }
 
-    /* Placed box appears on the right */
-    @keyframes boxAppear {
-      0%   { opacity: 0; transform: translateY(10px); }
-      60%  { opacity: 0; transform: translateY(10px); }
-      70%  { opacity: 1; transform: translateY(0); }
-      90%  { opacity: 1; transform: translateY(0); }
-      95%  { opacity: 0; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(10px); }
+    @keyframes destBox {
+      0%   { opacity: 0; }
+      52%  { opacity: 0; }
+      56%  { opacity: 1; }
+      78%  { opacity: 1; }
+      84%  { opacity: 0; }
+      100% { opacity: 0; }
     }
 
     @keyframes screenPulse {
@@ -96,101 +80,66 @@
       to { stroke-dashoffset: 0; }
     }
 
-    .arm-group {
-      transform-origin: 200px 195px;
-      animation: armPickPlace 5s ease-in-out infinite;
-      animation-delay: 1.5s;
-    }
-
-    .gripper-finger-l { animation: gripperLeft 5s ease-in-out infinite 1.5s; }
-    .gripper-finger-r { animation: gripperRight 5s ease-in-out infinite 1.5s; }
-
-    .picked-box { animation: boxPickPlace 5s ease-in-out infinite 1.5s; }
-    .belt-box1 { animation: boxScroll 5s ease-in-out infinite; }
-    .belt-box2 { animation: boxScroll 5s ease-in-out infinite 2.5s; }
-    .placed-box { animation: boxAppear 5s ease-in-out infinite 1.5s; }
-
+    .arm-group { transform-origin: 315px 185px; animation: armSwing 6s ease-in-out infinite 1.5s; }
+    .grip-l { animation: gripL 6s ease-in-out infinite 1.5s; }
+    .grip-r { animation: gripR 6s ease-in-out infinite 1.5s; }
+    .src-box { animation: srcBox 6s ease-in-out infinite 1.5s; }
+    .carry-box { animation: carryBox 6s ease-in-out infinite 1.5s; }
+    .dest-box { animation: destBox 6s ease-in-out infinite 1.5s; }
     .laptop-dash { animation: screenPulse 2.5s ease-in-out infinite; }
     .ground-line { stroke-dasharray: 700; animation: drawLine 1.5s ease-out forwards; }
-    .robot-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.3s forwards; }
-    .conveyor-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.6s forwards; }
+    .left-ped { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.3s forwards; }
+    .robot-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.5s forwards; }
+    .right-ped { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.7s forwards; }
     .laptop-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.9s forwards; }
     .text-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 1.2s forwards; }
-    .place-group { opacity: 0; animation: fadeSlideUp 0.6s ease-out 0.8s forwards; }
   </style>
 
-  <!-- Ground line -->
-  <line class="ground ground-line" x1="60" y1="220" x2="740" y2="220" />
+  <line class="ground ground-line" x1="50" y1="220" x2="750" y2="220" />
 
-  <!-- ===== ROBOT ARM (positioned closer to conveyor) ===== -->
+  <g class="left-ped">
+    <rect x="110" y="200" width="70" height="20" rx="3" class="metal" />
+    <rect x="120" y="194" width="50" height="9" rx="2" class="metal" />
+    <rect x="132" y="169" width="26" height="25" rx="2" class="box dest-box" />
+  </g>
+
   <g class="robot-group">
-    <!-- Base -->
-    <rect x="155" y="195" width="90" height="25" rx="4" class="arm-base" />
-    <rect x="175" y="185" width="50" height="15" rx="3" class="arm-base" />
-
+    <rect x="278" y="200" width="74" height="20" rx="4" class="metal" />
+    <rect x="292" y="190" width="46" height="14" rx="3" class="metal" />
     <g class="arm-group">
-      <!-- Joint 1 (shoulder) -->
-      <circle cx="200" cy="185" r="10" class="arm-joint" />
-      <!-- Segment 1 (upper arm) -->
-      <rect x="195" y="115" width="10" height="70" rx="3" class="arm-seg1" />
-      <!-- Joint 2 (elbow) -->
-      <circle cx="200" cy="115" r="9" class="arm-joint" />
-      <!-- Segment 2 (forearm) - extends right toward conveyor -->
-      <rect x="200" y="103" width="80" height="10" rx="3" class="arm-seg2" transform="rotate(12, 200, 108)" />
-      <!-- Joint 3 (wrist) -->
-      <circle cx="278" cy="112" r="7" class="arm-joint" />
-      <!-- Segment 3 (hand) - angled down -->
-      <rect x="275" y="112" width="8" height="40" rx="2" class="arm-seg3" transform="rotate(-3, 279, 112)" />
-      <!-- Gripper base -->
-      <polygon points="271,150 289,150 293,162 267,162" class="arm-gripper" />
-      <!-- Gripper fingers -->
-      <rect x="269" y="162" width="6" height="12" rx="1" class="arm-gripper gripper-finger-l" />
-      <rect x="285" y="162" width="6" height="12" rx="1" class="arm-gripper gripper-finger-r" />
+      <circle cx="315" cy="185" r="11" class="joint" />
+      <rect x="310" y="122" width="10" height="63" rx="3" class="metal" />
+      <circle cx="315" cy="122" r="9" class="joint" />
+      <rect x="315" y="114" width="72" height="10" rx="3" class="metal" transform="rotate(5, 315, 119)" />
+      <circle cx="385" cy="121" r="7" class="joint" />
+      <rect x="381" y="121" width="8" height="30" rx="2" class="metal" />
+      <polygon points="377,149 399,149 403,160 373,160" class="metal" />
+      <rect x="375" y="160" width="7" height="13" rx="1" class="metal grip-l" />
+      <rect x="392" y="160" width="7" height="13" rx="1" class="metal grip-r" />
     </g>
   </g>
 
-  <!-- ===== CONVEYOR ===== -->
-  <g class="conveyor-group">
-    <!-- Belt body -->
-    <rect x="310" y="195" width="180" height="22" rx="11" class="conveyor-belt" />
-    <!-- Belt top surface -->
-    <rect x="318" y="190" width="164" height="8" rx="2" class="conveyor-belt" />
-
-    <!-- Box being picked (animated) -->
-    <rect x="345" y="165" width="26" height="25" rx="2" class="box picked-box" />
-    <!-- Other boxes on belt -->
-    <rect x="395" y="165" width="26" height="25" rx="2" class="box belt-box1" />
-    <rect x="440" y="165" width="26" height="25" rx="2" class="box belt-box2" />
+  <g class="right-ped">
+    <rect x="410" y="200" width="70" height="20" rx="3" class="metal" />
+    <rect x="420" y="194" width="50" height="9" rx="2" class="metal" />
+    <rect x="432" y="169" width="26" height="25" rx="2" class="box src-box" />
   </g>
 
-  <!-- ===== PLACE AREA (right of conveyor) ===== -->
-  <g class="place-group">
-    <!-- Small table/platform -->
-    <rect x="520" y="200" width="60" height="18" rx="3" class="arm-base" />
-    <rect x="530" y="195" width="40" height="8" rx="2" class="arm-base" />
-    <!-- Placed box (appears after robot places it) -->
-    <rect x="537" y="170" width="26" height="25" rx="2" class="box placed-box" />
-  </g>
+  <rect x="432" y="169" width="26" height="25" rx="2" class="box carry-box" />
 
-  <!-- ===== LAPTOP ===== -->
   <g class="laptop-group">
-    <!-- Screen -->
-    <rect x="620" y="130" width="100" height="70" rx="5" class="laptop-screen" />
-    <!-- Screen content -->
-    <line x1="632" y1="148" x2="665" y2="148" class="laptop-dash" style="animation-delay: 0s" />
-    <line x1="632" y1="159" x2="678" y2="159" class="laptop-dash" style="animation-delay: 0.4s" />
-    <line x1="632" y1="170" x2="658" y2="170" class="laptop-dash" style="animation-delay: 0.8s" />
-    <line x1="632" y1="181" x2="672" y2="181" class="laptop-dash" style="animation-delay: 1.2s" />
-    <!-- Chart bars -->
-    <rect x="688" y="168" width="5" height="16" rx="1" class="laptop-dash" style="animation-delay:0.2s;fill:white;stroke:none;" />
-    <rect x="696" y="162" width="5" height="22" rx="1" class="laptop-dash" style="animation-delay:0.6s;fill:white;stroke:none;" />
-    <rect x="704" y="171" width="5" height="13" rx="1" class="laptop-dash" style="animation-delay:1.0s;fill:white;stroke:none;" />
-    <!-- Laptop base -->
-    <path d="M607,202 L615,200 L725,200 L733,202 L738,212 L602,212 Z" class="laptop-base" />
-    <rect x="655" y="198" width="30" height="4" rx="2" class="laptop-base" />
+    <rect x="570" y="135" width="95" height="65" rx="5" class="laptop-screen" />
+    <line x1="581" y1="152" x2="612" y2="152" class="laptop-dash" style="animation-delay:0s" />
+    <line x1="581" y1="162" x2="625" y2="162" class="laptop-dash" style="animation-delay:0.4s" />
+    <line x1="581" y1="172" x2="608" y2="172" class="laptop-dash" style="animation-delay:0.8s" />
+    <line x1="581" y1="182" x2="620" y2="182" class="laptop-dash" style="animation-delay:1.2s" />
+    <rect x="636" y="170" width="5" height="15" rx="1" class="laptop-dash" style="animation-delay:0.2s;fill:white;stroke:none;" />
+    <rect x="644" y="164" width="5" height="21" rx="1" class="laptop-dash" style="animation-delay:0.6s;fill:white;stroke:none;" />
+    <rect x="652" y="172" width="5" height="13" rx="1" class="laptop-dash" style="animation-delay:1.0s;fill:white;stroke:none;" />
+    <path d="M558,202 L565,200 L675,200 L682,202 L687,212 L553,212 Z" class="laptop-base" />
+    <rect x="607" y="198" width="26" height="4" rx="2" class="laptop-base" />
   </g>
 
-  <!-- ===== TEXT ===== -->
   <g class="text-group">
     <text x="400" y="268" text-anchor="middle" font-size="42" class="logo-text">CK IAS</text>
   </g>
