@@ -36,11 +36,7 @@
       100% { transform: translateX(40px); opacity: 0; }
     }
 
-    /* Conveyor rollers spin */
-    @keyframes rollerSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+
 
     /* Laptop screen blink */
     @keyframes screenPulse {
@@ -71,10 +67,7 @@
     .box2 { animation: boxMove 4s ease-in-out infinite 1.3s; }
     .box3 { animation: boxMove 4s ease-in-out infinite 2.6s; }
 
-    .roller {
-      transform-origin: center;
-      animation: rollerSpin 2s linear infinite;
-    }
+
 
     .laptop-dash {
       animation: screenPulse 2.5s ease-in-out infinite;
@@ -125,12 +118,7 @@
   <g class="conveyor-group">
     <!-- Belt body -->
     <rect x="280" y="195" width="200" height="22" rx="11" class="conveyor-belt" />
-    <!-- Rollers -->
-    <circle cx="291" cy="206" r="8" class="roller" style="fill:none;stroke:currentColor;stroke-width:2;opacity:0.3" />
-    <circle cx="340" cy="210" r="3" class="roller" style="opacity:0.4" />
-    <circle cx="380" cy="210" r="3" class="roller" style="opacity:0.4" />
-    <circle cx="420" cy="210" r="3" class="roller" style="opacity:0.4" />
-    <circle cx="469" cy="206" r="8" class="roller" style="fill:none;stroke:currentColor;stroke-width:2;opacity:0.3" />
+
 
     <!-- Belt top surface -->
     <rect x="288" y="190" width="184" height="8" rx="2" class="conveyor-belt" />
