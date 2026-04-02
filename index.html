@@ -213,29 +213,30 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-columns: 300px 1fr;
+      gap: 32px 48px;
       align-items: center;
     }
 
     .about-text p { margin-bottom: 16px; color: var(--color-text); }
 
     .about-stats {
+      grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
     .stat-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 24px 20px;
       text-align: center;
     }
 
     .stat-number {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--color-primary-light);
       line-height: 1;
@@ -245,6 +246,60 @@
     .stat-label {
       font-size: 0.85rem;
       color: var(--color-text-muted);
+    }
+
+    /* ===== PROFILE PHOTO ===== */
+    .profile-photo-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-photo {
+      position: relative;
+      width: 280px;
+      height: 320px;
+      filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.2));
+      animation: profile-float 6s ease-in-out infinite;
+    }
+
+    @keyframes profile-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .profile-hex-border {
+      position: relative;
+      width: 280px;
+      height: 320px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    }
+
+    .profile-hex-inner {
+      position: absolute;
+      inset: 3px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+
+    .profile-hex-inner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .circuit-traces {
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 380px;
+      height: 420px;
+      pointer-events: none;
+      z-index: -1;
     }
 
     /* ===== SERVICES ===== */
@@ -617,6 +672,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -636,10 +692,14 @@
       .hero h1 { font-size: 1.8rem; }
       .hero-logo img { max-width: 280px; }
 
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .profile-photo { width: 220px; height: 252px; }
+      .profile-hex-border { width: 220px; height: 252px; }
+      .circuit-traces { width: 300px; height: 332px; top: -40px; left: -40px; }
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
       .industries-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
+      .contact-cta { padding: 28px; }
 
       .footer-content { flex-direction: column; text-align: center; }
     }
@@ -711,6 +771,50 @@
         <p class="section-subtitle">Automatisierungstechnik ist nicht nur mein Beruf – es ist das, was mich antreibt.</p>
       </div>
       <div class="about-grid">
+        <!-- Profilbild mit futuristischem Hexagon-Rahmen -->
+        <div class="profile-photo-wrapper">
+          <div class="profile-photo">
+            <!-- Circuit-Trace-Dekoration (Leiterbahnen) -->
+            <svg class="circuit-traces" viewBox="0 0 380 420" fill="none" aria-hidden="true">
+              <!-- Trace: oben → rechts oben -->
+              <line x1="190" y1="50" x2="190" y2="22" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <line x1="190" y1="22" x2="228" y2="22" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <circle cx="228" cy="22" r="3" fill="#22d3ee" opacity="0.5"/>
+              <circle cx="190" cy="22" r="2" fill="#3b82f6" opacity="0.4"/>
+              <!-- Trace: rechts oben → rechts unten -->
+              <line x1="330" y1="130" x2="358" y2="130" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <line x1="358" y1="130" x2="358" y2="162" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <circle cx="358" cy="130" r="2" fill="#3b82f6" opacity="0.4"/>
+              <circle cx="358" cy="162" r="3" fill="#22d3ee" opacity="0.5"/>
+              <!-- Trace: links oben → links hoch -->
+              <line x1="50" y1="130" x2="22" y2="130" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <line x1="22" y1="130" x2="22" y2="98" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+              <circle cx="22" cy="130" r="2" fill="#3b82f6" opacity="0.4"/>
+              <circle cx="22" cy="98" r="3" fill="#22d3ee" opacity="0.5"/>
+              <!-- Trace: rechts unten → rechts -->
+              <line x1="330" y1="290" x2="352" y2="290" stroke="#3b82f6" stroke-width="1.5" opacity="0.25"/>
+              <circle cx="352" cy="290" r="3" fill="#22d3ee" opacity="0.4"/>
+              <!-- Trace: links unten → links runter -->
+              <line x1="50" y1="290" x2="28" y2="290" stroke="#3b82f6" stroke-width="1.5" opacity="0.25"/>
+              <line x1="28" y1="290" x2="28" y2="318" stroke="#3b82f6" stroke-width="1.5" opacity="0.25"/>
+              <circle cx="28" cy="290" r="2" fill="#3b82f6" opacity="0.3"/>
+              <circle cx="28" cy="318" r="3" fill="#22d3ee" opacity="0.4"/>
+              <!-- Schwebende Akzent-Punkte -->
+              <circle cx="158" cy="10" r="2" fill="#22d3ee" opacity="0.3"/>
+              <circle cx="365" cy="210" r="2" fill="#3b82f6" opacity="0.2"/>
+              <circle cx="15" cy="210" r="2" fill="#3b82f6" opacity="0.2"/>
+            </svg>
+            <!-- Hexagonaler Rahmen mit Gradient-Border -->
+            <div class="profile-hex-border">
+              <div class="profile-hex-inner">
+                <!-- TODO: img/portrait.jpg durch echtes Foto ersetzen -->
+                <img src="img/portrait.jpg" alt="Christoph Korn – Automatisierungsingenieur"
+                     onerror="this.onerror=null; this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 320'%3E%3Crect width='280' height='320' fill='%231c1f2a'/%3E%3Ccircle cx='140' cy='110' r='45' fill='%232d3348'/%3E%3Cellipse cx='140' cy='240' rx='70' ry='50' fill='%232d3348'/%3E%3Ctext x='140' y='300' text-anchor='middle' fill='%2360a5fa' font-family='sans-serif' font-size='11'%3EFoto hier einf%C3%BCgen%3C/text%3E%3C/svg%3E&quot;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Text -->
         <div class="about-text">
           <p>
             Mein Name ist Christoph Korn. Als ausgebildeter Elektroingenieur (B.Eng.) mit Schwerpunkt Automatisierungstechnik
@@ -727,6 +831,7 @@
             IIoT-Technologien und industrieller Netzwerktechnik.
           </p>
         </div>
+        <!-- Kennzahlen (volle Breite) -->
         <div class="about-stats">
           <div class="stat-card">
             <div class="stat-number">13+</div>
