@@ -323,12 +323,18 @@
     }
 
     .service-icon {
-      width: 48px; height: 48px;
-      background: rgba(59, 130, 246, 0.1);
+      width: 64px; height: 64px;
       border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
       margin-bottom: 20px;
-      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .service-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .service-card h3 {
@@ -419,7 +425,8 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 32px 24px;
+      padding: 0;
+      overflow: hidden;
       text-align: center;
       transition: all 0.3s;
     }
@@ -428,7 +435,30 @@
       transform: translateY(-2px);
     }
 
-    .industry-icon { font-size: 2rem; margin-bottom: 12px; }
+    .industry-card-text {
+      padding: 16px 20px 20px;
+    }
+
+    .industry-icon {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .industry-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .industry-card:hover .industry-icon img {
+      transform: scale(1.05);
+    }
+
     .industry-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 8px; }
     .industry-card p { font-size: 0.82rem; color: var(--color-text-muted); }
 
@@ -865,31 +895,31 @@
       <div class="services-grid">
 
         <div class="service-card">
-          <div class="service-icon">⚙️</div>
+          <div class="service-icon"><img src="img/service_sps.png" alt="SPS-Programmierung" loading="lazy"></div>
           <h3>SPS-Programmierung</h3>
           <p>Neue Programme erstellen, bestehende erweitern oder auf moderne Systeme umziehen – herstellerübergreifend mit Siemens, Beckhoff, CODESYS u. a.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">🤖</div>
+          <div class="service-icon"><img src="img/service_robotik.png" alt="Roboterprogrammierung" loading="lazy"></div>
           <h3>Roboterprogrammierung</h3>
           <p>Programmierung von Industrierobotern (KUKA, ABB) und nahtlose Einbindung in Ihre Gesamtanlage.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">🔧</div>
+          <div class="service-icon"><img src="img/service_inbetriebnahme.png" alt="Inbetriebnahme" loading="lazy"></div>
           <h3>Inbetriebnahme</h3>
           <p>Neue Anlagen zum Laufen bringen, bestehende optimieren – inklusive Fehlersuche und Performance-Verbesserung.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">⚡</div>
+          <div class="service-icon"><img src="img/service_antriebstechnik.png" alt="Antriebstechnik" loading="lazy"></div>
           <h3>Antriebstechnik</h3>
           <p>Parametrierung von Frequenzumrichtern und Servoantrieben (SEW, Lenze, Siemens). Achsabstimmung und Optimierung.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">🌐</div>
+          <div class="service-icon"><img src="img/service_iiot.png" alt="IIoT und Industry 4.0" loading="lazy"></div>
           <h3>IIoT &amp; Industry 4.0</h3>
           <p>Maschinendaten erfassen, auswerten und übersichtlich darstellen – für volle Transparenz in Ihrer Produktion.</p>
         </div>
@@ -903,19 +933,19 @@
         -->
 
         <div class="service-card">
-          <div class="service-icon">🔌</div>
+          <div class="service-icon"><img src="img/service_netzwerktechnik.png" alt="Netzwerktechnik" loading="lazy"></div>
           <h3>Netzwerktechnik</h3>
           <p>Industrielle Netzwerke planen, aufbauen und absichern – damit Ihre Maschinen zuverlässig miteinander kommunizieren.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">💻</div>
+          <div class="service-icon"><img src="img/service_softwareentwicklung.png" alt="Softwareentwicklung" loading="lazy"></div>
           <h3>Softwareentwicklung</h3>
           <p>Individuelle Software, Bedienoberflächen und Schnittstellen – maßgeschneidert für Ihren Prozess.</p>
         </div>
 
         <div class="service-card">
-          <div class="service-icon">📋</div>
+          <div class="service-icon"><img src="img/service_dokumentation.png" alt="Dokumentation und Schulung" loading="lazy"></div>
           <h3>Dokumentation &amp; Schulung</h3>
           <p>Funktionsbeschreibungen, Bedienungsanleitungen, Schulung und Einweisung des Bedienpersonals.</p>
         </div>
@@ -1049,27 +1079,35 @@
       <div class="industries-grid">
 
         <div class="industry-card">
-          <div class="industry-icon">🔬</div>
-          <h3>Halbleiterindustrie</h3>
-          <p>Prototypen-Produktionsanlagen</p>
+          <div class="industry-icon"><img src="img/branch_halbleiter.png" alt="Halbleiterindustrie" loading="lazy"></div>
+          <div class="industry-card-text">
+            <h3>Halbleiterindustrie</h3>
+            <p>Prototypen-Produktionsanlagen</p>
+          </div>
         </div>
 
         <div class="industry-card">
-          <div class="industry-icon">🚗</div>
-          <h3>Automotive / ADAS</h3>
-          <p>Fahrassistenzkamera-Produktion</p>
+          <div class="industry-icon"><img src="img/branch_automotive.png" alt="Automotive und ADAS" loading="lazy"></div>
+          <div class="industry-card-text">
+            <h3>Automotive / ADAS</h3>
+            <p>Fahrassistenzkamera-Produktion</p>
+          </div>
         </div>
 
         <div class="industry-card">
-          <div class="industry-icon">🏗️</div>
-          <h3>Baustoffindustrie</h3>
-          <p>Pulver- und Baustoffabfüllung</p>
+          <div class="industry-icon"><img src="img/branch_baustoff.png" alt="Baustoffindustrie" loading="lazy"></div>
+          <div class="industry-card-text">
+            <h3>Baustoffindustrie</h3>
+            <p>Pulver- und Baustoffabfüllung</p>
+          </div>
         </div>
 
         <div class="industry-card">
-          <div class="industry-icon">🏭</div>
-          <h3>Maschinenbau</h3>
-          <p>Sonder- &amp; Serienmaschinen</p>
+          <div class="industry-icon"><img src="img/branch_maschinenbau.png" alt="Maschinenbau" loading="lazy"></div>
+          <div class="industry-card-text">
+            <h3>Maschinenbau</h3>
+            <p>Sonder- &amp; Serienmaschinen</p>
+          </div>
         </div>
 
       </div>
