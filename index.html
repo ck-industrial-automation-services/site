@@ -109,7 +109,7 @@
 
     .hero-content { position: relative; z-index: 1; max-width: 720px; }
 
-    .hero-logo { margin-bottom: 32px; }
+    .hero-logo { margin-bottom: 32px; text-align: center; }
     .hero-logo img { max-width: 400px; width: 100%; color: var(--color-text-heading); }
 
     .hero h1 {
@@ -665,7 +665,7 @@
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#technologien">Technologien</a></li>
         <li><a href="#branchen">Branchen</a></li>
-        <li><a href="#landwirtschaft">Landwirtschaft</a></li>
+        <!-- <li><a href="#landwirtschaft">Landwirtschaft</a></li> -->
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
       <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menü">
@@ -762,19 +762,19 @@
         <div class="service-card">
           <div class="service-icon">⚙️</div>
           <h3>SPS-Programmierung</h3>
-          <p>Neuprogrammierung, Erweiterung und Migration von SPS-Programmen. Siemens TIA Portal, Beckhoff TwinCAT, CODESYS – alle IEC 61131-3 Sprachen.</p>
+          <p>Neue Programme erstellen, bestehende erweitern oder auf moderne Systeme umziehen – herstellerübergreifend mit Siemens, Beckhoff, CODESYS u. a.</p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🤖</div>
           <h3>Roboterprogrammierung</h3>
-          <p>KUKA (KRL) und ABB (RAPID) Roboterprogrammierung inkl. Zellenintegration in Ihre Gesamtanlage.</p>
+          <p>Programmierung von Industrierobotern (KUKA, ABB) und nahtlose Einbindung in Ihre Gesamtanlage.</p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🔧</div>
           <h3>Inbetriebnahme</h3>
-          <p>Inbetriebnahme von Neu- und Bestandsanlagen, Fehlersuche, Troubleshooting und Performance-Optimierung.</p>
+          <p>Neue Anlagen zum Laufen bringen, bestehende optimieren – inklusive Fehlersuche und Performance-Verbesserung.</p>
         </div>
 
         <div class="service-card">
@@ -786,7 +786,7 @@
         <div class="service-card">
           <div class="service-icon">🌐</div>
           <h3>IIoT &amp; Industry 4.0</h3>
-          <p>Datenerfassung aus Produktionsanlagen, MQTT/OPC-UA-Infrastruktur, Node-RED Flows, Grafana-Dashboards und Monitoring.</p>
+          <p>Maschinendaten erfassen, auswerten und übersichtlich darstellen – für volle Transparenz in Ihrer Produktion.</p>
         </div>
 
         <!-- Cybersecurity-Beratung: vorerst auskommentiert
@@ -800,13 +800,13 @@
         <div class="service-card">
           <div class="service-icon">🔌</div>
           <h3>Netzwerktechnik</h3>
-          <p>Aufbau industrieller Netzwerke (PROFINET, EtherCAT, Modbus), VLAN-Konzepte, Firewall-Konfiguration und Diagnose.</p>
+          <p>Industrielle Netzwerke planen, aufbauen und absichern – damit Ihre Maschinen zuverlässig miteinander kommunizieren.</p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">💻</div>
           <h3>Softwareentwicklung</h3>
-          <p>Kundenspezifische Applikationen mit JavaScript und Python, webbasierte HMI, Schnittstellen-Integration und Datenakquisition.</p>
+          <p>Individuelle Software, Bedienoberflächen und Schnittstellen – maßgeschneidert für Ihren Prozess.</p>
         </div>
 
         <div class="service-card">
@@ -941,7 +941,7 @@
     </div>
   </section>
 
-  <!-- LANDWIRTSCHAFT & SMART FARMING -->
+  <!-- LANDWIRTSCHAFT & SMART FARMING – AUSKOMMENTIERT (mögliche Kollision mit Weidmüller-Vorhaben)
   <section class="agri-section" id="landwirtschaft">
     <div class="container">
       <div class="section-header">
@@ -1018,6 +1018,7 @@
       </div>
     </div>
   </section>
+  Ende LANDWIRTSCHAFT & SMART FARMING -->
 
   <!-- KONTAKT -->
   <section class="contact-section" id="kontakt">
@@ -1103,7 +1104,7 @@
       });
     });
 
-    // Agriculture slideshow
+    /* Agriculture slideshow – auskommentiert (Landwirtschaft-Sektion deaktiviert)
     var agriCurrent = 0;
     var agriSlides = document.querySelectorAll('.agri-slide');
     var agriDotEls = document.querySelectorAll('.agri-dot');
@@ -1128,6 +1129,7 @@
     }
 
     agriResetTimer();
+    Ende Agriculture slideshow */
   </script>
 
 </body>
