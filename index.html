@@ -313,7 +313,8 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
-      padding: 24px 20px;
+      padding: 0;
+      overflow: hidden;
       transition: all 0.3s;
     }
     .service-card:hover {
@@ -323,11 +324,9 @@
     }
 
     .service-icon {
-      width: 64px; height: 64px;
-      border-radius: 10px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
-      margin-bottom: 20px;
-      flex-shrink: 0;
     }
 
     .service-icon img {
@@ -335,13 +334,22 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover .service-icon img {
+      transform: scale(1.05);
+    }
+
+    .service-card-text {
+      padding: 20px;
     }
 
     .service-card h3 {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--color-text-heading);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .service-card p {
@@ -896,58 +904,76 @@
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_sps.png" alt="SPS-Programmierung" loading="lazy"></div>
-          <h3>SPS-Programmierung</h3>
-          <p>Neue Programme erstellen, bestehende erweitern oder auf moderne Systeme umziehen – herstellerübergreifend mit Siemens, Beckhoff, CODESYS u. a.</p>
+          <div class="service-card-text">
+            <h3>SPS-Programmierung</h3>
+            <p>Neue Programme erstellen, bestehende erweitern oder auf moderne Systeme umziehen – herstellerübergreifend mit Siemens, Beckhoff, CODESYS u. a.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_robotik.png" alt="Roboterprogrammierung" loading="lazy"></div>
-          <h3>Roboterprogrammierung</h3>
-          <p>Programmierung von Industrierobotern (KUKA, ABB) und nahtlose Einbindung in Ihre Gesamtanlage.</p>
+          <div class="service-card-text">
+            <h3>Roboterprogrammierung</h3>
+            <p>Programmierung von Industrierobotern (KUKA, ABB) und nahtlose Einbindung in Ihre Gesamtanlage.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_inbetriebnahme.png" alt="Inbetriebnahme" loading="lazy"></div>
-          <h3>Inbetriebnahme</h3>
-          <p>Neue Anlagen zum Laufen bringen, bestehende optimieren – inklusive Fehlersuche und Performance-Verbesserung.</p>
+          <div class="service-card-text">
+            <h3>Inbetriebnahme</h3>
+            <p>Neue Anlagen zum Laufen bringen, bestehende optimieren – inklusive Fehlersuche und Performance-Verbesserung.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_antriebstechnik.png" alt="Antriebstechnik" loading="lazy"></div>
-          <h3>Antriebstechnik</h3>
-          <p>Parametrierung von Frequenzumrichtern und Servoantrieben (SEW, Lenze, Siemens). Achsabstimmung und Optimierung.</p>
+          <div class="service-card-text">
+            <h3>Antriebstechnik</h3>
+            <p>Parametrierung von Frequenzumrichtern und Servoantrieben (SEW, Lenze, Siemens). Achsabstimmung und Optimierung.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_iiot.png" alt="IIoT und Industry 4.0" loading="lazy"></div>
-          <h3>IIoT &amp; Industry 4.0</h3>
-          <p>Maschinendaten erfassen, auswerten und übersichtlich darstellen – für volle Transparenz in Ihrer Produktion.</p>
+          <div class="service-card-text">
+            <h3>IIoT &amp; Industry 4.0</h3>
+            <p>Maschinendaten erfassen, auswerten und übersichtlich darstellen – für volle Transparenz in Ihrer Produktion.</p>
+          </div>
         </div>
 
         <!-- Cybersecurity-Beratung: vorerst auskommentiert
         <div class="service-card">
-          <div class="service-icon">🔒</div>
-          <h3>Cybersecurity-Beratung</h3>
-          <p>Unterstützung bei CRA- und NIS-2-Konformität, OT-Security-Konzepte, Netzwerksegmentierung und Audit-Vorbereitung.</p>
+          <div class="service-icon"><img src="img/service_cybersecurity.png" alt="Cybersecurity" loading="lazy"></div>
+          <div class="service-card-text">
+            <h3>Cybersecurity-Beratung</h3>
+            <p>Unterstützung bei CRA- und NIS-2-Konformität, OT-Security-Konzepte, Netzwerksegmentierung und Audit-Vorbereitung.</p>
+          </div>
         </div>
         -->
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_netzwerktechnik.png" alt="Netzwerktechnik" loading="lazy"></div>
-          <h3>Netzwerktechnik</h3>
-          <p>Industrielle Netzwerke planen, aufbauen und absichern – damit Ihre Maschinen zuverlässig miteinander kommunizieren.</p>
+          <div class="service-card-text">
+            <h3>Netzwerktechnik</h3>
+            <p>Industrielle Netzwerke planen, aufbauen und absichern – damit Ihre Maschinen zuverlässig miteinander kommunizieren.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_softwareentwicklung.png" alt="Softwareentwicklung" loading="lazy"></div>
-          <h3>Softwareentwicklung</h3>
-          <p>Individuelle Software, Bedienoberflächen und Schnittstellen – maßgeschneidert für Ihren Prozess.</p>
+          <div class="service-card-text">
+            <h3>Softwareentwicklung</h3>
+            <p>Individuelle Software, Bedienoberflächen und Schnittstellen – maßgeschneidert für Ihren Prozess.</p>
+          </div>
         </div>
 
         <div class="service-card">
           <div class="service-icon"><img src="img/service_dokumentation.png" alt="Dokumentation und Schulung" loading="lazy"></div>
-          <h3>Dokumentation &amp; Schulung</h3>
-          <p>Funktionsbeschreibungen, Bedienungsanleitungen, Schulung und Einweisung des Bedienpersonals.</p>
+          <div class="service-card-text">
+            <h3>Dokumentation &amp; Schulung</h3>
+            <p>Funktionsbeschreibungen, Bedienungsanleitungen, Schulung und Einweisung des Bedienpersonals.</p>
+          </div>
         </div>
 
       </div>
