@@ -719,6 +719,10 @@
       /* height set by JS: (n-1) * scrollPerItem + 100vh */
       /* NO overflow:hidden – it breaks position:sticky */
     }
+    .wheel-section-header {
+      padding: 60px 0 0;
+      text-align: center;
+    }
     .wheel-sticky {
       position: sticky;
       top: 0;
@@ -775,7 +779,7 @@
     }
     .wheel-item-img {
       width: 100%;
-      height: 120px;
+      height: 100%;
       overflow: hidden;
     }
     .wheel-item-img img {
@@ -785,8 +789,7 @@
       display: block;
     }
     .wheel-item-text {
-      padding: 12px 16px;
-      flex: 1;
+      display: none;
     }
     .wheel-item-text h3 {
       font-size: 0.95rem;
@@ -827,39 +830,7 @@
       color: var(--color-text-muted);
       line-height: 1.6;
     }
-    .wheel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
-    }
-    .wheel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-border);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .wheel-dot.active {
-      background: var(--color-primary-light);
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-      transform: scale(1.3);
-    }
-    .wheel-scroll-hint {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      opacity: 0.6;
-      animation: hintPulse 2s ease-in-out infinite;
-    }
-    @keyframes hintPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-    }
+    .wheel-dots { display: none; }
     .wheel-progress-bar {
       position: absolute;
       bottom: 20px;
@@ -895,6 +866,7 @@
       padding: 16px 24px;
     }
     .wheel-tech .wheel-item-text {
+      display: block;
       padding: 8px;
       text-align: center;
     }
@@ -1151,13 +1123,17 @@
 
   <!-- LEISTUNGEN -->
   <section id="leistungen" class="wheel-section" data-wheel-id="services">
-    <div class="wheel-sticky">
+    <div class="wheel-section-header">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Leistungen</span>
         <h2 class="section-title">Was ich für Sie tun kann</h2>
         <p class="section-subtitle">Von der Programmierung bis zur Inbetriebnahme – alles aus einer Hand.</p>
       </div>
+    </div>
+    </div>
+    <div class="wheel-sticky">
+    <div class="container">
       <div class="wheel-viewport" id="servicesWheel">
         <div class="wheel-ring" id="servicesRing">
 
@@ -1224,7 +1200,6 @@
         <p>Ich programmiere die Steuerung Ihrer Maschine – egal welcher Hersteller. Neuprogrammierung, Erweiterung oder Umzug auf ein modernes System.</p>
       </div>
       <div class="wheel-dots" id="servicesDots"></div>
-      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
       <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="servicesProgress"></div></div>
     </div>
     </div>
@@ -1232,13 +1207,17 @@
 
   <!-- TECHNOLOGIEN -->
   <section class="tech-section wheel-section" id="technologien" data-wheel-id="tech">
-    <div class="wheel-sticky">
+    <div class="wheel-section-header">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Technologien</span>
         <h2 class="section-title">Herstellerübergreifend aufgestellt</h2>
         <p class="section-subtitle">Ich bin nicht auf einen Anbieter festgelegt – und finde die Lösung für Ihre vorhandene Technik.</p>
       </div>
+    </div>
+    </div>
+    <div class="wheel-sticky">
+    <div class="container">
       <div class="wheel-viewport wheel-tech" id="techWheel">
         <div class="wheel-ring" id="techRing">
 
@@ -1277,7 +1256,6 @@
         <p>TIA Portal, S7-1500/1200/300/400, STEP 7, WinCC, SINAMICS, SIMOTION</p>
       </div>
       <div class="wheel-dots" id="techDots"></div>
-      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
       <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="techProgress"></div></div>
     </div>
     </div>
@@ -1285,12 +1263,16 @@
 
   <!-- BRANCHEN -->
   <section id="branchen" class="wheel-section" data-wheel-id="branchen">
-    <div class="wheel-sticky">
+    <div class="wheel-section-header">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Branchenerfahrung</span>
         <h2 class="section-title">In diesen Branchen bin ich zu Hause</h2>
       </div>
+    </div>
+    </div>
+    <div class="wheel-sticky">
+    <div class="container">
       <div class="wheel-viewport" id="branchenWheel">
         <div class="wheel-ring" id="branchenRing">
 
@@ -1343,7 +1325,6 @@
         <p>Prototypen-Produktionsanlagen für die Halbleiterfertigung – Reinraum, Wafer-Handling, Prüfstände.</p>
       </div>
       <div class="wheel-dots" id="branchenDots"></div>
-      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
       <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="branchenProgress"></div></div>
     </div>
     </div>
@@ -1450,9 +1431,13 @@
         var angleStep = 360 / n;
         var radius    = cfg.radius || 280;
 
-        // Set section height: enough scroll travel for all items + one viewport
+        // Measure the non-sticky header above the wheel
+        var headerEl = section.querySelector('.wheel-section-header');
+        var headerH  = headerEl ? headerEl.offsetHeight : 0;
+
+        // Set section height: header + enough scroll travel for all items + one viewport
         var totalScroll = (n - 1) * SCROLL_PER_ITEM;
-        section.style.height = (totalScroll + window.innerHeight) + 'px';
+        section.style.height = (headerH + totalScroll + window.innerHeight) + 'px';
 
         // Position items in 3D
         items.forEach(function(item, i) {
@@ -1524,17 +1509,17 @@
         // Scroll handler
         function onScroll() {
           var rect = section.getBoundingClientRect();
-          // How far have we scrolled into this section?
-          // When sticky top=0, scrolled = -rect.top
-          var scrolled = -rect.top;
+          // scrolled = how far past the header we've scrolled
+          var scrolled = -rect.top - headerH;
           var scrollProgress = scrolled / totalScroll;
           render(scrollProgress);
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', function() {
+          headerH = headerEl ? headerEl.offsetHeight : 0;
           totalScroll = (n - 1) * SCROLL_PER_ITEM;
-          section.style.height = (totalScroll + window.innerHeight) + 'px';
+          section.style.height = (headerH + totalScroll + window.innerHeight) + 'px';
           onScroll();
         });
 
