@@ -718,6 +718,22 @@
       position: relative;
       overflow: hidden;
     }
+    /* ===== WHEEL SCROLL-LOCK SYSTEM ===== */
+    .wheel-section {
+      position: relative;
+      /* height set by JS: (n-1) * scrollPerItem + 100vh */
+    }
+    .wheel-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
     .wheel-viewport {
       position: relative;
       width: 100%;
@@ -734,7 +750,6 @@
       max-width: 600px;
       height: 400px;
       transform-style: preserve-3d;
-      /* rotation set by JS */
     }
     .wheel-item {
       position: absolute;
@@ -792,7 +807,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    /* Detail panel next to wheel */
     .wheel-detail {
       max-width: 420px;
       opacity: 0;
@@ -817,7 +831,6 @@
       color: var(--color-text-muted);
       line-height: 1.6;
     }
-    /* Dot indicators */
     .wheel-dots {
       display: flex;
       justify-content: center;
@@ -839,7 +852,6 @@
       box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
       transform: scale(1.3);
     }
-    /* Scroll hint */
     .wheel-scroll-hint {
       text-align: center;
       margin-top: 12px;
@@ -851,6 +863,24 @@
     @keyframes hintPulse {
       0%, 100% { opacity: 0.4; }
       50% { opacity: 0.8; }
+    }
+    .wheel-progress-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .wheel-progress-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 2px;
+      transition: width 0.2s;
+      width: 0%;
     }
     /* Tech wheel - smaller items */
     .wheel-viewport.wheel-tech {
@@ -869,20 +899,17 @@
       padding: 16px 24px;
     }
     .wheel-tech .wheel-item-text {
-      padding: 0;
+      padding: 8px;
       text-align: center;
     }
     .wheel-tech .wheel-item-text h3 {
-      font-size: 1.1rem;
-      margin: 0;
+      font-size: 1rem;
     }
     .wheel-tech .wheel-item-text p {
-      display: none;
+      font-size: 0.72rem;
     }
     .wheel-tech .wheel-item.active .wheel-item-text p {
-      display: block;
-      font-size: 0.8rem;
-      margin-top: 4px;
+      color: var(--color-text);
     }
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
@@ -1127,7 +1154,8 @@
   </section>
 
   <!-- LEISTUNGEN -->
-  <section id="leistungen">
+  <section id="leistungen" class="wheel-section" data-wheel-id="services">
+    <div class="wheel-sticky">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Leistungen</span>
@@ -1201,11 +1229,14 @@
       </div>
       <div class="wheel-dots" id="servicesDots"></div>
       <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
+      <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="servicesProgress"></div></div>
+    </div>
     </div>
   </section>
 
   <!-- TECHNOLOGIEN -->
-  <section class="tech-section" id="technologien">
+  <section class="tech-section wheel-section" id="technologien" data-wheel-id="tech">
+    <div class="wheel-sticky">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Technologien</span>
@@ -1251,11 +1282,14 @@
       </div>
       <div class="wheel-dots" id="techDots"></div>
       <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
+      <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="techProgress"></div></div>
+    </div>
     </div>
   </section>
 
   <!-- BRANCHEN -->
-  <section id="branchen">
+  <section id="branchen" class="wheel-section" data-wheel-id="branchen">
+    <div class="wheel-sticky">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Branchenerfahrung</span>
@@ -1314,6 +1348,8 @@
       </div>
       <div class="wheel-dots" id="branchenDots"></div>
       <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
+      <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="branchenProgress"></div></div>
+    </div>
     </div>
   </section>
 
@@ -1401,178 +1437,120 @@
       });
     });
 
-    /* ===== 3D SCROLL WHEEL ENGINE ===== */
-    function initWheel(config) {
-      var viewport = document.getElementById(config.viewportId);
-      var ring = document.getElementById(config.ringId);
-      var detail = document.getElementById(config.detailId);
-      var dotsContainer = document.getElementById(config.dotsId);
-      if (!viewport || !ring) return;
+    /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
+    (function() {
+      var SCROLL_PER_ITEM = 200; // px of scroll per wheel item
 
-      var items = ring.querySelectorAll('.wheel-item');
-      var n = items.length;
-      var angleStep = 360 / n;
-      var radius = config.radius || 280;
-      var currentIndex = 0;
-      var targetAngle = 0;
-      var currentAngle = 0;
+      function initWheel(cfg) {
+        var section = document.querySelector('[data-wheel-id="' + cfg.id + '"]');
+        var ring    = document.getElementById(cfg.ringId);
+        var detail  = document.getElementById(cfg.detailId);
+        var dots    = document.getElementById(cfg.dotsId);
+        var progress = document.getElementById(cfg.progressId);
+        if (!section || !ring) return;
 
-      // Position items in 3D circle (rotateX for vertical wheel)
-      items.forEach(function(item, i) {
-        item.style.transform = 'rotateX(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
-      });
+        var items     = ring.querySelectorAll('.wheel-item');
+        var n         = items.length;
+        var angleStep = 360 / n;
+        var radius    = cfg.radius || 280;
 
-      // Create dots
-      if (dotsContainer) {
-        for (var i = 0; i < n; i++) {
-          var dot = document.createElement('button');
-          dot.className = 'wheel-dot' + (i === 0 ? ' active' : '');
-          dot.setAttribute('aria-label', 'Item ' + (i + 1));
-          (function(idx) {
-            dot.addEventListener('click', function() {
-              targetAngle = -idx * angleStep;
-              currentIndex = idx;
-              updateWheel();
-            });
-          })(i);
-          dotsContainer.appendChild(dot);
-        }
-      }
+        // Set section height: enough scroll travel for all items + one viewport
+        var totalScroll = (n - 1) * SCROLL_PER_ITEM;
+        section.style.height = (totalScroll + window.innerHeight) + 'px';
 
-      function updateWheel() {
-        // Animate ring rotation
-        ring.style.transform = 'rotateX(' + currentAngle + 'deg)';
-
-        // Calculate which item is in front
-        var normalizedAngle = (((-currentAngle) % 360) + 360) % 360;
-        var frontIdx = Math.round(normalizedAngle / angleStep) % n;
-        if (frontIdx !== currentIndex) {
-          currentIndex = frontIdx;
-        }
-
-        // Update active states and filters
+        // Position items in 3D
         items.forEach(function(item, i) {
-          var itemAngle = (i * angleStep + currentAngle) % 360;
-          if (itemAngle < 0) itemAngle += 360;
-
-          // Distance from front (0 deg)
-          var dist = Math.min(itemAngle, 360 - itemAngle);
-          var distNorm = dist / 180; // 0 = front, 1 = back
-
-          if (dist < angleStep * 0.6) {
-            item.classList.add('active');
-            item.style.filter = 'none';
-            item.style.opacity = '1';
-          } else {
-            item.classList.remove('active');
-            var blur = Math.min(distNorm * 4, 3);
-            var glow = Math.max(0.2, 1 - distNorm);
-            item.style.filter = 'blur(' + blur.toFixed(1) + 'px) drop-shadow(0 0 ' + (15 * glow).toFixed(0) + 'px rgba(34,211,238,' + (glow * 0.4).toFixed(2) + '))';
-            item.style.opacity = String(Math.max(0.3, 1 - distNorm * 0.8));
-          }
+          item.style.transform = 'rotateX(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
         });
 
-        // Update detail panel
-        if (detail && items[currentIndex]) {
-          var item = items[currentIndex];
-          var h3 = detail.querySelector('h3');
-          var p = detail.querySelector('p');
-          if (h3) h3.innerHTML = item.getAttribute('data-title') || '';
-          if (p) p.innerHTML = item.getAttribute('data-desc') || '';
-          detail.classList.add('visible');
+        // Create dots
+        if (dots) {
+          dots.innerHTML = '';
+          for (var i = 0; i < n; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'wheel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Item ' + (i + 1));
+            dots.appendChild(dot);
+          }
         }
 
-        // Update dots
-        if (dotsContainer) {
-          var dots = dotsContainer.querySelectorAll('.wheel-dot');
-          dots.forEach(function(d, i) {
-            d.classList.toggle('active', i === currentIndex);
+        function render(scrollProgress) {
+          // scrollProgress: 0 = first item, 1 = last item
+          var clamped = Math.max(0, Math.min(1, scrollProgress));
+          var currentAngle = -clamped * (n - 1) * angleStep;
+          var currentIndex = Math.round(clamped * (n - 1));
+
+          ring.style.transform = 'rotateX(' + currentAngle + 'deg)';
+
+          // Update items
+          items.forEach(function(item, i) {
+            var itemAngle = ((i * angleStep + currentAngle) % 360 + 360) % 360;
+            var dist = Math.min(itemAngle, 360 - itemAngle);
+            var distNorm = dist / 180;
+
+            if (i === currentIndex) {
+              item.classList.add('active');
+              item.style.filter = 'none';
+              item.style.opacity = '1';
+            } else {
+              item.classList.remove('active');
+              var blur = Math.min(distNorm * 4, 3);
+              var glow = Math.max(0.2, 1 - distNorm);
+              item.style.filter = 'blur(' + blur.toFixed(1) + 'px) drop-shadow(0 0 ' + (15 * glow).toFixed(0) + 'px rgba(34,211,238,' + (glow * 0.4).toFixed(2) + '))';
+              item.style.opacity = String(Math.max(0.3, 1 - distNorm * 0.8));
+            }
           });
+
+          // Detail
+          if (detail && items[currentIndex]) {
+            var it = items[currentIndex];
+            var h3 = detail.querySelector('h3');
+            var p  = detail.querySelector('p');
+            if (h3) h3.innerHTML = it.getAttribute('data-title') || '';
+            if (p)  p.innerHTML  = it.getAttribute('data-desc') || '';
+            detail.classList.add('visible');
+          }
+
+          // Dots
+          if (dots) {
+            var dotEls = dots.querySelectorAll('.wheel-dot');
+            dotEls.forEach(function(d, i) {
+              d.classList.toggle('active', i === currentIndex);
+            });
+          }
+
+          // Progress bar
+          if (progress) {
+            progress.style.width = (clamped * 100).toFixed(1) + '%';
+          }
         }
+
+        // Scroll handler
+        function onScroll() {
+          var rect = section.getBoundingClientRect();
+          // How far have we scrolled into this section?
+          // When sticky top=0, scrolled = -rect.top
+          var scrolled = -rect.top;
+          var scrollProgress = scrolled / totalScroll;
+          render(scrollProgress);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function() {
+          totalScroll = (n - 1) * SCROLL_PER_ITEM;
+          section.style.height = (totalScroll + window.innerHeight) + 'px';
+          onScroll();
+        });
+
+        // Initial
+        onScroll();
       }
 
-      // Smooth animation loop
-      var animating = false;
-      function animate() {
-        var diff = targetAngle - currentAngle;
-        if (Math.abs(diff) > 0.1) {
-          currentAngle += diff * 0.12;
-          updateWheel();
-          requestAnimationFrame(animate);
-        } else {
-          currentAngle = targetAngle;
-          updateWheel();
-          animating = false;
-        }
-      }
-
-      function startAnimate() {
-        if (!animating) {
-          animating = true;
-          requestAnimationFrame(animate);
-        }
-      }
-
-      // Scroll-linked rotation
-      var lastScrollY = window.scrollY;
-      var scrollSensitivity = config.scrollSensitivity || 0.15;
-
-      window.addEventListener('scroll', function() {
-        var rect = viewport.getBoundingClientRect();
-        var viewH = window.innerHeight;
-
-        // Only respond when section is in view
-        if (rect.top < viewH && rect.bottom > 0) {
-          var deltaScroll = window.scrollY - lastScrollY;
-          targetAngle -= deltaScroll * scrollSensitivity;
-
-          // Snap to nearest item
-          var snapped = Math.round(targetAngle / angleStep) * angleStep;
-          targetAngle = snapped;
-
-          startAnimate();
-        }
-        lastScrollY = window.scrollY;
-      }, { passive: true });
-
-      // Touch/mouse drag support
-      var dragStartY = 0;
-      var dragging = false;
-
-      viewport.addEventListener('touchstart', function(e) {
-        dragStartY = e.touches[0].clientY;
-        dragging = true;
-      }, { passive: true });
-
-      viewport.addEventListener('touchmove', function(e) {
-        if (!dragging) return;
-        var dy = dragStartY - e.touches[0].clientY;
-        dragStartY = e.touches[0].clientY;
-        targetAngle -= dy * 0.5;
-        var snapped = Math.round(targetAngle / angleStep) * angleStep;
-        targetAngle = snapped;
-        startAnimate();
-      }, { passive: true });
-
-      viewport.addEventListener('touchend', function() { dragging = false; });
-
-      // Mouse wheel on viewport
-      viewport.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        targetAngle -= e.deltaY * 0.08;
-        var snapped = Math.round(targetAngle / angleStep) * angleStep;
-        targetAngle = snapped;
-        startAnimate();
-      }, { passive: false });
-
-      // Initial render
-      updateWheel();
-    }
-
-    // Initialize all three wheels
-    initWheel({ viewportId: 'servicesWheel', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', radius: 300, scrollSensitivity: 0.18 });
-    initWheel({ viewportId: 'branchenWheel', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', radius: 280, scrollSensitivity: 0.18 });
-    initWheel({ viewportId: 'techWheel', ringId: 'techRing', detailId: 'techDetail', dotsId: 'techDots', radius: 200, scrollSensitivity: 0.2 });
+      // Init all wheels
+      initWheel({ id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 300 });
+      initWheel({ id: 'tech',     ringId: 'techRing',     detailId: 'techDetail',     dotsId: 'techDots',     progressId: 'techProgress',     radius: 200 });
+      initWheel({ id: 'branchen', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', progressId: 'branchenProgress', radius: 280 });
+    })();
   </script>
 
 </body>
