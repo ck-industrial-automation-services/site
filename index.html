@@ -73,6 +73,38 @@
     }
 
     .nav-logo img { height: 40px; color: var(--color-text-heading); }
+    .nav-logo {
+      opacity: 0;
+      transform: scale(0.3);
+      pointer-events: none;
+      transition: opacity 0.1s, transform 0.1s;
+    }
+    .nav-logo.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      animation: navLogoFlash 0.7s ease-out;
+    }
+    @keyframes navLogoFlash {
+      0% {
+        opacity: 0;
+        transform: scale(0.2);
+        filter: brightness(1) drop-shadow(0 0 0px transparent);
+      }
+      30% {
+        opacity: 1;
+        transform: scale(1.25);
+        filter: brightness(2.5) drop-shadow(0 0 40px rgba(34,211,238,0.9)) drop-shadow(0 0 80px rgba(59,130,246,0.6));
+      }
+      60% {
+        transform: scale(0.95);
+        filter: brightness(1.4) drop-shadow(0 0 20px rgba(34,211,238,0.5)) drop-shadow(0 0 40px rgba(59,130,246,0.3));
+      }
+      100% {
+        transform: scale(1);
+        filter: brightness(1) drop-shadow(0 0 0px transparent);
+      }
+    }
 
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
@@ -1413,6 +1445,25 @@
         document.getElementById('navLinks').classList.remove('open');
       });
     });
+
+    // Show nav-logo with flash when hero-logo scrolls out of view
+    (function() {
+      var heroLogo = document.querySelector('.hero-logo');
+      var navLogo  = document.querySelector('.nav-logo');
+      if (!heroLogo || !navLogo) return;
+      var shown = false;
+      var observer = new IntersectionObserver(function(entries) {
+        var isVisible = entries[0].isIntersecting;
+        if (!isVisible && !shown) {
+          navLogo.classList.add('visible');
+          shown = true;
+        } else if (isVisible && shown) {
+          navLogo.classList.remove('visible');
+          shown = false;
+        }
+      }, { threshold: 0.1 });
+      observer.observe(heroLogo);
+    })();
 
     /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
     (function() {
