@@ -529,139 +529,6 @@
     .industry-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 8px; }
     .industry-card p { font-size: 0.82rem; color: var(--color-text-muted); }
 
-    /* ===== AGRICULTURE SHOWCASE ===== */
-    .agri-section { background: var(--color-bg-alt); }
-
-    .agri-showcase {
-      position: relative;
-      max-width: 960px;
-      margin: 0 auto;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      aspect-ratio: 16 / 9;
-    }
-
-    .agri-slide {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .agri-slide.active { opacity: 1; }
-
-    .agri-slide img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .agri-slide-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 24px 28px;
-      background: linear-gradient(transparent, rgba(15, 17, 23, 0.92));
-    }
-
-    .agri-slide-caption h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--color-text-heading);
-      margin-bottom: 4px;
-    }
-
-    .agri-slide-caption p {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-      line-height: 1.5;
-    }
-
-    .agri-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .agri-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--color-border);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      padding: 0;
-    }
-
-    .agri-dot.active {
-      background: var(--color-primary-light);
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-    }
-
-    .agri-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(15, 17, 23, 0.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--color-border);
-      color: var(--color-text);
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 1.1rem;
-      z-index: 2;
-      padding: 0;
-    }
-
-    .agri-nav:hover {
-      background: rgba(59, 130, 246, 0.3);
-      border-color: var(--color-primary);
-    }
-
-    .agri-nav-prev { left: 12px; }
-    .agri-nav-next { right: 12px; }
-
-    .agri-features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .agri-feature {
-      text-align: center;
-      padding: 20px 16px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      transition: all 0.3s;
-    }
-
-    .agri-feature:hover {
-      border-color: var(--color-primary);
-      transform: translateY(-2px);
-    }
-
-    .agri-feature-icon { font-size: 1.6rem; margin-bottom: 10px; }
-    .agri-feature h4 { font-size: 0.9rem; font-weight: 600; color: var(--color-text-heading); margin-bottom: 4px; }
-    .agri-feature p { font-size: 0.8rem; color: var(--color-text-muted); }
-
-    @media (max-width: 768px) {
-      .agri-features { grid-template-columns: 1fr 1fr; }
-      .agri-nav { width: 32px; height: 32px; font-size: 0.9rem; }
-    }
-
-    @media (max-width: 480px) {
-      .agri-features { grid-template-columns: 1fr; }
-    }
-
     /* ===== CONTACT ===== */
     .contact-section { background: var(--color-bg-alt); }
 
@@ -845,6 +712,178 @@
       color: var(--color-primary-light);
     }
 
+
+    /* ===== 3D SCROLL WHEEL (shared) ===== */
+    .wheel-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .wheel-viewport {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wheel-ring {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      transform-style: preserve-3d;
+      /* rotation set by JS */
+    }
+    .wheel-item {
+      position: absolute;
+      width: 320px;
+      left: 50%;
+      top: 50%;
+      margin-left: -160px;
+      margin-top: -100px;
+      height: 200px;
+      backface-visibility: hidden;
+      transition: filter 0.4s, opacity 0.4s;
+    }
+    .wheel-item-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .wheel-item.active .wheel-item-inner {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(59, 130, 246, 0.1);
+    }
+    .wheel-item-img {
+      width: 100%;
+      height: 120px;
+      overflow: hidden;
+    }
+    .wheel-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .wheel-item-text {
+      padding: 12px 16px;
+      flex: 1;
+    }
+    .wheel-item-text h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      margin-bottom: 4px;
+    }
+    .wheel-item-text p {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    /* Detail panel next to wheel */
+    .wheel-detail {
+      max-width: 420px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s, transform 0.4s;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .wheel-detail.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .wheel-detail h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 8px;
+    }
+    .wheel-detail p {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Dot indicators */
+    .wheel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .wheel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-border);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .wheel-dot.active {
+      background: var(--color-primary-light);
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+      transform: scale(1.3);
+    }
+    /* Scroll hint */
+    .wheel-scroll-hint {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      opacity: 0.6;
+      animation: hintPulse 2s ease-in-out infinite;
+    }
+    @keyframes hintPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    /* Tech wheel - smaller items */
+    .wheel-viewport.wheel-tech {
+      height: 360px;
+    }
+    .wheel-tech .wheel-item {
+      width: 200px;
+      height: 80px;
+      margin-left: -100px;
+      margin-top: -40px;
+    }
+    .wheel-tech .wheel-item-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px;
+    }
+    .wheel-tech .wheel-item-text {
+      padding: 0;
+      text-align: center;
+    }
+    .wheel-tech .wheel-item-text h3 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    .wheel-tech .wheel-item-text p {
+      display: none;
+    }
+    .wheel-tech .wheel-item.active .wheel-item-text p {
+      display: block;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
@@ -873,6 +912,12 @@
       .profile-hex-border { width: 220px; height: 252px; }
       .circuit-traces { width: 300px; height: 332px; top: -40px; left: -40px; }
       .services-grid { grid-template-columns: 1fr; gap: 12px; }
+      /* Wheel responsive */
+      .wheel-viewport { height: 400px; perspective: 900px; }
+      .wheel-item { width: 260px; margin-left: -130px; height: 170px; margin-top: -85px; }
+      .wheel-viewport.wheel-tech { height: 300px; }
+      .wheel-tech .wheel-item { width: 160px; height: 64px; margin-left: -80px; margin-top: -32px; }
+
       .problems-grid { grid-template-columns: 1fr; }
       .industries-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -884,6 +929,9 @@
     @media (max-width: 480px) {
       .about-stats { grid-template-columns: 1fr; }
       .industries-grid { grid-template-columns: 1fr; }
+      .wheel-viewport { height: 350px; perspective: 700px; }
+      .wheel-item { width: 220px; margin-left: -110px; height: 150px; margin-top: -75px; }
+
       .hero-buttons { flex-direction: column; }
       .hero-buttons .btn { width: 100%; justify-content: center; }
     }
@@ -1086,83 +1134,73 @@
         <h2 class="section-title">Was ich für Sie tun kann</h2>
         <p class="section-subtitle">Von der Programmierung bis zur Inbetriebnahme – alles aus einer Hand.</p>
       </div>
-      <div class="services-grid">
+      <div class="wheel-viewport" id="servicesWheel">
+        <div class="wheel-ring" id="servicesRing">
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_sps.webp" alt="SPS-Programmierung" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Steuerung programmieren</h3>
-            <p>Ich programmiere die Steuerung Ihrer Maschine – egal welcher Hersteller. Neuprogrammierung, Erweiterung oder Umzug auf ein modernes System.</p>
+          <div class="wheel-item" data-title="Steuerung programmieren" data-desc="Ich programmiere die Steuerung Ihrer Maschine – egal welcher Hersteller. Neuprogrammierung, Erweiterung oder Umzug auf ein modernes System.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_sps.webp" alt="SPS-Programmierung" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Steuerung programmieren</h3><p>Neuprogrammierung, Erweiterung, Migration</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_robotik.webp" alt="Roboterprogrammierung" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Roboter programmieren</h3>
-            <p>Ihr Industrieroboter braucht ein neues Programm oder soll in Ihre Anlage eingebunden werden? Ich programmiere KUKA- und ABB-Roboter.</p>
+          <div class="wheel-item" data-title="Roboter programmieren" data-desc="Ihr Industrieroboter braucht ein neues Programm oder soll in Ihre Anlage eingebunden werden? Ich programmiere KUKA- und ABB-Roboter.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_robotik.webp" alt="Roboterprogrammierung" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Roboter programmieren</h3><p>KUKA, ABB – Teach-in &amp; Einbindung</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_inbetriebnahme.webp" alt="Inbetriebnahme" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Anlage in Betrieb nehmen</h3>
-            <p>Neue Maschine aufgestellt oder bestehende Anlage umgebaut? Ich bringe alles zum Laufen – inklusive Fehlersuche und Optimierung.</p>
+          <div class="wheel-item" data-title="Anlage in Betrieb nehmen" data-desc="Neue Maschine aufgestellt oder bestehende Anlage umgebaut? Ich bringe alles zum Laufen – inklusive Fehlersuche und Optimierung.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_inbetriebnahme.webp" alt="Inbetriebnahme" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Anlage in Betrieb nehmen</h3><p>Aufbau, Fehlersuche, Optimierung</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_antriebstechnik.webp" alt="Antriebstechnik" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Antriebe einstellen</h3>
-            <p>Motoren, Frequenzumrichter und Servoantriebe richtig parametrieren und abstimmen – damit Ihre Maschine rund läuft.</p>
+          <div class="wheel-item" data-title="Antriebe einstellen" data-desc="Motoren, Frequenzumrichter und Servoantriebe richtig parametrieren und abstimmen – damit Ihre Maschine rund läuft.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_antriebstechnik.webp" alt="Antriebstechnik" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Antriebe einstellen</h3><p>Frequenzumrichter, Servo, Motor</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_iiot.webp" alt="Prozessdaten und Visualisierung" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Daten sichtbar machen</h3>
-            <p>Sie wollen sehen, was in Ihrer Anlage passiert? Ich bringe Ihre Maschinendaten auf den Bildschirm – übersichtlich und in Echtzeit.</p>
+          <div class="wheel-item" data-title="Daten sammeln &amp; sichtbar machen" data-desc="Ob Produktionsmaschine, Gewächshaus oder Stallklima – ich erfasse Ihre Daten per Sensorik, LoRaWAN oder MQTT und bringe alles auf den Bildschirm.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_iiot.webp" alt="Datenerfassung" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Daten sammeln &amp; sichtbar machen</h3><p>IoT, Sensorik, Dashboards</p></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Cybersecurity-Beratung: vorerst auskommentiert
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_cybersecurity.webp" alt="Cybersecurity" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Cybersecurity-Beratung</h3>
-            <p>Unterstützung bei CRA- und NIS-2-Konformität, OT-Security-Konzepte, Netzwerksegmentierung und Audit-Vorbereitung.</p>
+          <div class="wheel-item" data-title="Maschinen vernetzen" data-desc="Ihre Maschinen sollen miteinander kommunizieren? Ich plane und baue industrielle Netzwerke – zuverlässig und sicher.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_netzwerktechnik.webp" alt="Netzwerktechnik" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Maschinen vernetzen</h3><p>Industrielle Netzwerke, PROFINET, EtherCAT</p></div>
+            </div>
           </div>
-        </div>
-        -->
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_netzwerktechnik.webp" alt="Netzwerktechnik" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Maschinen vernetzen</h3>
-            <p>Ihre Maschinen sollen miteinander kommunizieren? Ich plane und baue industrielle Netzwerke – zuverlässig und sicher.</p>
+          <div class="wheel-item" data-title="Bedienoberfläche gestalten" data-desc="Ihre Anlage braucht eine Bedienoberfläche, die jeder versteht? Ich erstelle übersichtliche Visualisierungen für Ihre Maschine.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_softwareentwicklung.webp" alt="HMI" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Bedienoberfläche gestalten</h3><p>HMI, Visualisierung, Touch-Panel</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_softwareentwicklung.webp" alt="Softwareentwicklung" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Bedienoberfläche gestalten</h3>
-            <p>Ihre Anlage braucht eine Bedienoberfläche, die jeder versteht? Ich erstelle übersichtliche Visualisierungen für Ihre Maschine.</p>
+          <div class="wheel-item" data-title="Dokumentation &amp; Einweisung" data-desc="Ich dokumentiere, was ich gemacht habe, und zeige Ihrem Team, wie alles funktioniert – verständlich und praxisnah.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_dokumentation.webp" alt="Dokumentation" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Dokumentation &amp; Einweisung</h3><p>Übergabe, Schulung, Handbuch</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="service-card">
-          <div class="service-icon"><img src="img/service_dokumentation.webp" alt="Dokumentation und Schulung" loading="lazy"></div>
-          <div class="service-card-text">
-            <h3>Dokumentation &amp; Einweisung</h3>
-            <p>Ich dokumentiere, was ich gemacht habe, und zeige Ihrem Team, wie alles funktioniert – verständlich und praxisnah.</p>
-          </div>
         </div>
-
       </div>
+      <div class="wheel-detail" id="servicesDetail">
+        <h3>Steuerung programmieren</h3>
+        <p>Ich programmiere die Steuerung Ihrer Maschine – egal welcher Hersteller. Neuprogrammierung, Erweiterung oder Umzug auf ein modernes System.</p>
+      </div>
+      <div class="wheel-dots" id="servicesDots"></div>
+      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
     </div>
   </section>
 
@@ -1174,15 +1212,45 @@
         <h2 class="section-title">Herstellerübergreifend aufgestellt</h2>
         <p class="section-subtitle">Ich bin nicht auf einen Anbieter festgelegt – und finde die Lösung für Ihre vorhandene Technik.</p>
       </div>
-      <div class="tech-logo-bar">
-        <span class="tech-logo-item">Siemens</span>
-        <span class="tech-logo-item">Beckhoff</span>
-        <span class="tech-logo-item">CODESYS</span>
-        <span class="tech-logo-item">KUKA</span>
-        <span class="tech-logo-item">ABB</span>
-        <span class="tech-logo-item">SEW</span>
-        <span class="tech-logo-item">Lenze</span>
+      <div class="wheel-viewport wheel-tech" id="techWheel">
+        <div class="wheel-ring" id="techRing">
+
+          <div class="wheel-item" data-title="Siemens" data-desc="TIA Portal, S7-1500/1200/300/400, STEP 7, WinCC, SINAMICS, SIMOTION">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>Siemens</h3><p>TIA Portal, S7, WinCC, SINAMICS</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="Beckhoff" data-desc="TwinCAT 3, EtherCAT, CX-Serie, AX-Serie, TwinSAFE, XTS">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>Beckhoff</h3><p>TwinCAT 3, EtherCAT, CX, AX</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="CODESYS" data-desc="CODESYS V3, herstellerunabhängige IEC 61131-3 Programmierung, Visu, Motion">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>CODESYS</h3><p>V3, IEC 61131-3, Visu, Motion</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="KUKA" data-desc="KRL, KUKA.PLC mxAutomation, WorkVisual, Roboter-SPS-Kopplung">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>KUKA</h3><p>KRL, mxAutomation, WorkVisual</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="ABB" data-desc="RAPID, RobotStudio, IRC5, OmniCore, Offline-Programmierung">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>ABB</h3><p>RAPID, RobotStudio, IRC5</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="SEW-EURODRIVE" data-desc="MOVITOOLS, MOVI-C, Frequenzumrichter, Servo, dezentrale Antriebe">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>SEW</h3><p>MOVI-C, MOVITOOLS, Servo</p></div></div>
+          </div>
+
+          <div class="wheel-item" data-title="Lenze" data-desc="PLC Designer, i950/i550, Servo 9400, FAST Application Software Toolbox">
+            <div class="wheel-item-inner"><div class="wheel-item-text"><h3>Lenze</h3><p>PLC Designer, i950, FAST</p></div></div>
+          </div>
+
+        </div>
       </div>
+      <div class="wheel-detail" id="techDetail">
+        <h3>Siemens</h3>
+        <p>TIA Portal, S7-1500/1200/300/400, STEP 7, WinCC, SINAMICS, SIMOTION</p>
+      </div>
+      <div class="wheel-dots" id="techDots"></div>
+      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
     </div>
   </section>
 
@@ -1193,178 +1261,61 @@
         <span class="section-label">Branchenerfahrung</span>
         <h2 class="section-title">In diesen Branchen bin ich zu Hause</h2>
       </div>
-      <div class="industries-grid">
+      <div class="wheel-viewport" id="branchenWheel">
+        <div class="wheel-ring" id="branchenRing">
 
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_halbleiter.webp" alt="Halbleiterindustrie" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Halbleiterindustrie</h3>
-            <p>Prototypen-Produktionsanlagen</p>
+          <div class="wheel-item" data-title="Halbleiterindustrie" data-desc="Prototypen-Produktionsanlagen für die Halbleiterfertigung – Reinraum, Wafer-Handling, Prüfstände.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_halbleiter.webp" alt="Halbleiterindustrie" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Halbleiterindustrie</h3><p>Prototypen-Produktionsanlagen</p></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Automotive: vorerst ausgeblendet
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_automotive.webp" alt="Automotive und ADAS" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Automotive / ADAS</h3>
-            <p>Fahrassistenzkamera-Produktion</p>
+          <div class="wheel-item" data-title="Baustoffindustrie" data-desc="Pulver- und Baustoffabfüllung – Dosieren, Wiegen, Absacken, Palettieren.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_baustoff.webp" alt="Baustoffindustrie" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Baustoffindustrie</h3><p>Pulver- &amp; Baustoffabfüllung</p></div>
+            </div>
           </div>
-        </div>
-        -->
 
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_baustoff.webp" alt="Baustoffindustrie" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Baustoffindustrie</h3>
-            <p>Pulver- und Baustoffabfüllung</p>
+          <div class="wheel-item" data-title="Maschinenbau" data-desc="Sonder- und Serienmaschinen – von der Einzelstation bis zur verketteten Linie.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_maschinenbau.webp" alt="Maschinenbau" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Maschinenbau</h3><p>Sonder- &amp; Serienmaschinen</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_maschinenbau.webp" alt="Maschinenbau" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Maschinenbau</h3>
-            <p>Sonder- &amp; Serienmaschinen</p>
+          <div class="wheel-item" data-title="Landwirtschaft" data-desc="Futtermittel- und Verarbeitungsanlagen, Smart Farming, IoT-Sensorik für Gewächshaus und Stall.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_landwirtschaft.webp" alt="Landwirtschaft" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Landwirtschaft</h3><p>Futtermittel, Smart Farming, IoT</p></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Lebensmittel: vorerst ausgeblendet
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_lebensmittel.webp" alt="Lebensmittelindustrie" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Lebensmittelindustrie</h3>
-            <p>Abfüll-, Verpackungs- &amp; Prozessanlagen</p>
+          <div class="wheel-item" data-title="Gebäudeautomation / HVAC" data-desc="Klima-, Lüftungs- und Kälteanlagen – Regelungstechnik, DDC, BACnet.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_hvac.webp" alt="HVAC" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Gebäudeautomation / HVAC</h3><p>Klima, Lüftung, Kälte</p></div>
+            </div>
           </div>
-        </div>
-        -->
 
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_landwirtschaft.webp" alt="Landwirtschaft" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Landwirtschaft</h3>
-            <p>Futtermittel- &amp; Verarbeitungsanlagen</p>
+          <div class="wheel-item" data-title="Bühne &amp; Veranstaltungstechnik" data-desc="Theater, Konzerthallen, Studios – Steuerung für Obermaschinerie, Hubpodien, Drehscheiben und Effekte.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/branch_buehne.webp" alt="Bühnentechnik" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Bühne &amp; Veranstaltung</h3><p>Obermaschinerie, Antriebe, Effekte</p></div>
+            </div>
           </div>
-        </div>
 
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_hvac.webp" alt="Gebäudeautomation / HVAC" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Gebäudeautomation / HVAC</h3>
-            <p>Klima-, Lüftungs- &amp; Kälteanlagen</p>
-          </div>
         </div>
-
-        <!-- Pharma: vorerst ausgeblendet
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_pharma_chemie.webp" alt="Pharma und Chemie" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Pharma &amp; Chemie</h3>
-            <p>Batch-Prozesse &amp; Reinstmedien</p>
-          </div>
-        </div>
-        -->
-
-        <!-- Logistik: vorerst ausgeblendet
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_logistik.webp" alt="Logistik und Intralogistik" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Logistik &amp; Intralogistik</h3>
-            <p>Förder-, Sortier- &amp; Lageranlagen</p>
-          </div>
-        </div>
-        -->
-
-        <div class="industry-card">
-          <div class="industry-icon"><img src="img/branch_buehne.webp" alt="Bühne und Veranstaltungstechnik" loading="lazy"></div>
-          <div class="industry-card-text">
-            <h3>Bühne &amp; Veranstaltungstechnik</h3>
-            <p>Theater, Konzerthallen, Studios – Steuerung für Antriebe &amp; Effekte</p>
-          </div>
-        </div>
-
       </div>
+      <div class="wheel-detail" id="branchenDetail">
+        <h3>Halbleiterindustrie</h3>
+        <p>Prototypen-Produktionsanlagen für die Halbleiterfertigung – Reinraum, Wafer-Handling, Prüfstände.</p>
+      </div>
+      <div class="wheel-dots" id="branchenDots"></div>
+      <div class="wheel-scroll-hint">↕ Scrollen zum Drehen</div>
     </div>
   </section>
-
-  <!-- LANDWIRTSCHAFT & SMART FARMING -->
-  <section class="agri-section" id="landwirtschaft">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Neues Geschäftsfeld</span>
-        <h2 class="section-title">Smart Farming &amp; Agrar-IoT</h2>
-        <p class="section-subtitle">Datenerfassung und Automatisierung für die Landwirtschaft – von der Pflanze bis zur Verarbeitung.</p>
-      </div>
-
-      <div class="agri-showcase" id="agriShowcase">
-        <button class="agri-nav agri-nav-prev" onclick="agriSlide(-1)" aria-label="Vorheriges Bild">&#10094;</button>
-        <button class="agri-nav agri-nav-next" onclick="agriSlide(1)" aria-label="Nächstes Bild">&#10095;</button>
-
-        <div class="agri-slide active">
-          <img src="img/agri_plant.webp" alt="IoT-Überwachung von Pflanzenwachstum" loading="lazy">
-          <div class="agri-slide-caption">
-            <h3>Gewächshaus-Monitoring</h3>
-            <p>Temperatur, Feuchtigkeit, Licht und Bewässerung – alle Parameter in Echtzeit erfasst und visualisiert.</p>
-          </div>
-        </div>
-
-        <div class="agri-slide">
-          <img src="img/agri_livestock.webp" alt="IoT-Überwachung in der Viehzucht" loading="lazy">
-          <div class="agri-slide-caption">
-            <h3>Viehzucht &amp; Stallklima</h3>
-            <p>Futter- und Wasserverbrauch, Stalltemperatur, Tieraktivität – Sensorik für gesunde Tierhaltung.</p>
-          </div>
-        </div>
-
-        <div class="agri-slide">
-          <img src="img/agri_dairy.webp" alt="IoT in der Milchverarbeitung" loading="lazy">
-          <div class="agri-slide-caption">
-            <h3>Milch- &amp; Lebensmittelverarbeitung</h3>
-            <p>Durchfluss, Temperatur und Füllstand – HACCP-konforme Prozessüberwachung mit lückenloser Dokumentation.</p>
-          </div>
-        </div>
-
-        <div class="agri-slide">
-          <img src="img/agri_storage.webp" alt="IoT für Erntelagerung" loading="lazy">
-          <div class="agri-slide-caption">
-            <h3>Ernte- &amp; Lagerhaltung</h3>
-            <p>Temperatur, Feuchtigkeit, CO₂ und Füllstand – optimale Lagerbedingungen automatisch überwacht.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="agri-dots" id="agriDots">
-        <button class="agri-dot active" onclick="agriGoTo(0)" aria-label="Bild 1"></button>
-        <button class="agri-dot" onclick="agriGoTo(1)" aria-label="Bild 2"></button>
-        <button class="agri-dot" onclick="agriGoTo(2)" aria-label="Bild 3"></button>
-        <button class="agri-dot" onclick="agriGoTo(3)" aria-label="Bild 4"></button>
-      </div>
-
-      <div class="agri-features">
-        <div class="agri-feature">
-          <div class="agri-feature-icon">🌡️</div>
-          <h4>Sensorik</h4>
-          <p>Temperatur, Feuchte, Licht, CO₂, Druck, Füllstand</p>
-        </div>
-        <div class="agri-feature">
-          <div class="agri-feature-icon">📡</div>
-          <h4>Funkübertragung</h4>
-          <p>LoRaWAN, WLAN, MQTT – kabellose Datenerfassung im Feld</p>
-        </div>
-        <div class="agri-feature">
-          <div class="agri-feature-icon">📊</div>
-          <h4>Visualisierung</h4>
-          <p>Echtzeit-Dashboards auf Tablet, Smartphone oder PC</p>
-        </div>
-        <div class="agri-feature">
-          <div class="agri-feature-icon">☁️</div>
-          <h4>Cloud &amp; Datenbank</h4>
-          <p>Langzeitarchivierung, Trendanalysen und Fernzugriff</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Ende LANDWIRTSCHAFT & SMART FARMING -->
 
   <!-- KONTAKT -->
   <section class="contact-section" id="kontakt">
@@ -1450,31 +1401,178 @@
       });
     });
 
-    /* Agriculture slideshow */
-    var agriCurrent = 0;
-    var agriSlides = document.querySelectorAll('.agri-slide');
-    var agriDotEls = document.querySelectorAll('.agri-dot');
-    var agriTimer;
+    /* ===== 3D SCROLL WHEEL ENGINE ===== */
+    function initWheel(config) {
+      var viewport = document.getElementById(config.viewportId);
+      var ring = document.getElementById(config.ringId);
+      var detail = document.getElementById(config.detailId);
+      var dotsContainer = document.getElementById(config.dotsId);
+      if (!viewport || !ring) return;
 
-    function agriGoTo(index) {
-      agriSlides[agriCurrent].classList.remove('active');
-      agriDotEls[agriCurrent].classList.remove('active');
-      agriCurrent = (index + agriSlides.length) % agriSlides.length;
-      agriSlides[agriCurrent].classList.add('active');
-      agriDotEls[agriCurrent].classList.add('active');
-      agriResetTimer();
+      var items = ring.querySelectorAll('.wheel-item');
+      var n = items.length;
+      var angleStep = 360 / n;
+      var radius = config.radius || 280;
+      var currentIndex = 0;
+      var targetAngle = 0;
+      var currentAngle = 0;
+
+      // Position items in 3D circle (rotateX for vertical wheel)
+      items.forEach(function(item, i) {
+        item.style.transform = 'rotateX(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
+      });
+
+      // Create dots
+      if (dotsContainer) {
+        for (var i = 0; i < n; i++) {
+          var dot = document.createElement('button');
+          dot.className = 'wheel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Item ' + (i + 1));
+          (function(idx) {
+            dot.addEventListener('click', function() {
+              targetAngle = -idx * angleStep;
+              currentIndex = idx;
+              updateWheel();
+            });
+          })(i);
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateWheel() {
+        // Animate ring rotation
+        ring.style.transform = 'rotateX(' + currentAngle + 'deg)';
+
+        // Calculate which item is in front
+        var normalizedAngle = (((-currentAngle) % 360) + 360) % 360;
+        var frontIdx = Math.round(normalizedAngle / angleStep) % n;
+        if (frontIdx !== currentIndex) {
+          currentIndex = frontIdx;
+        }
+
+        // Update active states and filters
+        items.forEach(function(item, i) {
+          var itemAngle = (i * angleStep + currentAngle) % 360;
+          if (itemAngle < 0) itemAngle += 360;
+
+          // Distance from front (0 deg)
+          var dist = Math.min(itemAngle, 360 - itemAngle);
+          var distNorm = dist / 180; // 0 = front, 1 = back
+
+          if (dist < angleStep * 0.6) {
+            item.classList.add('active');
+            item.style.filter = 'none';
+            item.style.opacity = '1';
+          } else {
+            item.classList.remove('active');
+            var blur = Math.min(distNorm * 4, 3);
+            var glow = Math.max(0.2, 1 - distNorm);
+            item.style.filter = 'blur(' + blur.toFixed(1) + 'px) drop-shadow(0 0 ' + (15 * glow).toFixed(0) + 'px rgba(34,211,238,' + (glow * 0.4).toFixed(2) + '))';
+            item.style.opacity = String(Math.max(0.3, 1 - distNorm * 0.8));
+          }
+        });
+
+        // Update detail panel
+        if (detail && items[currentIndex]) {
+          var item = items[currentIndex];
+          var h3 = detail.querySelector('h3');
+          var p = detail.querySelector('p');
+          if (h3) h3.innerHTML = item.getAttribute('data-title') || '';
+          if (p) p.innerHTML = item.getAttribute('data-desc') || '';
+          detail.classList.add('visible');
+        }
+
+        // Update dots
+        if (dotsContainer) {
+          var dots = dotsContainer.querySelectorAll('.wheel-dot');
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === currentIndex);
+          });
+        }
+      }
+
+      // Smooth animation loop
+      var animating = false;
+      function animate() {
+        var diff = targetAngle - currentAngle;
+        if (Math.abs(diff) > 0.1) {
+          currentAngle += diff * 0.12;
+          updateWheel();
+          requestAnimationFrame(animate);
+        } else {
+          currentAngle = targetAngle;
+          updateWheel();
+          animating = false;
+        }
+      }
+
+      function startAnimate() {
+        if (!animating) {
+          animating = true;
+          requestAnimationFrame(animate);
+        }
+      }
+
+      // Scroll-linked rotation
+      var lastScrollY = window.scrollY;
+      var scrollSensitivity = config.scrollSensitivity || 0.15;
+
+      window.addEventListener('scroll', function() {
+        var rect = viewport.getBoundingClientRect();
+        var viewH = window.innerHeight;
+
+        // Only respond when section is in view
+        if (rect.top < viewH && rect.bottom > 0) {
+          var deltaScroll = window.scrollY - lastScrollY;
+          targetAngle -= deltaScroll * scrollSensitivity;
+
+          // Snap to nearest item
+          var snapped = Math.round(targetAngle / angleStep) * angleStep;
+          targetAngle = snapped;
+
+          startAnimate();
+        }
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+
+      // Touch/mouse drag support
+      var dragStartY = 0;
+      var dragging = false;
+
+      viewport.addEventListener('touchstart', function(e) {
+        dragStartY = e.touches[0].clientY;
+        dragging = true;
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        var dy = dragStartY - e.touches[0].clientY;
+        dragStartY = e.touches[0].clientY;
+        targetAngle -= dy * 0.5;
+        var snapped = Math.round(targetAngle / angleStep) * angleStep;
+        targetAngle = snapped;
+        startAnimate();
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', function() { dragging = false; });
+
+      // Mouse wheel on viewport
+      viewport.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        targetAngle -= e.deltaY * 0.08;
+        var snapped = Math.round(targetAngle / angleStep) * angleStep;
+        targetAngle = snapped;
+        startAnimate();
+      }, { passive: false });
+
+      // Initial render
+      updateWheel();
     }
 
-    function agriSlide(direction) {
-      agriGoTo(agriCurrent + direction);
-    }
-
-    function agriResetTimer() {
-      clearInterval(agriTimer);
-      agriTimer = setInterval(function() { agriSlide(1); }, 5000);
-    }
-
-    agriResetTimer();
+    // Initialize all three wheels
+    initWheel({ viewportId: 'servicesWheel', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', radius: 300, scrollSensitivity: 0.18 });
+    initWheel({ viewportId: 'branchenWheel', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', radius: 280, scrollSensitivity: 0.18 });
+    initWheel({ viewportId: 'techWheel', ringId: 'techRing', detailId: 'techDetail', dotsId: 'techDots', radius: 200, scrollSensitivity: 0.2 });
   </script>
 
 </body>
