@@ -713,15 +713,11 @@
     }
 
 
-    /* ===== 3D SCROLL WHEEL (shared) ===== */
-    .wheel-section {
-      position: relative;
-      overflow: hidden;
-    }
     /* ===== WHEEL SCROLL-LOCK SYSTEM ===== */
     .wheel-section {
       position: relative;
       /* height set by JS: (n-1) * scrollPerItem + 100vh */
+      /* NO overflow:hidden – it breaks position:sticky */
     }
     .wheel-sticky {
       position: sticky;
