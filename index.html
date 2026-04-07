@@ -112,6 +112,65 @@
     .hero-logo { margin-bottom: 32px; text-align: center; }
     .hero-logo img { max-width: 400px; width: 100%; color: var(--color-text-heading); }
 
+    /* Option C: Photorealistic Layer Animation */
+    .hero-logo-layers {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      aspect-ratio: 5 / 2;
+    }
+    .hero-logo-layers img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .layer-robot {
+      z-index: 3;
+      width: 38% !important; height: auto !important;
+      left: 2% !important;
+      top: 10% !important;
+      animation: robotWork 8s ease-in-out infinite;
+    }
+    .layer-conveyor {
+      z-index: 1;
+      width: 44% !important; height: auto !important;
+      left: 28% !important;
+      top: 40% !important;
+    }
+    .layer-laptop {
+      z-index: 2;
+      width: 34% !important; height: auto !important;
+      right: 2% !important;
+      left: auto !important;
+      top: 5% !important;
+      animation: screenGlow 2.5s ease-in-out infinite;
+    }
+    .layer-text {
+      position: absolute;
+      bottom: 0; left: 0; width: 100%;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 1.2rem);
+      background: linear-gradient(90deg, #22d3ee, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      z-index: 4;
+    }
+    @keyframes robotWork {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      25%      { transform: rotate(3deg) translateY(-4px); }
+      50%      { transform: rotate(-2deg) translateY(0); }
+      75%      { transform: rotate(2deg) translateY(-2px); }
+    }
+    @keyframes screenGlow {
+      0%, 100% { filter: brightness(0.85) drop-shadow(0 0 8px rgba(59,130,246,0.3)); }
+      50%      { filter: brightness(1.15) drop-shadow(0 0 16px rgba(59,130,246,0.6)); }
+    }
+
     .hero h1 {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 700;
@@ -731,7 +790,22 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .problem-card-icon { font-size: 2rem; margin-bottom: 12px; }
+    .problem-card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    .problem-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     .problem-card h3 {
       font-size: 1.1rem;
@@ -821,7 +895,7 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="img/logo_animated_v3 white.svg" alt="CK IAS" style="color: white;">
+        <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#ueber">Über mich</a></li>
@@ -842,9 +916,19 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <!-- Option D: SVG Glow-Logo (aktiv) -->
         <div class="hero-logo">
-          <img src="img/logo_animated_v3_long white.svg" alt="CK Industrial Automation Services">
+          <img src="img/logo_animated_v4_glow_long.svg" alt="CK Industrial Automation Services">
         </div>
+        <!-- Option C: Photorealistic Layers (aktivieren wenn Bilder generiert) -->
+        <!--
+        <div class="hero-logo-layers">
+          <img src="img/layer_robot_arm.png" alt="" class="layer-robot">
+          <img src="img/layer_conveyor_cubes.png" alt="" class="layer-conveyor">
+          <img src="img/layer_laptop_dashboard.png" alt="" class="layer-laptop">
+          <span class="layer-text">CK Industrial Automation Services</span>
+        </div>
+        -->
         <h1>Ihre Steuerung läuft nicht? <span>Ich löse das.</span></h1>
         <p class="hero-subtitle">
           Ob veraltete Anlage, Sonderprojekt oder Erweiterung – ich programmiere Ihre Steuerung
@@ -944,8 +1028,8 @@
             <div class="stat-label">Steuerungsplattformen</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">9+</div>
-            <div class="stat-label">Branchen</div>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projekte realisiert</div>
           </div>
           <div class="stat-card">
             <div class="stat-number">100%</div>
@@ -967,25 +1051,25 @@
       <div class="problems-grid">
 
         <div class="problem-card">
-          <div class="problem-card-icon">🔧</div>
+          <div class="problem-card-icon"><img src="img/icon_problem_alte_steuerung.png" alt="Alte Steuerung" loading="lazy"></div>
           <h3>Alte Steuerung, keine Ersatzteile</h3>
           <p>Ihre Anlage läuft noch mit einer Steuerung, für die es keinen Support und keine Ersatzteile mehr gibt? Ich migriere Ihre Logik auf ein modernes System – zuverlässig und zukunftssicher.</p>
         </div>
 
         <div class="problem-card">
-          <div class="problem-card-icon">🎭</div>
+          <div class="problem-card-icon"><img src="img/icon_problem_sonderprojekt.png" alt="Sonderprojekt" loading="lazy"></div>
           <h3>Sonderprojekt ohne Standardlösung</h3>
           <p>Theater, Museum, Freizeitpark oder Sondermaschine – Sie haben ein einzigartiges Projekt und finden keinen passenden Programmierer? Genau solche Herausforderungen sind mein Ding.</p>
         </div>
 
         <div class="problem-card">
-          <div class="problem-card-icon">🛑</div>
+          <div class="problem-card-icon"><img src="img/icon_problem_stillstand.png" alt="Maschine steht still" loading="lazy"></div>
           <h3>Maschine steht still</h3>
           <p>Ihre Anlage macht nicht mehr, was sie soll? Fehlersuche, Diagnose und Reparatur der Steuerungssoftware – ich komme vorbei und finde das Problem.</p>
         </div>
 
         <div class="problem-card">
-          <div class="problem-card-icon">➕</div>
+          <div class="problem-card-icon"><img src="img/icon_problem_erweiterung.png" alt="Erweiterung" loading="lazy"></div>
           <h3>Erweiterung oder Umbau</h3>
           <p>Sie wollen Ihre bestehende Anlage erweitern, einen neuen Sensor einbinden oder eine zusätzliche Funktion ergänzen? Ich passe Ihre Steuerung an.</p>
         </div>
@@ -1119,6 +1203,7 @@
           </div>
         </div>
 
+        <!-- Automotive: vorerst ausgeblendet
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_automotive.png" alt="Automotive und ADAS" loading="lazy"></div>
           <div class="industry-card-text">
@@ -1126,6 +1211,7 @@
             <p>Fahrassistenzkamera-Produktion</p>
           </div>
         </div>
+        -->
 
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_baustoff.png" alt="Baustoffindustrie" loading="lazy"></div>
@@ -1143,6 +1229,7 @@
           </div>
         </div>
 
+        <!-- Lebensmittel: vorerst ausgeblendet
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_lebensmittel.png" alt="Lebensmittelindustrie" loading="lazy"></div>
           <div class="industry-card-text">
@@ -1150,6 +1237,7 @@
             <p>Abfüll-, Verpackungs- &amp; Prozessanlagen</p>
           </div>
         </div>
+        -->
 
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_landwirtschaft.png" alt="Landwirtschaft" loading="lazy"></div>
@@ -1167,6 +1255,7 @@
           </div>
         </div>
 
+        <!-- Pharma: vorerst ausgeblendet
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_pharma_chemie.png" alt="Pharma und Chemie" loading="lazy"></div>
           <div class="industry-card-text">
@@ -1174,7 +1263,9 @@
             <p>Batch-Prozesse &amp; Reinstmedien</p>
           </div>
         </div>
+        -->
 
+        <!-- Logistik: vorerst ausgeblendet
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_logistik.png" alt="Logistik und Intralogistik" loading="lazy"></div>
           <div class="industry-card-text">
@@ -1182,6 +1273,7 @@
             <p>Förder-, Sortier- &amp; Lageranlagen</p>
           </div>
         </div>
+        -->
 
         <div class="industry-card">
           <div class="industry-icon"><img src="img/branch_buehne.png" alt="Bühne und Veranstaltungstechnik" loading="lazy"></div>
