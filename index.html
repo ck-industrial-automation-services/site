@@ -1299,7 +1299,9 @@
 
     /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
     (function() {
-      var SCROLL_PER_ITEM = 400; // px of scroll per wheel item
+      // Scroll resolution: constant px per degree of rotation
+      // Based on Services wheel (8 items, 45°/item, 400px/item → 8.889 px/°)
+      var SCROLL_PER_DEG = 400 / 45;
 
       function initWheel(cfg) {
         var section = document.querySelector('[data-wheel-id="' + cfg.id + '"]');
@@ -1313,9 +1315,10 @@
         var n         = items.length;
         var angleStep = 360 / n;
         var radius    = cfg.radius || 280;
+        var scrollPerItem = angleStep * SCROLL_PER_DEG;
 
         // Set section height: enough scroll travel for all items + one viewport
-        var totalScroll = (n - 1) * SCROLL_PER_ITEM;
+        var totalScroll = (n - 1) * scrollPerItem;
         section.style.height = (totalScroll + window.innerHeight) + 'px';
 
         // Position items in 3D
@@ -1394,7 +1397,7 @@
 
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', function() {
-          totalScroll = (n - 1) * SCROLL_PER_ITEM;
+          totalScroll = (n - 1) * scrollPerItem;
           section.style.height = (totalScroll + window.innerHeight) + 'px';
           onScroll();
         });
