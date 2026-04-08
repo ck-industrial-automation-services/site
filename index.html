@@ -70,45 +70,42 @@
       align-items: center;
       justify-content: space-between;
       height: 72px;
+      position: relative;
     }
 
-    .nav-logo img { height: 40px; color: var(--color-text-heading); }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .nav-logo img { height: 40px; }
     .nav-brand-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       white-space: nowrap;
       opacity: 0;
-      transform: translateX(-10px);
-      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s, text-shadow 0.3s;
+      pointer-events: none;
+      transition: opacity 0.4s 0.3s, filter 0.3s;
       background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
     }
+    .nav-brand-text.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .nav-brand-short { display: none; }
     @media (max-width: 549px) {
       .nav-brand-long { display: none; }
       .nav-brand-short { display: inline; }
-    }
-    .nav-logo.visible .nav-brand-text {
-      opacity: 1;
-      transform: translateX(0);
     }
     .nav-logo {
       opacity: 0;
       transform: scale(0.3);
       pointer-events: none;
       transition: opacity 0.1s, transform 0.1s;
-      flex: 1;
-      display: flex;
-      justify-content: center;
+      flex-shrink: 0;
     }
     .nav-logo.visible {
       opacity: 1;
@@ -139,13 +136,22 @@
 
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
-      color: var(--color-text-muted);
       font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.02em;
-      transition: color 0.2s;
+      transition: filter 0.3s, opacity 0.3s;
+      background: linear-gradient(90deg, var(--color-text-muted), var(--color-text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .nav-links a:hover { color: var(--color-text-heading); }
+    .nav-links a:hover {
+      background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
+    }
 
     .nav-toggle {
       display: none;
@@ -797,6 +803,16 @@
         border-bottom: 1px solid var(--color-border);
         padding: 24px;
         gap: 16px;
+        z-index: 99;
+      }
+      .nav-links.open a {
+        font-size: 1.05rem;
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 4px rgba(34,211,238,0.3)) drop-shadow(0 0 10px rgba(59,130,246,0.2));
+      }
       }
       .nav-toggle { display: block; }
 
@@ -840,14 +856,12 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <div class="nav-brand">
-          <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
-          <span class="nav-brand-text">
-            <span class="nav-brand-long">CK Industrial Automation Services</span>
-            <span class="nav-brand-short">CK IAS</span>
-          </span>
-        </div>
+        <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
       </a>
+      <span class="nav-brand-text">
+        <span class="nav-brand-long">CK Industrial Automation Services</span>
+        <span class="nav-brand-short">CK IAS</span>
+      </span>
       <ul class="nav-links" id="navLinks">
         <li><a href="#ueber">Über mich</a></li>
         <li><a href="#probleme">Ihre Situation</a></li>
@@ -1396,15 +1410,18 @@
     (function() {
       var heroLogo = document.querySelector('.hero-logo');
       var navLogo  = document.querySelector('.nav-logo');
+      var brandText = document.querySelector('.nav-brand-text');
       if (!heroLogo || !navLogo) return;
       var shown = false;
       var observer = new IntersectionObserver(function(entries) {
         var isVisible = entries[0].isIntersecting;
         if (!isVisible && !shown) {
           navLogo.classList.add('visible');
+          if (brandText) brandText.classList.add('visible');
           shown = true;
         } else if (isVisible && shown) {
           navLogo.classList.remove('visible');
+          if (brandText) brandText.classList.remove('visible');
           shown = false;
         }
       }, { threshold: 0.1 });
