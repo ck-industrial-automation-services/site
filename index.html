@@ -86,7 +86,8 @@
       white-space: nowrap;
       opacity: 0;
       transform: translateX(-10px);
-      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s;
+      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s, text-shadow 0.3s;
+      text-shadow: 0 0 8px rgba(34,211,238,0.4), 0 0 20px rgba(59,130,246,0.25);
     }
     .nav-brand-short { display: none; }
     @media (max-width: 449px) {
@@ -102,6 +103,9 @@
       transform: scale(0.3);
       pointer-events: none;
       transition: opacity 0.1s, transform 0.1s;
+      flex: 1;
+      display: flex;
+      justify-content: center;
     }
     .nav-logo.visible {
       opacity: 1;
@@ -140,7 +144,19 @@
     }
     .nav-links a:hover { color: var(--color-text-heading); }
 
-    .nav-toggle { display: none; background: none; border: none; color: var(--color-text); cursor: pointer; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-accent);
+      cursor: pointer;
+      filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
+      transition: filter 0.3s, color 0.3s;
+    }
+    .nav-toggle:hover {
+      color: var(--color-primary-light);
+      filter: drop-shadow(0 0 10px rgba(34,211,238,0.7)) drop-shadow(0 0 24px rgba(59,130,246,0.5));
+    }
     .nav-toggle svg { width: 28px; height: 28px; }
 
     /* ===== HERO ===== */
