@@ -88,6 +88,11 @@
       transform: translateX(-10px);
       transition: opacity 0.4s 0.2s, transform 0.4s 0.2s;
     }
+    .nav-brand-short { display: none; }
+    @media (max-width: 449px) {
+      .nav-brand-long { display: none; }
+      .nav-brand-short { display: inline; }
+    }
     .nav-logo.visible .nav-brand-text {
       opacity: 1;
       transform: translateX(0);
@@ -763,7 +768,6 @@
     }
 
     @media (max-width: 768px) {
-      .nav-brand-text { font-size: 0.85rem; }
       .nav-links { display: none; }
       .nav-links.open {
         display: flex;
@@ -819,7 +823,10 @@
       <a href="#" class="nav-logo">
         <div class="nav-brand">
           <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
-          <span class="nav-brand-text">CK Industrial Automation Services</span>
+          <span class="nav-brand-text">
+            <span class="nav-brand-long">CK Industrial Automation Services</span>
+            <span class="nav-brand-short">CK IAS</span>
+          </span>
         </div>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -846,6 +853,7 @@
         <div class="hero-logo">
           <img src="img/logo_animated_v4_glow_long.svg" alt="CK Industrial Automation Services">
         </div>
+        <p style="text-align:center; font-size:0.85rem; color:var(--color-text-muted); letter-spacing:0.06em; margin-bottom:24px;">CK IAS — <strong style="color:var(--color-text);">C</strong>hristoph <strong style="color:var(--color-text);">K</strong>orn · <strong style="color:var(--color-text);">I</strong>ndustrial <strong style="color:var(--color-text);">A</strong>utomation <strong style="color:var(--color-text);">S</strong>ervices</p>
         <!-- Option C: Photorealistic Layers (aktivieren wenn Bilder generiert) -->
         <!--
         <div class="hero-logo-layers">
