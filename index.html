@@ -95,6 +95,10 @@
       opacity: 1;
       pointer-events: auto;
     }
+    /* Hide brand text on desktop to prevent overlap with nav items */
+    @media (min-width: 769px) {
+      .nav-brand-text { display: none !important; }
+    }
     .nav-brand-short { display: none; }
     @media (max-width: 549px) {
       .nav-brand-long { display: none; }
@@ -140,17 +144,18 @@
       font-weight: 500;
       letter-spacing: 0.02em;
       transition: filter 0.3s, opacity 0.3s;
-      background: linear-gradient(90deg, var(--color-text-muted), var(--color-text-muted));
+      background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 4px rgba(34,211,238,0.3)) drop-shadow(0 0 10px rgba(59,130,246,0.2));
     }
     .nav-links a:hover {
       background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
+      filter: drop-shadow(0 0 8px rgba(34,211,238,0.6)) drop-shadow(0 0 18px rgba(59,130,246,0.4));
     }
 
     .nav-toggle {
