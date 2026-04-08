@@ -603,14 +603,17 @@
     .wheel-viewport {
       position: relative;
       width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
       height: 520px;
       perspective: 1200px;
       perspective-origin: 50% 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
     }
     .wheel-ring {
       position: relative;
@@ -621,14 +624,21 @@
     }
     .wheel-item {
       position: absolute;
-      width: 320px;
+      width: 480px;
       left: 50%;
       top: 50%;
+      margin-left: -240px;
+      margin-top: -115px;
+      height: 230px;
+      backface-visibility: hidden;
+      transition: filter 0.4s, opacity 0.4s;
+    }
+    /* Tech section: smaller cards so text logos aren't clipped */
+    .tech-section .wheel-item {
+      width: 320px;
       margin-left: -160px;
       margin-top: -100px;
       height: 200px;
-      backface-visibility: hidden;
-      transition: filter 0.4s, opacity 0.4s;
     }
     .wheel-item-inner {
       width: 100%;
@@ -744,8 +754,9 @@
       .profile-hex-border { width: 220px; height: 252px; }
       .circuit-traces { width: 300px; height: 332px; top: -40px; left: -40px; }
       /* Wheel responsive */
-      .wheel-viewport { height: 400px; perspective: 900px; }
-      .wheel-item { width: 260px; margin-left: -130px; height: 170px; margin-top: -85px; }
+      .wheel-viewport { height: 400px; perspective: 900px; max-width: 380px; }
+      .wheel-item { width: 360px; margin-left: -180px; height: 190px; margin-top: -95px; }
+      .tech-section .wheel-item { width: 240px; margin-left: -120px; height: 160px; margin-top: -80px; }
 
       .contact-grid { grid-template-columns: 1fr; }
       .contact-cta { padding: 28px; }
@@ -755,8 +766,9 @@
 
     @media (max-width: 480px) {
       .about-stats { grid-template-columns: 1fr; }
-      .wheel-viewport { height: 350px; perspective: 900px; }
-      .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
+      .wheel-viewport { height: 350px; perspective: 900px; max-width: 300px; }
+      .wheel-item { width: 280px; margin-left: -140px; height: 155px; margin-top: -78px; }
+      .tech-section .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
 
       .hero-buttons { flex-direction: column; }
       .hero-buttons .btn { width: 100%; justify-content: center; }
