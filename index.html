@@ -73,6 +73,25 @@
     }
 
     .nav-logo img { height: 40px; color: var(--color-text-heading); }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-brand-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.4s 0.2s, transform 0.4s 0.2s;
+    }
+    .nav-logo.visible .nav-brand-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
     .nav-logo {
       opacity: 0;
       transform: scale(0.3);
@@ -314,7 +333,7 @@
     .about-stats {
       grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -733,6 +752,7 @@
     }
 
     @media (max-width: 768px) {
+      .nav-brand-text { font-size: 0.85rem; }
       .nav-links { display: none; }
       .nav-links.open {
         display: flex;
@@ -786,13 +806,17 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
+        <div class="nav-brand">
+          <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
+          <span class="nav-brand-text">CK Industrial Automation Services</span>
+        </div>
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#ueber">Über mich</a></li>
         <li><a href="#probleme">Ihre Situation</a></li>
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#branchen">Branchen</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
       <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menü">
@@ -822,8 +846,9 @@
         -->
         <h1>Ihre Steuerung läuft nicht? <span>Ich löse das.</span></h1>
         <p class="hero-subtitle">
-          Ob veraltete Anlage, Sonderprojekt oder Erweiterung – ich programmiere Ihre Steuerung
-          und bringe Ihre Maschine zum Laufen. Über 13 Jahre Praxiserfahrung, herstellerübergreifend.
+          Ist Ihre Anlage in die Jahre gekommen? Lieber aktualisieren als neu investieren!
+          Ob Steuerung, Roboter oder Sondermaschine – ich bringe das wieder zum Laufen.
+          Über 12 Jahre Praxiserfahrung, herstellerübergreifend.
         </p>
         <div class="hero-tags">
           <span class="hero-tag">Alte Steuerung modernisieren</span>
@@ -918,10 +943,12 @@
             <div class="stat-number">7+</div>
             <div class="stat-label">Steuerungsplattformen</div>
           </div>
+          <!--
           <div class="stat-card">
             <div class="stat-number">50+</div>
             <div class="stat-label">Projekte realisiert</div>
           </div>
+          -->
           <div class="stat-card">
             <div class="stat-number">100%</div>
             <div class="stat-label">Praxisorientiert</div>
@@ -1052,6 +1079,13 @@
             <div class="wheel-item-inner">
               <div class="wheel-item-img"><img src="img/service_dokumentation.webp" alt="Dokumentation" loading="lazy"></div>
               <div class="wheel-item-text"><h3>Dokumentation &amp; Einweisung</h3><p>Übergabe, Schulung, Handbuch</p></div>
+            </div>
+          </div>
+
+          <div class="wheel-item" data-title="Scripting &amp; Datenintegration" data-desc="Python, Node-RED, SQL – Daten aus Ihrer Anlage erfassen, verarbeiten und in übergeordnete Systeme bringen.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 230'%3E%3Crect width='480' height='230' rx='12' fill='%231c1f2a'/%3E%3Ctext x='240' y='100' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-weight='700' font-size='32' fill='%2360a5fa'%3E%7B %7D%3C/text%3E%3Ctext x='240' y='145' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-weight='500' font-size='16' fill='%2394a3b8'%3EPython · Node-RED · SQL · MQTT%3C/text%3E%3C/svg%3E" alt="Scripting" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Scripting &amp; Datenintegration</h3><p>Python, Node-RED, SQL, MQTT</p></div>
             </div>
           </div>
 
@@ -1210,6 +1244,29 @@
       <div class="wheel-dots" id="branchenDots"></div>
       <div class="wheel-progress-bar"><div class="wheel-progress-fill" id="branchenProgress"></div></div>
     </div>
+    </div>
+  </section>
+
+  <!-- REFERENZEN -->
+  <section id="referenzen" style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Referenzen</span>
+        <h2 class="section-title">Was meine Kunden sagen</h2>
+      </div>
+      <div style="max-width: 640px; margin: 0 auto; text-align: center;">
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 48px 40px; position: relative;">
+          <div style="font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.3; position: absolute; top: 16px; left: 24px;">&#8220;</div>
+          <p style="font-size: 1.2rem; color: var(--color-text); font-style: italic; margin-bottom: 24px; line-height: 1.8;">
+            Dieser Platz ist noch frei – hier könnte Ihre Bewertung stehen!<br>
+            Werden Sie einer meiner ersten Kunden und sichern Sie sich den besten Platz auf dem Treppchen.
+          </p>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem;">– Ihr Name? Vielleicht schon bald hier.</p>
+        </div>
+        <p style="margin-top: 24px; color: var(--color-text-muted); font-size: 0.9rem;">
+          🚀 Frisch gestartet, voll motiviert. Lassen Sie uns gemeinsam Ihr Projekt umsetzen – die erste Referenz schreibt sich nicht von allein!
+        </p>
+      </div>
     </div>
   </section>
 
