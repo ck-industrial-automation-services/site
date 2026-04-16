@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CK Industrial Automation Services – Freiberuflicher Automatisierungsingenieur</title>
   <meta name="description" content="Christoph Korn – Freiberuflicher Automatisierungsingenieur aus Paderborn. SPS-Programmierung, IIoT und Cloud-Anbindung für kleine Maschinenbauer ohne eigene IT/OT-Abteilung.">
-  <meta name="keywords" content="SPS Programmierung, Automatisierungstechnik, Freelancer, Ingenieur, Paderborn, Siemens, Beckhoff, TwinCAT, TIA Portal, KUKA, Roboter, Inbetriebnahme, OPC UA, MQTT, Antriebstechnik, Netzwerktechnik, Prozessdaten, Visualisierung">
+  <meta name="keywords" content="SPS Programmierung, Automatisierungstechnik, Freelancer, Ingenieur, Paderborn, Siemens, Beckhoff, TwinCAT, TIA Portal, KUKA, Roboter, Inbetriebnahme, OPC UA, MQTT, Antriebstechnik, Netzwerktechnik, Prozessdaten, Visualisierung, Taktzeit Optimierung, Effizienzsteigerung, Messeprojekte">
   <meta name="author" content="Christoph Korn">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="CK Industrial Automation Services">
@@ -1103,10 +1103,10 @@
             </div>
           </div>
 
-          <div class="wheel-item" data-title="Robotik &amp; Demonstratoren" data-desc="Messe-Exponate, Demonstrator-Aufbauten und eigene Robotik-Projekte mit KUKA und ABB – aus Leidenschaft für Technik.">
+          <div class="wheel-item" data-title="Robotik für Klein- &amp; Messeprojekte" data-desc="Roboter-Programmierung für Messe-Exponate, Demonstratoren und Kleinprojekte mit KUKA und ABB – ideal für Showcases, Prototypen und kompakte Automatisierungslösungen.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_robotik.webp" alt="Robotik-Projekte" loading="lazy"></div>
-              <div class="wheel-item-text"><h3>Robotik &amp; Demonstratoren</h3><p>Messe-Exponate, eigene Projekte</p></div>
+              <div class="wheel-item-img"><img src="img/service_robotik.webp" alt="Robotik Klein- und Messeprojekte" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Robotik für Klein- &amp; Messeprojekte</h3><p>Messe-Exponate, Demonstratoren, Kleinprojekte</p></div>
             </div>
           </div>
 
@@ -1114,6 +1114,20 @@
             <div class="wheel-item-inner">
               <div class="wheel-item-img"><img src="img/service_inbetriebnahme.webp" alt="Inbetriebnahme" loading="lazy"></div>
               <div class="wheel-item-text"><h3>Anlage in Betrieb nehmen</h3><p>Aufbau, Fehlersuche, Optimierung</p></div>
+            </div>
+          </div>
+
+          <div class="wheel-item" data-title="Taktzeiten optimieren" data-desc="Zykluszeiten analysieren, Engpässe identifizieren und Abläufe in der SPS gezielt beschleunigen – für mehr Output bei gleicher Hardware.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_taktzeit.svg" alt="Taktzeiten optimieren" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Taktzeiten optimieren</h3><p>Zykluszeit-Analyse, Ablaufoptimierung</p></div>
+            </div>
+          </div>
+
+          <div class="wheel-item" data-title="Effizienz steigern" data-desc="Bestehende Anlagen effizienter machen – durch intelligentere Steuerungslogik, weniger Stillstand und bessere Prozessabläufe.">
+            <div class="wheel-item-inner">
+              <div class="wheel-item-img"><img src="img/service_effizienz.svg" alt="Effizienzsteigerung" loading="lazy"></div>
+              <div class="wheel-item-text"><h3>Effizienz steigern</h3><p>Stillstandsreduktion, Prozessverbesserung</p></div>
             </div>
           </div>
 
@@ -1449,7 +1463,7 @@
     /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
     (function() {
       // Scroll resolution: constant px per degree of rotation
-      // Based on Services wheel (8 items, 45°/item, 400px/item → 8.889 px/°)
+      // Based on Services wheel (11 items, ~32.7°/item, 400px/item → 8.889 px/°)
       var SCROLL_PER_DEG = 400 / 45;
 
       // Dead-zone buffer (px of scroll) at entry and exit of each wheel

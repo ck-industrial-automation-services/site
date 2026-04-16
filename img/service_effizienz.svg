@@ -1,0 +1,41 @@
+<!--
+  PLACEHOLDER IMAGE – Replace with generated image (webp)
+  
+  Image Generation Prompt:
+  "Photorealistic industrial scene showing efficiency improvement in a modern factory. 
+   A large upward-trending graph/chart holographically displayed above a production line. 
+   Glowing KPI dashboard with green improvement arrows. Machines running smoothly with 
+   optimized workflow visualization. Blue and cyan accent lighting, dark moody industrial 
+   atmosphere. Focus on growth, optimization and measurable results. 16:9 aspect ratio, high quality."
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1117;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1c1f2a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg2)" rx="12"/>
+  <!-- Upward trend chart -->
+  <polyline points="80,200 130,185 170,190 210,160 250,140 290,105 330,80" fill="none" stroke="url(#accent2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Area under curve -->
+  <polygon points="80,200 130,185 170,190 210,160 250,140 290,105 330,80 330,220 80,220" fill="url(#green)" opacity="0.3"/>
+  <!-- Grid lines -->
+  <line x1="80" y1="220" x2="330" y2="220" stroke="#2d3348" stroke-width="1"/>
+  <line x1="80" y1="180" x2="330" y2="180" stroke="#2d3348" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="80" y1="140" x2="330" y2="140" stroke="#2d3348" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="80" y1="100" x2="330" y2="100" stroke="#2d3348" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <!-- Arrow up -->
+  <polygon points="320,70 330,80 325,80 325,110 315,110 315,80 310,80" fill="#22d3ee" opacity="0.8"/>
+  <!-- Percentage label -->
+  <text x="340" y="78" fill="#22d3ee" font-family="Inter, sans-serif" font-size="16" font-weight="700">+%</text>
+  <text x="200" y="278" text-anchor="middle" fill="#94a3b8" font-family="Inter, sans-serif" font-size="13" font-weight="500">PLATZHALTER – Effizienz</text>
+</svg>
