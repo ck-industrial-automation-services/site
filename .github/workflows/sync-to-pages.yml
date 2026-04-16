@@ -1,0 +1,21 @@
+name: Sync to GitHub Pages Repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to ck-industrial-automation-services/site
+        env:
+          PAGES_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        run: |
+          git remote add pages-target https://x-access-token:${PAGES_TOKEN}@github.com/ck-industrial-automation-services/site.git
+          git push pages-target HEAD:main --force
