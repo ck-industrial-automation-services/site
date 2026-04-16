@@ -694,6 +694,13 @@
       backface-visibility: hidden;
       transition: filter 0.4s, opacity 0.4s;
     }
+    /* Services section: many items need smaller cards & larger radius */
+    #leistungen .wheel-item {
+      width: 380px;
+      margin-left: -190px;
+      height: 180px;
+      margin-top: -90px;
+    }
     /* Tech section: smaller cards so text logos aren't clipped */
     .tech-section .wheel-item {
       width: 320px;
@@ -838,6 +845,7 @@
       /* Wheel responsive */
       .wheel-viewport { height: 400px; perspective: 900px; max-width: 380px; }
       .wheel-item { width: 360px; margin-left: -180px; height: 190px; margin-top: -95px; }
+      #leistungen .wheel-item { width: 280px; margin-left: -140px; height: 150px; margin-top: -75px; }
       .tech-section .wheel-item { width: 240px; margin-left: -120px; height: 160px; margin-top: -80px; }
 
       .contact-grid { grid-template-columns: 1fr; }
@@ -850,6 +858,7 @@
       .about-stats { grid-template-columns: 1fr; }
       .wheel-viewport { height: 350px; perspective: 900px; max-width: 300px; }
       .wheel-item { width: 280px; margin-left: -140px; height: 155px; margin-top: -78px; }
+      #leistungen .wheel-item { width: 220px; margin-left: -110px; height: 120px; margin-top: -60px; }
       .tech-section .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
 
       .hero-buttons { flex-direction: column; }
@@ -859,6 +868,7 @@
     @media (max-width: 380px) {
       .wheel-viewport { perspective: 1000px; }
       .wheel-item { width: 180px; margin-left: -90px; height: 122px; margin-top: -61px; }
+      #leistungen .wheel-item { width: 160px; margin-left: -80px; height: 100px; margin-top: -50px; }
     }
   </style>
 </head>
@@ -1583,7 +1593,7 @@
 
       // Init all wheels
       initWheel({ id: 'probleme', ringId: 'problemeRing', detailId: 'problemeDetail', dotsId: 'problemeDots', progressId: 'problemeProgress', radius: 300 });
-      initWheel({ id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 300 });
+      initWheel({ id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 380 });
       initWheel({ id: 'tech',     ringId: 'techRing',     detailId: 'techDetail',     dotsId: 'techDots',     progressId: 'techProgress',     radius: 300 });
       initWheel({ id: 'branchen', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', progressId: 'branchenProgress', radius: 280 });
     })();
