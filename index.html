@@ -1463,7 +1463,7 @@
     /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
     (function() {
       // Scroll resolution: constant px per degree of rotation
-      // Based on Services wheel (11 items, ~32.7°/item, 400px/item → 8.889 px/°)
+      // Scroll resolution: constant px per degree of rotation (shared across all wheels)
       var SCROLL_PER_DEG = 400 / 45;
 
       // Dead-zone buffer (px of scroll) at entry and exit of each wheel
