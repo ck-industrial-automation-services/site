@@ -3,887 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1117">
   <title>CK Industrial Automation Services – Freiberuflicher Automatisierungsingenieur</title>
-  <meta name="description" content="Christoph Korn – Freiberuflicher Automatisierungsingenieur aus Paderborn. SPS-Programmierung, IIoT und Cloud-Anbindung für kleine Maschinenbauer ohne eigene IT/OT-Abteilung.">
+  <meta name="description" content="Christoph Korn – freiberuflicher Automatisierungsingenieur aus Paderborn. SPS, Inbetriebnahme & Cloud-Anbindung für kleine Maschinenbauer ohne eigenes Entwicklungsteam.">
   <meta name="keywords" content="SPS Programmierung, Automatisierungstechnik, Freelancer, Ingenieur, Paderborn, Siemens, Beckhoff, TwinCAT, TIA Portal, KUKA, Roboter, Inbetriebnahme, OPC UA, MQTT, Antriebstechnik, Netzwerktechnik, Prozessdaten, Visualisierung, Taktzeit Optimierung, Effizienzsteigerung, Messeprojekte">
   <meta name="author" content="Christoph Korn">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="CK Industrial Automation Services">
-  <meta property="og:description" content="Freiberuflicher Automatisierungsingenieur – SPS, IIoT & Cloud-Anbindung für KMU ohne eigenes Entwicklungsteam">
+
+  <!-- Canonical URL (bei eigener Domain bitte anpassen) -->
+  <link rel="canonical" href="https://ck-industrial-automation-services.github.io/site/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CK Industrial Automation Services – Freiberuflicher Automatisierungsingenieur">
+  <meta property="og:description" content="Freiberuflicher Automatisierungsingenieur aus Paderborn – SPS, IIoT & Cloud-Anbindung für KMU ohne eigenes Entwicklungsteam.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/logo_simple_long.webp">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:url" content="https://ck-industrial-automation-services.github.io/site/">
+  <meta property="og:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_simple_long.webp">
+  <meta property="og:image:alt" content="CK Industrial Automation Services">
+  <meta property="og:site_name" content="CK Industrial Automation Services">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CK Industrial Automation Services">
+  <meta name="twitter:description" content="Freiberuflicher Automatisierungsingenieur aus Paderborn – SPS, IIoT & Cloud-Anbindung für KMU.">
+  <meta name="twitter:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_simple_long.webp">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
+  <link rel="apple-touch-icon" href="img/logo_simple_short.webp">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Fonts (reduziert auf tatsächlich genutzte Weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
-  <style>
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    :root {
-      --color-bg: #0f1117;
-      --color-bg-alt: #161921;
-      --color-surface: #1c1f2a;
-      --color-surface-hover: #242838;
-      --color-primary: #3b82f6;
-      --color-primary-light: #60a5fa;
-      --color-accent: #22d3ee;
-      --color-text: #e2e8f0;
-      --color-text-muted: #94a3b8;
-      --color-text-heading: #f8fafc;
-      --color-border: #2d3348;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --max-width: 1140px;
-      --radius: 12px;
-    }
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
 
-    html { scroll-behavior: smooth; }
+  <!-- App logic (defer: run after HTML parsed, before DOMContentLoaded) -->
+  <script src="app.js" defer></script>
 
-    body {
-      font-family: var(--font);
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.7;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: var(--color-primary-light); text-decoration: none; transition: color 0.2s; }
-    a:hover { color: var(--color-accent); }
-
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-
-    /* ===== NAVIGATION ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-border);
-      transition: background 0.3s;
-    }
-
-    .nav-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      position: relative;
-    }
-
-    .nav-logo img { height: 56px; }
-    .nav-brand-text {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s 0.3s, filter 0.3s;
-      background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
-    }
-    .nav-brand-text.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    /* Hide brand text on desktop to prevent overlap with nav items */
-    @media (min-width: 769px) {
-      .nav-brand-text { display: none !important; }
-    }
-    .nav-brand-short { display: none; }
-    @media (max-width: 549px) {
-      .nav-brand-long { display: none; }
-      .nav-brand-short { display: inline; }
-    }
-    .nav-logo {
-      opacity: 0;
-      transform: scale(0.3);
-      pointer-events: none;
-      transition: opacity 0.1s, transform 0.1s;
-      flex-shrink: 0;
-    }
-    .nav-logo.visible {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-      animation: navLogoFlash 0.7s ease-out;
-    }
-    @keyframes navLogoFlash {
-      0% {
-        opacity: 0;
-        transform: scale(0.2);
-        filter: brightness(1) drop-shadow(0 0 0px transparent);
+  <!-- Structured data: ProfessionalService / Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://ck-industrial-automation-services.github.io/site/#business",
+        "name": "CK Industrial Automation Services",
+        "description": "Freiberuflicher Ingenieur für Automatisierungstechnik – SPS-Programmierung, Robotik, Inbetriebnahme, IIoT und Cloud-Anbindung für kleine und mittlere Maschinenbauer.",
+        "url": "https://ck-industrial-automation-services.github.io/site/",
+        "image": "https://ck-industrial-automation-services.github.io/site/img/logo_simple_long.webp",
+        "priceRange": "€€",
+        "founder": { "@id": "https://ck-industrial-automation-services.github.io/site/#person" },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Ostwestfalen-Lippe" },
+          { "@type": "AdministrativeArea", "name": "Nordrhein-Westfalen" },
+          { "@type": "Country", "name": "Deutschland" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Riemekestraße 159",
+          "postalCode": "33102",
+          "addressLocality": "Paderborn",
+          "addressRegion": "NRW",
+          "addressCountry": "DE"
+        },
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SPS-Programmierung" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inbetriebnahme" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Robotik für Klein- und Messeprojekte" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IIoT & Cloud-Anbindung (OPC UA, MQTT, AWS, Azure)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Antriebstechnik" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Industrielle Netzwerktechnik" } }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://ck-industrial-automation-services.github.io/site/#person",
+        "name": "Christoph Korn",
+        "jobTitle": "Freiberuflicher Ingenieur für Automatisierungstechnik",
+        "image": "https://ck-industrial-automation-services.github.io/site/img/portrait2.webp",
+        "email": "mailto:christoph.korn@paderborn.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paderborn",
+          "addressRegion": "NRW",
+          "addressCountry": "DE"
+        },
+        "knowsAbout": [
+          "SPS-Programmierung", "Siemens TIA Portal", "Beckhoff TwinCAT", "CODESYS",
+          "KUKA", "ABB", "SEW", "Lenze",
+          "OPC UA", "MQTT", "AWS", "Azure",
+          "Robotik", "Inbetriebnahme", "Antriebstechnik", "Industrielle Netzwerke"
+        ]
       }
-      30% {
-        opacity: 1;
-        transform: scale(1.25);
-        filter: brightness(2.5) drop-shadow(0 0 40px rgba(34,211,238,0.9)) drop-shadow(0 0 80px rgba(59,130,246,0.6));
-      }
-      60% {
-        transform: scale(0.95);
-        filter: brightness(1.4) drop-shadow(0 0 20px rgba(34,211,238,0.5)) drop-shadow(0 0 40px rgba(59,130,246,0.3));
-      }
-      100% {
-        transform: scale(1);
-        filter: brightness(1) drop-shadow(0 0 0px transparent);
-      }
-    }
-
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: filter 0.3s, opacity 0.3s;
-      background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 4px rgba(34,211,238,0.3)) drop-shadow(0 0 10px rgba(59,130,246,0.2));
-    }
-    .nav-links a:hover {
-      background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 8px rgba(34,211,238,0.6)) drop-shadow(0 0 18px rgba(59,130,246,0.4));
-    }
-
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--color-accent);
-      cursor: pointer;
-      filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)) drop-shadow(0 0 14px rgba(59,130,246,0.3));
-      transition: filter 0.3s, color 0.3s;
-    }
-    .nav-toggle:hover {
-      color: var(--color-primary-light);
-      filter: drop-shadow(0 0 10px rgba(34,211,238,0.7)) drop-shadow(0 0 24px rgba(59,130,246,0.5));
-    }
-    .nav-toggle svg { width: 28px; height: 28px; }
-    .nav-toggle .icon-close { display: none; }
-    .nav-toggle.open .icon-hamburger { display: none; }
-    .nav-toggle.open .icon-close { display: block; }
-
-    @media (min-width: 769px) {
-      .nav-toggle, .nav-toggle.open { display: none !important; }
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 72px;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 30%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero-content { position: relative; z-index: 1; max-width: 720px; }
-
-    .hero-logo { margin-bottom: 32px; text-align: center; }
-    .hero-logo img { max-width: 400px; width: 100%; color: var(--color-text-heading); }
-
-    /* Option C: Photorealistic Layer Animation */
-    .hero-logo-layers {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto 32px;
-      aspect-ratio: 5 / 2;
-    }
-    .hero-logo-layers img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: contain;
-    }
-    .layer-robot {
-      z-index: 3;
-      width: 38% !important; height: auto !important;
-      left: 2% !important;
-      top: 10% !important;
-      animation: robotWork 8s ease-in-out infinite;
-    }
-    .layer-conveyor {
-      z-index: 1;
-      width: 44% !important; height: auto !important;
-      left: 28% !important;
-      top: 40% !important;
-    }
-    .layer-laptop {
-      z-index: 2;
-      width: 34% !important; height: auto !important;
-      right: 2% !important;
-      left: auto !important;
-      top: 5% !important;
-      animation: screenGlow 2.5s ease-in-out infinite;
-    }
-    .layer-text {
-      position: absolute;
-      bottom: 0; left: 0; width: 100%;
-      text-align: center;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.8rem, 2vw, 1.2rem);
-      background: linear-gradient(90deg, #22d3ee, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      z-index: 4;
-    }
-    @keyframes robotWork {
-      0%, 100% { transform: rotate(0deg) translateY(0); }
-      25%      { transform: rotate(3deg) translateY(-4px); }
-      50%      { transform: rotate(-2deg) translateY(0); }
-      75%      { transform: rotate(2deg) translateY(-2px); }
-    }
-    @keyframes screenGlow {
-      0%, 100% { filter: brightness(0.85) drop-shadow(0 0 8px rgba(59,130,246,0.3)); }
-      50%      { filter: brightness(1.15) drop-shadow(0 0 16px rgba(59,130,246,0.6)); }
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      color: var(--color-text-heading);
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span { color: var(--color-primary-light); }
-
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--color-text-muted);
-      margin-bottom: 40px;
-      max-width: 560px;
-    }
-
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-    .hero-tag {
-      padding: 6px 16px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.25s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--color-primary);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: var(--color-primary-light);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--color-text);
-      border: 1px solid var(--color-border);
-    }
-    .btn-outline:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary-light);
-      transform: translateY(-2px);
-    }
-
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-
-    /* ===== SECTIONS ===== */
-    section { padding: 60px 0; }
-    @media (min-width: 769px) { section { padding: 100px 0; } }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-primary-light);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 700;
-      color: var(--color-text-heading);
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      color: var(--color-text-muted);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* ===== ABOUT ===== */
-    .about-section { background: var(--color-bg-alt); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 32px 48px;
-      align-items: center;
-    }
-
-    .about-text p { margin-bottom: 16px; color: var(--color-text); }
-
-    .about-stats {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .stat-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--color-primary-light);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-    }
-
-    /* ===== PROFILE PHOTO ===== */
-    .profile-photo-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .profile-photo {
-      position: relative;
-      width: 280px;
-      height: 320px;
-      filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.2));
-      animation: profile-float 6s ease-in-out infinite;
-    }
-
-    @keyframes profile-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .profile-hex-border {
-      position: relative;
-      width: 280px;
-      height: 320px;
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    }
-
-    .profile-hex-inner {
-      position: absolute;
-      inset: 3px;
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      background: var(--color-surface);
-      overflow: hidden;
-    }
-
-    .profile-hex-inner img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .circuit-traces {
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 380px;
-      height: 420px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* ===== TECHNOLOGIES ===== */
-    .tech-section { background: var(--color-bg-alt); }
-
-    .tech-categories { display: flex; flex-direction: column; gap: 8px; }
-
-    .tech-category { border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
-
-    .tech-category-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: var(--color-surface);
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
-    }
-    .tech-category-header:hover { background: var(--color-surface-hover); }
-
-    .tech-category h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-text-heading);
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-
-    .tech-chevron {
-      width: 20px; height: 20px;
-      transition: transform 0.3s;
-      color: var(--color-text-muted);
-      flex-shrink: 0;
-    }
-    .tech-category.open .tech-chevron { transform: rotate(180deg); }
-
-    .tech-tags-wrapper {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-    }
-    .tech-category.open .tech-tags-wrapper { max-height: 300px; }
-
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 20px 20px; }
-    .tech-tag {
-      padding: 8px 18px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: var(--color-text);
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .tech-tag:hover {
-      border-color: var(--color-primary);
-      background: rgba(59, 130, 246, 0.08);
-    }
-    .tech-tag.highlight {
-      border-color: var(--color-primary);
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--color-primary-light);
-    }
-
-    /* ===== CONTACT ===== */
-    .contact-section { background: var(--color-bg-alt); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .contact-info h3 {
-      font-size: 1.3rem;
-      color: var(--color-text-heading);
-      margin-bottom: 24px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .contact-item-icon {
-      width: 44px; height: 44px;
-      background: rgba(59, 130, 246, 0.1);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.2rem;
-    }
-
-    .contact-item-text strong {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--color-text-heading);
-      margin-bottom: 2px;
-    }
-
-    .contact-item-text span, .contact-item-text a {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-    }
-
-    .contact-cta {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 40px;
-    }
-
-    .contact-cta h3 {
-      font-size: 1.2rem;
-      color: var(--color-text-heading);
-      margin-bottom: 16px;
-    }
-
-    .contact-cta p {
-      color: var(--color-text-muted);
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    .contact-cta ul {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-
-    .contact-cta li {
-      padding: 6px 0;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-    .contact-cta li::before {
-      content: '✓';
-      color: var(--color-accent);
-      margin-right: 10px;
-      font-weight: 700;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--color-border);
-      text-align: center;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-text {
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-    }
-
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 0.85rem; color: var(--color-text-muted); }
-    .footer-links a:hover { color: var(--color-text); }
-
-    /* ===== WHEEL SCROLL-LOCK SYSTEM ===== */
-    .wheel-section {
-      position: relative;
-      /* height set by JS: (n-1) * scrollPerItem + 100vh */
-      /* NO overflow:hidden – it breaks position:sticky */
-    }
-    .wheel-sticky-header {
-      position: absolute;
-      top: 80px;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .wheel-sticky-header .section-header {
-      margin-bottom: 0;
-    }
-    .wheel-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-      z-index: 1;
-      padding-top: 180px;
-      padding-bottom: 40px;
-      box-sizing: border-box;
-    }
-    .wheel-sticky > .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 0;
-    }
-    .wheel-viewport {
-      position: relative;
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      height: 520px;
-      perspective: 1200px;
-      perspective-origin: 50% 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
-    }
-    .wheel-ring {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      height: 400px;
-      transform-style: preserve-3d;
-    }
-    .wheel-item {
-      position: absolute;
-      width: 480px;
-      left: 50%;
-      top: 50%;
-      margin-left: -240px;
-      margin-top: -115px;
-      height: 230px;
-      backface-visibility: hidden;
-      transition: filter 0.4s, opacity 0.4s;
-    }
-    /* Tech section: smaller cards so text logos aren't clipped */
-    .tech-section .wheel-item {
-      width: 320px;
-      margin-left: -160px;
-      margin-top: -100px;
-      height: 200px;
-    }
-    .tech-section .wheel-item-img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      background: var(--color-surface);
-    }
-    .tech-section .wheel-item-img img {
-      object-fit: contain;
-      max-height: 80px;
-    }
-    /* Services section: show full image without cropping */
-    #leistungen .wheel-item-img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      background: var(--color-surface);
-    }
-    #leistungen .wheel-item-img img {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
-    .wheel-item-inner {
-      width: 100%;
-      height: 100%;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .wheel-item.active .wheel-item-inner {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(59, 130, 246, 0.1);
-    }
-    .wheel-item-img {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    .wheel-item-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .wheel-item-text {
-      display: none;
-    }
-    .wheel-item-text h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--color-text-heading);
-      margin-bottom: 4px;
-    }
-    .wheel-item-text p {
-      font-size: 0.78rem;
-      color: var(--color-text-muted);
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .wheel-detail {
-      max-width: 420px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s, transform 0.4s;
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 24px;
-    }
-    .wheel-detail.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .wheel-detail h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--color-text-heading);
-      margin-bottom: 8px;
-    }
-    .wheel-detail p {
-      font-size: 1.05rem;
-      color: var(--color-text);
-      line-height: 1.6;
-    }
-    .wheel-dots { display: none; }
-    .wheel-progress-bar {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 3px;
-      background: var(--color-border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .wheel-progress-fill {
-      height: 100%;
-      background: var(--color-primary);
-      border-radius: 2px;
-      transition: width 0.2s;
-      width: 0%;
-    }
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .about-stats { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 72px; left: 0; right: 0;
-        background: var(--color-bg);
-        border-bottom: 1px solid var(--color-border);
-        padding: 24px;
-        gap: 16px;
-        z-index: 99;
-      }
-      .nav-links.open a {
-        font-size: 1.05rem;
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        filter: drop-shadow(0 0 4px rgba(34,211,238,0.3)) drop-shadow(0 0 10px rgba(59,130,246,0.2));
-      }
-      }
-      .nav-toggle { display: block; }
-
-      .hero h1 { font-size: 1.8rem; }
-      .hero-logo img { max-width: 280px; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .profile-photo { width: 220px; height: 252px; }
-      .profile-hex-border { width: 220px; height: 252px; }
-      .circuit-traces { width: 300px; height: 332px; top: -40px; left: -40px; }
-      /* Wheel responsive */
-      .wheel-viewport { height: 400px; perspective: 900px; max-width: 380px; }
-      .wheel-item { width: 360px; margin-left: -180px; height: 190px; margin-top: -95px; }
-      .tech-section .wheel-item { width: 240px; margin-left: -120px; height: 160px; margin-top: -80px; }
-
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-cta { padding: 28px; }
-
-      .footer-content { flex-direction: column; text-align: center; }
-    }
-
-    @media (max-width: 480px) {
-      .about-stats { grid-template-columns: 1fr; }
-      .wheel-viewport { height: 350px; perspective: 900px; max-width: 300px; }
-      .wheel-item { width: 280px; margin-left: -140px; height: 155px; margin-top: -78px; }
-      .tech-section .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
-
-      .hero-buttons { flex-direction: column; }
-      .hero-buttons .btn { width: 100%; justify-content: center; }
-    }
-
-    @media (max-width: 380px) {
-      .wheel-viewport { perspective: 1000px; }
-      .wheel-item { width: 180px; margin-left: -90px; height: 122px; margin-top: -61px; }
-    }
-  </style>
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- NAVIGATION -->
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
+      <a href="#" class="nav-logo" aria-label="Zum Seitenanfang">
+        <img src="img/logo_animated_v4_glow.svg" alt="" width="56" height="56" aria-hidden="true">
       </a>
-      <span class="nav-brand-text">
+      <span class="nav-brand-text" aria-hidden="true">
         <span class="nav-brand-long">CK Industrial Automation Services</span>
         <span class="nav-brand-short">CK IAS</span>
       </span>
@@ -895,11 +126,11 @@
         <li><a href="#referenzen">Referenzen</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open'); this.classList.toggle('open')" aria-label="Menü">
-        <svg class="icon-hamburger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-controls="navLinks" aria-expanded="false">
+        <svg class="icon-hamburger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
-        <svg class="icon-close" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="icon-close" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
@@ -910,31 +141,18 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <!-- Option D: SVG Glow-Logo (aktiv) -->
         <div class="hero-logo">
-          <img src="img/logo_animated_v4_glow_long.svg" alt="CK Industrial Automation Services">
+          <img src="img/logo_animated_v4_glow_long.svg" alt="CK Industrial Automation Services" width="400" height="160" fetchpriority="high">
         </div>
-        <p style="text-align:center; font-size:0.85rem; color:var(--color-text-muted); letter-spacing:0.06em; margin-bottom:24px;">CK IAS — <strong style="color:var(--color-text);">C</strong>hristoph <strong style="color:var(--color-text);">K</strong>orn · <strong style="color:var(--color-text);">I</strong>ndustrial <strong style="color:var(--color-text);">A</strong>utomation <strong style="color:var(--color-text);">S</strong>ervices</p>
-        <!-- Option C: Photorealistic Layers (aktivieren wenn Bilder generiert) -->
-        <!--
-        <div class="hero-logo-layers">
-          <img src="img/layer_robot_arm.webp" alt="" class="layer-robot">
-          <img src="img/layer_conveyor_cubes.webp" alt="" class="layer-conveyor">
-          <img src="img/layer_laptop_dashboard.webp" alt="" class="layer-laptop">
-          <span class="layer-text">CK Industrial Automation Services</span>
-        </div>
-        -->
         <h1>Kein eigenes Entwicklungsteam? <span>Ich bin Ihres.</span></h1>
         <p class="hero-subtitle">
-          Sie bauen Maschinen – aber wer programmiert die Steuerung und bringt Ihre Daten in die Cloud?
-          Als freiberuflicher Ingenieur unterstütze ich kleine Maschinenbauer flexibel und unkompliziert.
+          Freiberuflicher Automatisierungsingenieur aus Paderborn – ich unterstütze kleine Maschinenbauer bei SPS, Inbetriebnahme und Cloud-Anbindung.
         </p>
         <div class="hero-tags">
           <span class="hero-tag">SPS-Programmierung</span>
-          <span class="hero-tag">Maschinendaten in die Cloud</span>
-          <span class="hero-tag">AWS / Azure Anbindung</span>
-          <span class="hero-tag">OPC UA & MQTT</span>
           <span class="hero-tag">Inbetriebnahme</span>
+          <span class="hero-tag">Robotik</span>
+          <span class="hero-tag">IIoT &amp; Cloud</span>
         </div>
         <div class="hero-buttons">
           <a href="#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
@@ -950,7 +168,7 @@
       <div class="section-header">
         <span class="section-label">Über mich</span>
         <h2 class="section-title">Erfahrung trifft Leidenschaft</h2>
-        <p class="section-subtitle">Automatisierungstechnik ist mein Beruf und meine Leidenschaft – als Nebentätigkeit unterstütze ich gezielt kleine Unternehmen, die keine eigene IT/OT-Abteilung haben.</p>
+        <p class="section-subtitle">Ein Ingenieur, der Ihre Maschine versteht – und genau dort einspringt, wo Ihnen die Kapazität fehlt.</p>
       </div>
       <div class="about-grid">
         <!-- Profilbild mit futuristischem Hexagon-Rahmen -->
@@ -989,8 +207,8 @@
             <!-- Hexagonaler Rahmen mit Gradient-Border -->
             <div class="profile-hex-border">
               <div class="profile-hex-inner">
-                <!-- TODO: img/portrait.jpg durch echtes Foto ersetzen -->
                 <img src="img/portrait2.webp" alt="Christoph Korn – Automatisierungsingenieur"
+                     width="280" height="320" loading="lazy" decoding="async"
                      onerror="this.onerror=null; this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 320'%3E%3Crect width='280' height='320' fill='%231c1f2a'/%3E%3Ccircle cx='140' cy='110' r='45' fill='%232d3348'/%3E%3Cellipse cx='140' cy='240' rx='70' ry='50' fill='%232d3348'/%3E%3Ctext x='140' y='300' text-anchor='middle' fill='%2360a5fa' font-family='sans-serif' font-size='11'%3EFoto hier einf%C3%BCgen%3C/text%3E%3C/svg%3E&quot;">
               </div>
             </div>
@@ -999,21 +217,10 @@
         <!-- Text -->
         <div class="about-text">
           <p>
-            Mein Name ist Christoph Korn. Als studierter Elektroingenieur mit Schwerpunkt Automatisierungstechnik
-            bringe ich über 12 Jahre Praxiserfahrung aus echten Produktionsumgebungen mit.
+            Ich bin Christoph Korn, Elektroingenieur mit Schwerpunkt Automatisierungstechnik und über 12 Jahren Praxis aus echten Produktionsumgebungen. Hauptberuflich bin ich in der Industrieautomation tätig – freiberuflich ergänze ich kleine Maschinenbauer und KMU, die kein eigenes Entwicklungsteam haben.
           </p>
           <p>
-            Im Hauptberuf arbeite ich in der Industrieautomation – als freiberufliche Nebentätigkeit
-            unterstütze ich gezielt kleine Maschinenbauer und KMU, die kein eigenes Entwicklungsteam haben.
-            Von der SPS-Programmierung bis zur Cloud-Anbindung Ihrer Maschinendaten (AWS, Azure) –
-            ich ergänze Ihr Team genau dort, wo Ihnen die Kapazität fehlt.
-          </p>
-          <p>
-            Ich bin nicht auf einen Hersteller festgelegt – ob Siemens, Beckhoff oder CODESYS-basierte Systeme: Ich finde
-            die passende Lösung für Ihre Anforderung. Ergänzt wird mein Profil durch Kompetenzen in
-            IIoT-Anbindung und industrieller Netzwerktechnik. Darüber hinaus beschäftige ich mich
-            leidenschaftlich mit Robotik – von eigenen Demonstrator-Projekten bis hin zu
-            Messe-Exponaten mit KUKA und ABB.
+            Ob Siemens, Beckhoff oder CODESYS – ich bin nicht auf einen Hersteller festgelegt und finde die passende Lösung für Ihre Technik. Von SPS-Programmierung über Inbetriebnahme bis zur Cloud-Anbindung (AWS, Azure). Ergänzt durch Kompetenzen in IIoT, industriellen Netzwerken und Robotik für Messe- und Demonstrator-Projekte mit KUKA und ABB.
           </p>
         </div>
         <!-- Kennzahlen (volle Breite) -->
@@ -1049,7 +256,7 @@
         <div class="section-header">
           <span class="section-label">Ihre Situation</span>
           <h2 class="section-title">Kommt Ihnen das bekannt vor?</h2>
-          <p class="section-subtitle">Typische Situationen, in denen ich helfen kann.</p>
+          <p class="section-subtitle">Erkennen Sie eine dieser Situationen wieder? Dann kann ich helfen.</p>
         </div>
       </div>
     </div>
@@ -1059,25 +266,25 @@
 
           <div class="wheel-item" data-title="Alte Steuerung, keine Ersatzteile" data-desc="Kein Support, keine Teile mehr? Ich migriere Ihre Steuerung auf ein modernes System.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/icon_problem_01_alte_steuerung.webp" alt="Alte Steuerung" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/icon_problem_01_alte_steuerung.webp" alt="Alte Steuerung" loading="lazy" decoding="async"></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Sonderprojekt ohne Standardlösung" data-desc="Theater, Museum, Sondermaschine – ungewöhnliche Projekte sind genau mein Ding.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/icon_problem_02_sonderprojekt.webp" alt="Sonderprojekt" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/icon_problem_02_sonderprojekt.webp" alt="Sonderprojekt" loading="lazy" decoding="async"></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Maschine steht still" data-desc="Fehlersuche, Diagnose, Reparatur – ich finde das Problem und behebe es.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/icon_problem_03_stillstand.webp" alt="Maschine steht still" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/icon_problem_03_stillstand.webp" alt="Maschine steht still" loading="lazy" decoding="async"></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Erweiterung oder Umbau" data-desc="Neuer Sensor, neue Funktion, mehr Leistung – ich passe Ihre Steuerung an.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/icon_problem_04_erweiterung.webp" alt="Erweiterung" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/icon_problem_04_erweiterung.webp" alt="Erweiterung" loading="lazy" decoding="async"></div>
             </div>
           </div>
 
@@ -1111,77 +318,77 @@
 
           <div class="wheel-item" data-title="Steuerung programmieren" data-desc="SPS-Programme für jede Maschine – neu, erweitert oder migriert.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_sps.webp" alt="SPS-Programmierung" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_sps.webp" alt="SPS-Programmierung" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Steuerung programmieren</h3><p>Neuprogrammierung, Erweiterung, Migration</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Robotik für Klein- &amp; Messeprojekte" data-desc="Roboter-Programmierung für Messe-Exponate, Demonstratoren und Kleinprojekte mit KUKA und ABB – ideal für Showcases, Prototypen und kompakte Automatisierungslösungen.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_robotik.webp" alt="Robotik Klein- und Messeprojekte" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_robotik.webp" alt="Robotik Klein- und Messeprojekte" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Robotik für Klein- &amp; Messeprojekte</h3><p>Messe-Exponate, Demonstratoren, Kleinprojekte</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Anlage in Betrieb nehmen" data-desc="Neuanlage oder Umbau – ich bringe alles zum Laufen.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_inbetriebnahme.webp" alt="Inbetriebnahme" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_inbetriebnahme.webp" alt="Inbetriebnahme" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Anlage in Betrieb nehmen</h3><p>Aufbau, Fehlersuche, Optimierung</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Taktzeiten optimieren" data-desc="Zykluszeiten analysieren, Engpässe identifizieren und Abläufe in der SPS gezielt beschleunigen – für mehr Output bei gleicher Hardware.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_taktzeit.svg" alt="Taktzeiten optimieren" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_taktzeit.svg" alt="Taktzeiten optimieren" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Taktzeiten optimieren</h3><p>Zykluszeit-Analyse, Ablaufoptimierung</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Effizienz steigern" data-desc="Bestehende Anlagen effizienter machen – durch intelligentere Steuerungslogik, weniger Stillstand und bessere Prozessabläufe.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_effizienz.svg" alt="Effizienzsteigerung" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_effizienz.svg" alt="Effizienzsteigerung" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Effizienz steigern</h3><p>Stillstandsreduktion, Prozessverbesserung</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Antriebe einstellen" data-desc="Frequenzumrichter und Servoantriebe richtig parametriert – damit's rund läuft.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_antriebstechnik.webp" alt="Antriebstechnik" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_antriebstechnik.webp" alt="Antriebstechnik" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Antriebe einstellen</h3><p>Frequenzumrichter, Servo, Motor</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Maschinendaten in die Cloud" data-desc="OPC UA & MQTT – Maschinendaten erfassen und über AWS oder Azure sichtbar machen. Vom lokalen Dashboard bis zur Cloud-Anbindung.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_iiot.webp" alt="Prozessdaten" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_iiot.webp" alt="Prozessdaten" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Maschinendaten in die Cloud</h3><p>OPC UA, MQTT, AWS, Azure</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Maschinen vernetzen" data-desc="Industrielle Netzwerke planen und aufbauen – PROFINET, EtherCAT, OPC UA.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_netzwerktechnik.webp" alt="Netzwerktechnik" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_netzwerktechnik.webp" alt="Netzwerktechnik" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Maschinen vernetzen</h3><p>Industrielle Netzwerke, PROFINET, EtherCAT</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Bedienoberfläche gestalten" data-desc="Klare, intuitive HMI-Oberflächen für Ihre Maschine.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_softwareentwicklung.webp" alt="HMI" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_softwareentwicklung.webp" alt="HMI" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Bedienoberfläche gestalten</h3><p>HMI, Visualisierung, Touch-Panel</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Dokumentation &amp; Einweisung" data-desc="Verständliche Doku und praxisnahe Schulung für Ihr Team.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_dokumentation.webp" alt="Dokumentation" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_dokumentation.webp" alt="Dokumentation" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Dokumentation &amp; Einweisung</h3><p>Übergabe, Schulung, Handbuch</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Scripting &amp; Anlagenmonitoring" data-desc="Python-Skripte und Node-RED-Flows für lokale Prozessdatenvisualisierung und Anlagenmonitoring – ergänzend zu SPS-Projekten.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/service_scripting.webp" alt="Scripting" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/service_scripting.webp" alt="Scripting" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Scripting &amp; Anlagenmonitoring</h3><p>Python, Node-RED, SQL – ergänzend zu SPS-Projekten</p></div>
             </div>
           </div>
@@ -1206,7 +413,7 @@
         <div class="section-header">
           <span class="section-label">Technologien</span>
           <h2 class="section-title">Herstellerübergreifend aufgestellt</h2>
-          <p class="section-subtitle">Ich bin nicht auf einen Anbieter festgelegt – und finde die Lösung für Ihre vorhandene Technik.</p>
+          <p class="section-subtitle">Ich bin nicht auf einen Hersteller festgelegt – ich finde die Lösung für Ihre Technik.</p>
         </div>
       </div>
     </div>
@@ -1216,49 +423,49 @@
 
           <div class="wheel-item" data-title="Siemens" data-desc="TIA Portal, S7-1500/1200/300/400, STEP 7, WinCC, SINAMICS, SIMOTION">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/siemens.svg" alt="Siemens" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/siemens.svg" alt="Siemens" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Siemens</h3><p>TIA Portal, S7, WinCC, SINAMICS</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Beckhoff" data-desc="TwinCAT 3, EtherCAT, CX-Serie, AX-Serie, TwinSAFE, XTS">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/beckhoff.svg" alt="Beckhoff" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/beckhoff.svg" alt="Beckhoff" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Beckhoff</h3><p>TwinCAT 3, EtherCAT, CX, AX</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="CODESYS" data-desc="CODESYS V3, herstellerunabhängige IEC 61131-3 Programmierung, Visu, Motion">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/codesys.svg" alt="CODESYS" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/codesys.svg" alt="CODESYS" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>CODESYS</h3><p>V3, IEC 61131-3, Visu, Motion</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="KUKA" data-desc="KRL, WorkVisual, mxAutomation – eingesetzt in eigenen Demonstrator- und Messe-Projekten">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/kuka.svg" alt="KUKA" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/kuka.svg" alt="KUKA" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>KUKA</h3><p>KRL, WorkVisual – Messe &amp; Demos</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="ABB" data-desc="RAPID, RobotStudio, IRC5 – Erfahrung aus Demonstrator-Aufbauten und eigenen Projekten">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/abb.svg" alt="ABB" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/abb.svg" alt="ABB" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>ABB</h3><p>RAPID, RobotStudio – Demos &amp; Projekte</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="SEW-EURODRIVE" data-desc="MOVITOOLS, MOVI-C, Frequenzumrichter, Servo, dezentrale Antriebe">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/sew.svg" alt="SEW-EURODRIVE" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/sew.svg" alt="SEW-EURODRIVE" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>SEW</h3><p>MOVI-C, MOVITOOLS, Servo</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Lenze" data-desc="PLC Designer, i950/i550, Servo 9400, FAST Application Software Toolbox">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/logos/lenze.svg" alt="Lenze" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/logos/lenze.svg" alt="Lenze" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Lenze</h3><p>PLC Designer, i950, FAST</p></div>
             </div>
           </div>
@@ -1292,42 +499,42 @@
 
           <div class="wheel-item" data-title="Halbleiterindustrie" data-desc="Reinraum, Wafer-Handling, Prüfstände – Prototypenfertigung.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_halbleiter.webp" alt="Halbleiterindustrie" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_halbleiter.webp" alt="Halbleiterindustrie" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Halbleiterindustrie</h3><p>Prototypen-Produktionsanlagen</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Baustoffindustrie" data-desc="Dosieren, Wiegen, Absacken, Palettieren.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_baustoff.webp" alt="Baustoffindustrie" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_baustoff.webp" alt="Baustoffindustrie" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Baustoffindustrie</h3><p>Pulver- &amp; Baustoffabfüllung</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Maschinenbau" data-desc="Einzelstation bis verkettete Linie – Sonder- und Serienmaschinen.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_maschinenbau.webp" alt="Maschinenbau" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_maschinenbau.webp" alt="Maschinenbau" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Maschinenbau</h3><p>Sonder- &amp; Serienmaschinen</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Landwirtschaft" data-desc="Smart Farming, Gewächshaus, Stall – IoT und Steuerungstechnik.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_landwirtschaft.webp" alt="Landwirtschaft" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_landwirtschaft.webp" alt="Landwirtschaft" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Landwirtschaft</h3><p>Futtermittel, Smart Farming, IoT</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Gebäudeautomation / HVAC" data-desc="Klima, Lüftung, Kälte – Regelungstechnik und DDC.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_hvac.webp" alt="HVAC" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_hvac.webp" alt="HVAC" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Gebäudeautomation / HVAC</h3><p>Klima, Lüftung, Kälte</p></div>
             </div>
           </div>
 
           <div class="wheel-item" data-title="Bühne &amp; Veranstaltungstechnik" data-desc="Obermaschinerie, Hubpodien, Drehscheiben – Steuerung für die Bühne.">
             <div class="wheel-item-inner">
-              <div class="wheel-item-img"><img src="img/branch_buehne.webp" alt="Bühnentechnik" loading="lazy"></div>
+              <div class="wheel-item-img"><img src="img/branch_buehne.webp" alt="Bühnentechnik" loading="lazy" decoding="async"></div>
               <div class="wheel-item-text"><h3>Bühne &amp; Veranstaltung</h3><p>Obermaschinerie, Antriebe, Effekte</p></div>
             </div>
           </div>
@@ -1345,22 +552,22 @@
   </section>
 
   <!-- REFERENZEN -->
-  <section id="referenzen" style="padding: 80px 0;">
+  <section id="referenzen" class="references-section">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Referenzen</span>
         <h2 class="section-title">Was meine Kunden sagen</h2>
       </div>
-      <div style="max-width: 640px; margin: 0 auto; text-align: center;">
-        <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 48px 40px; position: relative;">
-          <div style="font-size: 4rem; line-height: 1; color: var(--color-primary); opacity: 0.3; position: absolute; top: 16px; left: 24px;">&#8220;</div>
-          <p style="font-size: 1.2rem; color: var(--color-text); font-style: italic; margin-bottom: 24px; line-height: 1.8;">
+      <div class="testimonial-wrap">
+        <figure class="testimonial-card">
+          <div class="testimonial-quote-mark" aria-hidden="true">&#8220;</div>
+          <blockquote class="testimonial-text">
             Dieser Platz ist noch frei – hier könnte Ihre Bewertung stehen!<br>
             Werden Sie einer meiner ersten Kunden und sichern Sie sich den besten Platz auf dem Treppchen.
-          </p>
-          <p style="color: var(--color-text-muted); font-size: 0.95rem;">– Ihr Name? Vielleicht schon bald hier.</p>
-        </div>
-        <p style="margin-top: 24px; color: var(--color-text-muted); font-size: 0.9rem;">
+          </blockquote>
+          <figcaption class="testimonial-author">– Ihr Name? Vielleicht schon bald hier.</figcaption>
+        </figure>
+        <p class="testimonial-footer">
           🚀 Frisch gestartet, voll motiviert. Lassen Sie uns gemeinsam Ihr Projekt umsetzen – die erste Referenz schreibt sich nicht von allein!
         </p>
       </div>
@@ -1373,7 +580,7 @@
       <div class="section-header">
         <span class="section-label">Kontakt</span>
         <h2 class="section-title">Projekt besprechen?</h2>
-        <p class="section-subtitle">Kein eigenes Team? Kein Problem. Schildern Sie mir Ihr Vorhaben – ich melde mich zeitnah.</p>
+        <p class="section-subtitle">Schildern Sie mir kurz Ihr Vorhaben – ich melde mich zeitnah mit einem konkreten Vorschlag.</p>
       </div>
       <div class="contact-grid">
 
@@ -1411,14 +618,14 @@
 
         <div class="contact-cta">
           <h3>Unverbindlich anfragen</h3>
-          <p>Schildern Sie mir Ihr Projekt und ich melde mich mit einem konkreten Vorschlag bei Ihnen:</p>
+          <p>Was Sie erwartet:</p>
           <ul>
             <li>Kostenlose Erstberatung</li>
             <li>Individuelles Angebot</li>
-            <li>Flexible Einsatzmodelle (Vor Ort / Remote / Hybrid)</li>
-            <li>Projekte von 1 Tag bis mehrere Wochen</li>
+            <li>Vor Ort, Remote oder hybrid</li>
+            <li>Von 1 Tag bis mehreren Wochen</li>
           </ul>
-          <a href="mailto:christoph.korn@paderborn.com?subject=Projektanfrage%20–%20CK%20Industrial%20Automation%20Services" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          <a href="mailto:christoph.korn@paderborn.com?subject=Projektanfrage%20–%20CK%20Industrial%20Automation%20Services" class="btn btn-primary btn-full">
             E-Mail schreiben
           </a>
         </div>
@@ -1442,166 +649,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Close mobile menu on link click
-    document.querySelectorAll('.nav-links a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
-
-    // Show nav-logo with flash when hero-logo scrolls out of view
-    (function() {
-      var heroLogo = document.querySelector('.hero-logo');
-      var navLogo  = document.querySelector('.nav-logo');
-      var brandText = document.querySelector('.nav-brand-text');
-      if (!heroLogo || !navLogo) return;
-      var shown = false;
-      var observer = new IntersectionObserver(function(entries) {
-        var isVisible = entries[0].isIntersecting;
-        if (!isVisible && !shown) {
-          navLogo.classList.add('visible');
-          if (brandText) brandText.classList.add('visible');
-          shown = true;
-        } else if (isVisible && shown) {
-          navLogo.classList.remove('visible');
-          if (brandText) brandText.classList.remove('visible');
-          shown = false;
-        }
-      }, { threshold: 0.1 });
-      observer.observe(heroLogo);
-    })();
-
-    /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
-    (function() {
-      // Scroll resolution: constant px per degree of rotation
-      // Scroll resolution: constant px per degree of rotation (shared across all wheels)
-      var SCROLL_PER_DEG = 400 / 45;
-
-      // Dead-zone buffer (px of scroll) at entry and exit of each wheel
-      // Creates a pause effect: wheel is visible but doesn't rotate yet
-      var DWELL_PX = 250;
-
-      function initWheel(cfg) {
-        var section = document.querySelector('[data-wheel-id="' + cfg.id + '"]');
-        var ring    = document.getElementById(cfg.ringId);
-        var detail  = document.getElementById(cfg.detailId);
-        var dots    = document.getElementById(cfg.dotsId);
-        var progress = document.getElementById(cfg.progressId);
-        if (!section || !ring) return;
-
-        var items     = ring.querySelectorAll('.wheel-item');
-        var n         = items.length;
-        var angleStep = 360 / n;
-        var radius    = cfg.radius || 280;
-        var scrollPerItem = angleStep * SCROLL_PER_DEG;
-        if (cfg.minScrollPerItem) scrollPerItem = Math.max(cfg.minScrollPerItem, scrollPerItem);
-
-        // Set section height: scroll travel + entry dwell + exit dwell + one viewport
-        var totalScroll = (n - 1) * scrollPerItem;
-        var totalHeight = DWELL_PX + totalScroll + DWELL_PX + window.innerHeight;
-        section.style.height = totalHeight + 'px';
-
-        // Position items in 3D
-        items.forEach(function(item, i) {
-          item.style.transform = 'rotateX(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
-        });
-
-        // Create dots
-        if (dots) {
-          dots.innerHTML = '';
-          for (var i = 0; i < n; i++) {
-            var dot = document.createElement('button');
-            dot.className = 'wheel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Item ' + (i + 1));
-            dots.appendChild(dot);
-          }
-        }
-
-        function render(scrollProgress) {
-          // scrollProgress: 0 = first item, 1 = last item
-          var clamped = Math.max(0, Math.min(1, scrollProgress));
-          var currentAngle = -clamped * (n - 1) * angleStep;
-          var currentIndex = Math.round(clamped * (n - 1));
-
-          ring.style.transform = 'rotateX(' + currentAngle + 'deg)';
-
-          // Update items
-          items.forEach(function(item, i) {
-            var itemAngle = ((i * angleStep + currentAngle) % 360 + 360) % 360;
-            var dist = Math.min(itemAngle, 360 - itemAngle);
-            var distNorm = dist / 180;
-
-            if (i === currentIndex) {
-              item.classList.add('active');
-              item.style.filter = 'none';
-              item.style.opacity = '1';
-            } else {
-              item.classList.remove('active');
-              var blur = Math.min(distNorm * 4, 3);
-              var glow = Math.max(0.2, 1 - distNorm);
-              item.style.filter = 'blur(' + blur.toFixed(1) + 'px) drop-shadow(0 0 ' + (15 * glow).toFixed(0) + 'px rgba(34,211,238,' + (glow * 0.4).toFixed(2) + '))';
-              item.style.opacity = String(Math.max(0.3, 1 - distNorm * 0.8));
-            }
-          });
-
-          // Detail
-          if (detail && items[currentIndex]) {
-            var it = items[currentIndex];
-            var h3 = detail.querySelector('h3');
-            var p  = detail.querySelector('p');
-            if (h3) h3.innerHTML = it.getAttribute('data-title') || '';
-            if (p)  p.innerHTML  = it.getAttribute('data-desc') || '';
-            detail.classList.add('visible');
-          }
-
-          // Dots
-          if (dots) {
-            var dotEls = dots.querySelectorAll('.wheel-dot');
-            dotEls.forEach(function(d, i) {
-              d.classList.toggle('active', i === currentIndex);
-            });
-          }
-
-          // Progress bar
-          if (progress) {
-            progress.style.width = (clamped * 100).toFixed(1) + '%';
-          }
-        }
-
-        // Scroll handler with dwell zones
-        function onScroll() {
-          var rect = section.getBoundingClientRect();
-          var rawScroll = -rect.top;
-
-          // Entry dwell: first DWELL_PX of scroll → wheel stays at item 0
-          // Active zone: next totalScroll px → wheel rotates through items
-          // Exit dwell: last DWELL_PX → wheel stays at last item
-          var activeScroll = rawScroll - DWELL_PX;
-          var scrollProgress = activeScroll / totalScroll;
-          render(scrollProgress);
-        }
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', function() {
-          totalScroll = (n - 1) * scrollPerItem;
-          totalHeight = DWELL_PX + totalScroll + DWELL_PX + window.innerHeight;
-          section.style.height = totalHeight + 'px';
-          onScroll();
-        });
-
-        // Initial
-        onScroll();
-      }
-
-      // Init all wheels
-      initWheel({ id: 'probleme', ringId: 'problemeRing', detailId: 'problemeDetail', dotsId: 'problemeDots', progressId: 'problemeProgress', radius: 300 });
-      initWheel({ id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 300, minScrollPerItem: 450 });
-      initWheel({ id: 'tech',     ringId: 'techRing',     detailId: 'techDetail',     dotsId: 'techDots',     progressId: 'techProgress',     radius: 300 });
-      initWheel({ id: 'branchen', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', progressId: 'branchenProgress', radius: 280 });
-    })();
-  </script>
 
 </body>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ck-industrial-automation-services.github.io/site/sitemap.xml
