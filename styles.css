@@ -60,7 +60,7 @@
     .nav-inner > .nav-links { grid-column: 2; justify-self: center; }
     .nav-inner > .nav-toggle { grid-column: 3; justify-self: end; }
 
-    .nav-logo img { height: 40px; }
+    .nav-logo img { height: 56px; }
     .nav-brand-text {
       position: absolute;
       left: 50%;

@@ -74,7 +74,7 @@
 
     var configs = [
       { id: 'probleme', ringId: 'problemeRing', detailId: 'problemeDetail', dotsId: 'problemeDots', progressId: 'problemeProgress', radius: 300, label: 'Ihre Situation' },
-      { id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 300, label: 'Leistung' },
+      { id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 500, label: 'Leistung' },
       { id: 'tech',     ringId: 'techRing',     detailId: 'techDetail',     dotsId: 'techDots',     progressId: 'techProgress',     radius: 300, label: 'Technologie' },
       { id: 'branchen', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', progressId: 'branchenProgress', radius: 280, label: 'Branche' }
     ];
