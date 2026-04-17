@@ -18,8 +18,8 @@ Professionelle Website für das Ingenieurbüro Christoph Korn.
    ├── impressum.html      ← Impressum (Pflichtseite)
    ├── datenschutz.html    ← Datenschutzerklärung (Pflichtseite)
    └── img/
-       ├── logo_simple_long.png
-       └── logo_simple_short.png
+       ├── logo_simple_long.webp
+       └── logo_simple_short.webp
    ```
 
 3. **GitHub Pages aktivieren**
