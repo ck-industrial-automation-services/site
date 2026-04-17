@@ -34,6 +34,319 @@
   <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
   <link rel="apple-touch-icon" href="img/logo_simple_short.webp">
   <link rel="manifest" href="manifest.webmanifest">
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 20px 20px; }
+    .tech-tag {
+      padding: 8px 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .tech-tag:hover {
+      border-color: var(--color-primary);
+      background: rgba(59, 130, 246, 0.08);
+    }
+    .tech-tag.highlight {
+      border-color: var(--color-primary);
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-primary-light);
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section { background: var(--color-bg-alt); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.3rem;
+      color: var(--color-text-heading);
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--color-text-heading);
+      margin-bottom: 2px;
+    }
+
+    .contact-item-text span, .contact-item-text a {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    .contact-cta {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .contact-cta h3 {
+      font-size: 1.2rem;
+      color: var(--color-text-heading);
+      margin-bottom: 16px;
+    }
+
+    .contact-cta p {
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .contact-cta ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .contact-cta li {
+      padding: 6px 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+    .contact-cta li::before {
+      content: '✓';
+      color: var(--color-accent);
+      margin-right: 10px;
+      font-weight: 700;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.85rem; color: var(--color-text-muted); }
+    .footer-links a:hover { color: var(--color-text); }
+
+    /* ===== WHEEL SCROLL-LOCK SYSTEM ===== */
+    .wheel-section {
+      position: relative;
+      /* height set by JS: (n-1) * scrollPerItem + 100vh */
+      /* NO overflow:hidden – it breaks position:sticky */
+    }
+    .wheel-sticky-header {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .wheel-sticky-header .section-header {
+      margin-bottom: 0;
+    }
+    .wheel-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      z-index: 1;
+      padding-top: 180px;
+      padding-bottom: 40px;
+      box-sizing: border-box;
+    }
+    .wheel-sticky > .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+    .wheel-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      height: 520px;
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    }
+    .wheel-ring {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      transform-style: preserve-3d;
+    }
+    .wheel-item {
+      position: absolute;
+      width: 480px;
+      left: 50%;
+      top: 50%;
+      margin-left: -240px;
+      margin-top: -115px;
+      height: 230px;
+      backface-visibility: hidden;
+      transition: filter 0.4s, opacity 0.4s;
+    }
+    /* Services section: many items need smaller cards & larger radius */
+    #leistungen .wheel-item {
+      width: 380px;
+      margin-left: -190px;
+      height: 180px;
+      margin-top: -90px;
+    }
+    /* Tech section: smaller cards so text logos aren't clipped */
+    .tech-section .wheel-item {
+      width: 320px;
+      margin-left: -160px;
+      margin-top: -100px;
+      height: 200px;
+    }
+    .tech-section .wheel-item-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: var(--color-surface);
+    }
+    .tech-section .wheel-item-img img {
+      object-fit: contain;
+      max-height: 80px;
+    }
+    .wheel-item-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .wheel-item.active .wheel-item-inner {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(59, 130, 246, 0.1);
+    }
+    .wheel-item-img {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .wheel-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .wheel-item-text {
+      display: none;
+    }
+    .wheel-item-text h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-heading);
+      margin-bottom: 4px;
+    }
+    .wheel-item-text p {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .wheel-detail {
+      max-width: 420px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s, transform 0.4s;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .wheel-detail.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .wheel-detail h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 8px;
+    }
+    .wheel-detail p {
+      font-size: 1.05rem;
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .wheel-dots { display: none; }
+    .wheel-progress-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .wheel-progress-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: 2px;
+      transition: width 0.2s;
+      width: 0%;
+    }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+    }
 
   <!-- Fonts (reduziert auf tatsächlich genutzte Weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,6 +418,44 @@
     ]
   }
   </script>
+      .nav-toggle { display: block; }
+
+      .hero h1 { font-size: 1.8rem; }
+      .hero-logo img { max-width: 280px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .profile-photo { width: 220px; height: 252px; }
+      .profile-hex-border { width: 220px; height: 252px; }
+      .circuit-traces { width: 300px; height: 332px; top: -40px; left: -40px; }
+      /* Wheel responsive */
+      .wheel-viewport { height: 400px; perspective: 900px; max-width: 380px; }
+      .wheel-item { width: 360px; margin-left: -180px; height: 190px; margin-top: -95px; }
+      #leistungen .wheel-item { width: 280px; margin-left: -140px; height: 150px; margin-top: -75px; }
+      .tech-section .wheel-item { width: 240px; margin-left: -120px; height: 160px; margin-top: -80px; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-cta { padding: 28px; }
+
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .wheel-viewport { height: 350px; perspective: 900px; max-width: 300px; }
+      .wheel-item { width: 280px; margin-left: -140px; height: 155px; margin-top: -78px; }
+      #leistungen .wheel-item { width: 220px; margin-left: -110px; height: 120px; margin-top: -60px; }
+      .tech-section .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
+
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 380px) {
+      .wheel-viewport { perspective: 1000px; }
+      .wheel-item { width: 180px; margin-left: -90px; height: 122px; margin-top: -61px; }
+      #leistungen .wheel-item { width: 160px; margin-left: -80px; height: 100px; margin-top: -50px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -664,6 +1015,164 @@
     </div>
   </footer>
 
+  <script>
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Show nav-logo with flash when hero-logo scrolls out of view
+    (function() {
+      var heroLogo = document.querySelector('.hero-logo');
+      var navLogo  = document.querySelector('.nav-logo');
+      var brandText = document.querySelector('.nav-brand-text');
+      if (!heroLogo || !navLogo) return;
+      var shown = false;
+      var observer = new IntersectionObserver(function(entries) {
+        var isVisible = entries[0].isIntersecting;
+        if (!isVisible && !shown) {
+          navLogo.classList.add('visible');
+          if (brandText) brandText.classList.add('visible');
+          shown = true;
+        } else if (isVisible && shown) {
+          navLogo.classList.remove('visible');
+          if (brandText) brandText.classList.remove('visible');
+          shown = false;
+        }
+      }, { threshold: 0.1 });
+      observer.observe(heroLogo);
+    })();
+
+    /* ===== 3D SCROLL-LOCK WHEEL ENGINE ===== */
+    (function() {
+      // Scroll resolution: constant px per degree of rotation
+      // Scroll resolution: constant px per degree of rotation (shared across all wheels)
+      var SCROLL_PER_DEG = 400 / 45;
+
+      // Dead-zone buffer (px of scroll) at entry and exit of each wheel
+      // Creates a pause effect: wheel is visible but doesn't rotate yet
+      var DWELL_PX = 250;
+
+      function initWheel(cfg) {
+        var section = document.querySelector('[data-wheel-id="' + cfg.id + '"]');
+        var ring    = document.getElementById(cfg.ringId);
+        var detail  = document.getElementById(cfg.detailId);
+        var dots    = document.getElementById(cfg.dotsId);
+        var progress = document.getElementById(cfg.progressId);
+        if (!section || !ring) return;
+
+        var items     = ring.querySelectorAll('.wheel-item');
+        var n         = items.length;
+        var angleStep = 360 / n;
+        var radius    = cfg.radius || 280;
+        var scrollPerItem = angleStep * SCROLL_PER_DEG;
+
+        // Set section height: scroll travel + entry dwell + exit dwell + one viewport
+        var totalScroll = (n - 1) * scrollPerItem;
+        var totalHeight = DWELL_PX + totalScroll + DWELL_PX + window.innerHeight;
+        section.style.height = totalHeight + 'px';
+
+        // Position items in 3D
+        items.forEach(function(item, i) {
+          item.style.transform = 'rotateX(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
+        });
+
+        // Create dots
+        if (dots) {
+          dots.innerHTML = '';
+          for (var i = 0; i < n; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'wheel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Item ' + (i + 1));
+            dots.appendChild(dot);
+          }
+        }
+
+        function render(scrollProgress) {
+          // scrollProgress: 0 = first item, 1 = last item
+          var clamped = Math.max(0, Math.min(1, scrollProgress));
+          var currentAngle = -clamped * (n - 1) * angleStep;
+          var currentIndex = Math.round(clamped * (n - 1));
+
+          ring.style.transform = 'rotateX(' + currentAngle + 'deg)';
+
+          // Update items
+          items.forEach(function(item, i) {
+            var itemAngle = ((i * angleStep + currentAngle) % 360 + 360) % 360;
+            var dist = Math.min(itemAngle, 360 - itemAngle);
+            var distNorm = dist / 180;
+
+            if (i === currentIndex) {
+              item.classList.add('active');
+              item.style.filter = 'none';
+              item.style.opacity = '1';
+            } else {
+              item.classList.remove('active');
+              var blur = Math.min(distNorm * 4, 3);
+              var glow = Math.max(0.2, 1 - distNorm);
+              item.style.filter = 'blur(' + blur.toFixed(1) + 'px) drop-shadow(0 0 ' + (15 * glow).toFixed(0) + 'px rgba(34,211,238,' + (glow * 0.4).toFixed(2) + '))';
+              item.style.opacity = String(Math.max(0.3, 1 - distNorm * 0.8));
+            }
+          });
+
+          // Detail
+          if (detail && items[currentIndex]) {
+            var it = items[currentIndex];
+            var h3 = detail.querySelector('h3');
+            var p  = detail.querySelector('p');
+            if (h3) h3.innerHTML = it.getAttribute('data-title') || '';
+            if (p)  p.innerHTML  = it.getAttribute('data-desc') || '';
+            detail.classList.add('visible');
+          }
+
+          // Dots
+          if (dots) {
+            var dotEls = dots.querySelectorAll('.wheel-dot');
+            dotEls.forEach(function(d, i) {
+              d.classList.toggle('active', i === currentIndex);
+            });
+          }
+
+          // Progress bar
+          if (progress) {
+            progress.style.width = (clamped * 100).toFixed(1) + '%';
+          }
+        }
+
+        // Scroll handler with dwell zones
+        function onScroll() {
+          var rect = section.getBoundingClientRect();
+          var rawScroll = -rect.top;
+
+          // Entry dwell: first DWELL_PX of scroll → wheel stays at item 0
+          // Active zone: next totalScroll px → wheel rotates through items
+          // Exit dwell: last DWELL_PX → wheel stays at last item
+          var activeScroll = rawScroll - DWELL_PX;
+          var scrollProgress = activeScroll / totalScroll;
+          render(scrollProgress);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function() {
+          totalScroll = (n - 1) * scrollPerItem;
+          totalHeight = DWELL_PX + totalScroll + DWELL_PX + window.innerHeight;
+          section.style.height = totalHeight + 'px';
+          onScroll();
+        });
+
+        // Initial
+        onScroll();
+      }
+
+      // Init all wheels
+      initWheel({ id: 'probleme', ringId: 'problemeRing', detailId: 'problemeDetail', dotsId: 'problemeDots', progressId: 'problemeProgress', radius: 300 });
+      initWheel({ id: 'services', ringId: 'servicesRing', detailId: 'servicesDetail', dotsId: 'servicesDots', progressId: 'servicesProgress', radius: 380 });
+      initWheel({ id: 'tech',     ringId: 'techRing',     detailId: 'techDetail',     dotsId: 'techDots',     progressId: 'techProgress',     radius: 300 });
+      initWheel({ id: 'branchen', ringId: 'branchenRing', detailId: 'branchenDetail', dotsId: 'branchenDots', progressId: 'branchenProgress', radius: 280 });
+    })();
+  </script>
 
 </body>
 </html>
