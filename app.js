@@ -191,8 +191,8 @@
           var it = items[currentIndex];
           var h3 = detail.querySelector('h3');
           var p  = detail.querySelector('p');
-          if (h3) h3.innerHTML = it.getAttribute('data-title') || '';
-          if (p)  p.innerHTML  = it.getAttribute('data-desc')  || '';
+          if (h3) h3.textContent = it.getAttribute('data-title') || '';
+          if (p)  p.textContent  = it.getAttribute('data-desc')  || '';
           detail.classList.add('visible');
         }
 
