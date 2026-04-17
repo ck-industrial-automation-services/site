@@ -1,0 +1,19 @@
+{
+  "name": "CK Industrial Automation Services",
+  "short_name": "CK IAS",
+  "description": "Freiberuflicher Automatisierungsingenieur aus Paderborn – SPS, IIoT & Cloud-Anbindung.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#0f1117",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "img/logo_simple_short.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
