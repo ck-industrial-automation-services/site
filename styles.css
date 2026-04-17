@@ -638,12 +638,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
+      padding: 24px;
       background: var(--color-surface);
     }
     .tech-section .wheel-item-img img {
       object-fit: contain;
-      max-height: 80px;
+      max-width: 100%;
+      max-height: 100%;
     }
     /* Services section: sharp images, scaled to fill */
     #leistungen .wheel-item-img {
@@ -786,6 +787,7 @@
       .wheel-viewport { height: 400px; perspective: 900px; max-width: 380px; }
       .wheel-item { width: 360px; margin-left: -180px; height: 190px; margin-top: -95px; }
       .tech-section .wheel-item { width: 240px; margin-left: -120px; height: 160px; margin-top: -80px; }
+      .tech-section .wheel-item-img { padding: 20px; }
 
       .contact-grid { grid-template-columns: 1fr; }
       .contact-cta { padding: 28px; }
@@ -798,6 +800,7 @@
       .wheel-viewport { height: 350px; perspective: 900px; max-width: 300px; }
       .wheel-item { width: 280px; margin-left: -140px; height: 155px; margin-top: -78px; }
       .tech-section .wheel-item { width: 200px; margin-left: -100px; height: 136px; margin-top: -68px; }
+      .tech-section .wheel-item-img { padding: 16px; }
 
       .hero-buttons { flex-direction: column; }
       .hero-buttons .btn { width: 100%; justify-content: center; }
