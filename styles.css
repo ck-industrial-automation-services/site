@@ -790,57 +790,6 @@
       .wheel-viewport { perspective: 1000px; }
       .wheel-item { width: 180px; margin-left: -90px; height: 122px; margin-top: -61px; }
     }
-  </style>
-</head>
-<body>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="img/logo_animated_v4_glow.svg" alt="CK IAS">
-      </a>
-      <span class="nav-brand-text">
-        <span class="nav-brand-long">CK Industrial Automation Services</span>
-        <span class="nav-brand-short">CK IAS</span>
-      </span>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#ueber">Über mich</a></li>
-        <li><a href="#probleme">Ihre Situation</a></li>
-        <li><a href="#leistungen">Leistungen</a></li>
-        <li><a href="#branchen">Branchen</a></li>
-        <li><a href="#referenzen">Referenzen</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open'); this.classList.toggle('open')" aria-label="Menü">
-        <svg class="icon-hamburger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg class="icon-close" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-logo">
-          <img src="img/logo_animated_v4_glow_long.svg" alt="CK Industrial Automation Services" width="400" height="160" fetchpriority="high">
-        </div>
-        <p class="hero-acronym">CK IAS — <strong>C</strong>hristoph <strong>K</strong>orn · <strong>I</strong>ndustrial <strong>A</strong>utomation <strong>S</strong>ervices</p>
-        <h1>Kein eigenes Entwicklungsteam? <span>Ich bin Ihres.</span></h1>
-        <p class="hero-subtitle">
-          Sie bauen Maschinen – aber wer programmiert die Steuerung und bringt Ihre Daten in die Cloud?
-          Als freiberuflicher Ingenieur unterstütze ich kleine Maschinenbauer flexibel und unkompliziert.
-        </p>
-        <div class="hero-tags">
-          <span class="hero-tag">SPS-Programmierung</span>
-          <span class="hero-tag">Maschinendaten in die Cloud</span>
-          <span class="hero-tag">AWS / Azure Anbindung</span>
-          <span class="hero-tag">OPC UA & MQTT</span>
 
 /* ===== ACCESSIBILITY ===== */
 :focus { outline: none; }
