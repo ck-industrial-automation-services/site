@@ -65,7 +65,7 @@
     .nav-inner > .nav-links { grid-column: 2; justify-self: center; }
     .nav-inner > .nav-toggle { grid-column: 3; justify-self: end; }
 
-    .nav-logo img { height: 56px; }
+    .nav-logo img { height: 72px; }
     .nav-brand-text {
       position: absolute;
       left: 50%;
@@ -645,18 +645,20 @@
       object-fit: contain;
       max-height: 80px;
     }
-    /* Services section: show full image without cropping */
+    /* Services section: sharp images, scaled to fill */
     #leistungen .wheel-item-img {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 0;
       background: var(--color-surface);
     }
     #leistungen .wheel-item-img img {
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center;
       width: 100%;
       height: 100%;
+      image-rendering: auto;
     }
     .wheel-item-inner {
       width: 100%;
