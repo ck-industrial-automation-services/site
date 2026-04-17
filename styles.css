@@ -18,7 +18,10 @@
       --radius: 12px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
     body {
       font-family: var(--font);
@@ -27,6 +30,8 @@
       line-height: 1.7;
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      overscroll-behavior-x: none;
     }
 
     a { color: var(--color-primary-light); text-decoration: none; transition: color 0.2s; }
