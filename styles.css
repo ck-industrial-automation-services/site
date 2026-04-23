@@ -498,7 +498,7 @@
     /* Kontaktdaten als Bild (Crawler-/Spam-Schutz) */
     .contact-img { vertical-align: middle; display: inline-block; }
     .contact-img.email { height: 20px; width: auto; }
-    .contact-img.address { height: 34px; width: auto; }
+    .contact-img.address { height: 42px; width: auto; }
     button.mail-link {
       background: none; border: 0; padding: 0; margin: 0;
       cursor: pointer; font: inherit; color: inherit;
