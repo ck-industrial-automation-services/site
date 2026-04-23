@@ -228,7 +228,7 @@
    * [data-subject].
    */
   (function initMailProtect() {
-    var u = ['christoph', '.', 'korn'].join('');
+    var u = ['ck', '-industrial-', 'automation', '-services'].join('');
     var d = ['paderborn', '.', 'com'].join('');
     var mail = u + '\u0040' + d;
     document.querySelectorAll('[data-mail]').forEach(function (el) {
