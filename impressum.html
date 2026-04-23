@@ -38,6 +38,15 @@
     }
     nav a { color: var(--color-text-muted); font-weight: 500; }
     nav img { height: 40px; filter: invert(1); }
+    /* Kontaktdaten als Bild, um Crawler/Spam-Bots zu erschweren */
+    .contact-img { vertical-align: middle; display: inline-block; }
+    .contact-img.address { height: 34px; width: auto; }
+    .contact-img.email { height: 20px; width: auto; cursor: pointer; }
+    button.mail-link {
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
+      color: var(--color-primary-light); font: inherit;
+    }
+    button.mail-link:hover { color: #22d3ee; }
   </style>
 </head>
 <body>
@@ -50,12 +59,11 @@
     <p>
       Christoph Korn<br>
       Freiberuflicher Ingenieur für Automatisierungstechnik<br>
-      Riemekestraße 159<br>
-      33102 Paderborn
+      <img src="img/contact/address.png" alt="Postanschrift" class="contact-img address">
     </p>
 
     <h2>Kontakt</h2>
-    <p>E-Mail: <a href="mailto:christoph.korn@paderborn.com">christoph.korn@paderborn.com</a></p>
+    <p>E-Mail: <button type="button" class="mail-link" data-mail="1" aria-label="E-Mail-Adresse anzeigen und öffnen"><img src="img/contact/email_link.png" alt="E-Mail-Adresse (Bild, zum Schutz vor Bots)" class="contact-img email"></button></p>
 
     <h2>Berufsbezeichnung</h2>
     <p>
@@ -72,8 +80,7 @@
     <h2>Verantwortlich für den Inhalt nach §55 Abs. 2 RStV</h2>
     <p>
       Christoph Korn<br>
-      Riemekestraße 159<br>
-      33102 Paderborn
+      <img src="img/contact/address.png" alt="Postanschrift" class="contact-img address">
     </p>
 
     <h2>Haftungsausschluss</h2>
@@ -101,5 +108,19 @@
       Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
     </p>
   </div>
+  <script>
+    // Baut die E-Mail-Adresse erst im Browser zusammen, damit sie nicht
+    // im HTML-Quelltext steht (Schutz vor Crawlern/Spam-Bots).
+    (function () {
+      var u = ['christoph', '.', 'korn'].join('');
+      var d = ['paderborn', '.', 'com'].join('');
+      var mail = u + '\u0040' + d;
+      document.querySelectorAll('[data-mail]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          window.location.href = 'mailto:' + mail;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

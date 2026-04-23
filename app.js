@@ -220,4 +220,24 @@
       return { update: update, resize: layout };
     }
   })();
+
+  /* ===== Mail-Schutz =====
+   * Die E-Mail-Adresse wird erst im Browser zusammengesetzt, damit sie
+   * nicht im HTML-Quelltext steht (Schutz vor Crawlern/Spam-Bots).
+   * Elemente mit [data-mail] öffnen beim Klick `mailto:` mit optionalem
+   * [data-subject].
+   */
+  (function initMailProtect() {
+    var u = ['christoph', '.', 'korn'].join('');
+    var d = ['paderborn', '.', 'com'].join('');
+    var mail = u + '\u0040' + d;
+    document.querySelectorAll('[data-mail]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var url = 'mailto:' + mail;
+        var subj = el.getAttribute('data-subject');
+        if (subj) url += '?subject=' + encodeURIComponent(subj);
+        window.location.href = url;
+      });
+    });
+  })();
 })();

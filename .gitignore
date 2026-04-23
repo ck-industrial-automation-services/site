@@ -1,2 +1,7 @@
 # Windows Shortcuts
 *.lnk
+
+# Internes Werkzeug zur Bild-Erzeugung (enthält Klartext-E-Mail/Adresse).
+# Darf NICHT auf GitHub Pages veröffentlicht werden, weil Crawler sonst
+# die in Bildern versteckten Kontaktdaten wieder im Quelltext finden.
+generate_contact_images.py
