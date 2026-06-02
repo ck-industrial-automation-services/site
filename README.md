@@ -34,7 +34,7 @@ Professionelle Website für das Ingenieurbüro Christoph Korn.
    - Sichtbarkeit: **Public** (für kostenloses GitHub Pages)
 
 2. **Dateien hochladen**
-   Alle Dateien aus `08_Marketing/Webpraesenz/` in das Pages-Repo (Root) kopieren.
+   Alle Dateien aus `08_Marketing/Webpräsenz reloaded/` in das Pages-Repo (Root) kopieren.
 
 3. **GitHub Pages aktivieren**
    - Repository → Settings → Pages
