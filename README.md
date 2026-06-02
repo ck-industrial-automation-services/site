@@ -1,5 +1,10 @@
 # CK Industrial Automation Services – Website
 
+## Archivstatus
+
+Dieses Verzeichnis ist archiviert (Legacy-Version).
+Die aktive Website liegt in `08_Marketing/Webpräsenz reloaded/` und wird von GitHub Actions deployt.
+
 Professionelle Website für das Ingenieurbüro Christoph Korn.
 
 ## Struktur
