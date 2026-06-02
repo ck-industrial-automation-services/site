@@ -1,16 +1,15 @@
 # CK Industrial Automation Services – Website
 
-## Archivstatus
+## Aktivstatus
 
-Dieses Verzeichnis ist archiviert (Legacy-Version).
-Die aktive Website liegt in `08_Marketing/Webpräsenz reloaded/` und wird von GitHub Actions deployt.
+Dieses Verzeichnis ist die aktive Website-Quelle für das Deployment nach GitHub Pages.
 
 Professionelle Website für das Ingenieurbüro Christoph Korn.
 
 ## Struktur
 
 ```
-08_Marketing/Webpraesenz/
+08_Marketing/Webpräsenz reloaded/
 ├── index.html              ← Hauptseite (SEO, JSON-LD, OG, Twitter Card)
 ├── impressum.html          ← Impressum (Pflichtseite)
 ├── datenschutz.html        ← Datenschutzerklärung (Pflichtseite)
@@ -82,3 +81,43 @@ python -m http.server 8000
 npx serve .
 ```
 
+
+---
+
+## Termin-Kalender konfigurieren
+
+Der Buchungskalender läuft vollständig im Browser (keine Server-/Backend-Logik nötig – passt also zu GitHub Pages). Alle Einstellungen stehen oben in **`app.js`** im Block `BOOKING`:
+
+```js
+var BOOKING = {
+  slotMinutes: 15,        // Dauer pro Termin in Minuten (max. 15)
+  leadHours: 12,          // Mindest-Vorlauf in Stunden
+  horizonDays: 28,        // Wie weit in die Zukunft buchbar (Tage)
+
+  hours: {                // Verfügbare Zeitfenster je Wochentag
+    0: [],                                  // So – keine Termine
+    1: [['17:00', '20:00']],                // Mo
+    2: [['17:00', '20:00']],                // Di
+    3: [['17:00', '20:00']],                // Mi
+    4: [['17:00', '20:00']],                // Do
+    5: [['16:00', '19:00']],                // Fr
+    6: [['10:00', '13:00']]                 // Sa
+  },
+
+  blackoutDates: ['2026-12-24', '2026-12-25'],   // ganze Tage sperren (Urlaub/Feiertage), "YYYY-MM-DD"
+  bookedSlots:   ['2026-06-10T17:30'],           // einzelne, bereits vergebene Slots ausblenden, "YYYY-MM-DDTHH:MM"
+  timezoneLabel: 'Europe/Berlin'                 // nur Anzeigetext
+};
+```
+
+**So passt du es an:**
+
+- **Andere Zeiten?** Werte in `hours` ändern. Mehrere Fenster pro Tag sind möglich, z. B. `4: [['09:00','11:00'], ['17:00','20:00']]`.
+- **Tag komplett frei lassen?** Leeres Array, z. B. `6: []` für keinen Samstag.
+- **Urlaub / Feiertage?** Datum in `blackoutDates` eintragen.
+- **Slot schon vergeben?** In `bookedSlots` eintragen – dann ist genau diese Uhrzeit nicht mehr wählbar.
+- **Terminlänge?** `slotMinutes` (z. B. `10`). Die 15 Minuten sind bereits das gewünschte Maximum.
+
+Nach dem Bestätigen bekommt der Kunde drei Buttons: **Anfrage per E-Mail senden** (mailto an dich, mit allen Daten), **Zu Google Kalender hinzufügen** und **.ics-Datei herunterladen**.
+
+> **Hinweis zur statischen Variante:** Da es keinen Server gibt, werden bereits gebuchte Termine **nicht automatisch** ausgeblendet – du trägst sie kurz in `bookedSlots` nach. Wenn du echte Zwei-Wege-Synchronisierung (Slot fällt nach Buchung automatisch weg, Bestätigung ohne manuelles Zutun) möchtest, lässt sich an dieser Stelle problemlos ein Dienst wie **Cal.com** oder **Calendly** einbetten.

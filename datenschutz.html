@@ -3,56 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080a0f">
+  <meta name="robots" content="index, follow">
   <title>Datenschutzerklärung – CK Industrial Automation Services</title>
-  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="img/logo_simple_short.png">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --color-bg: #0f1117; --color-bg-alt: #161921; --color-surface: #1c1f2a;
-      --color-primary-light: #60a5fa; --color-text: #e2e8f0;
-      --color-text-muted: #94a3b8; --color-text-heading: #f8fafc;
-      --color-border: #2d3348;
+    :root{
+      --bg:#080a0f;--surface:#11151e;--border:#222a3a;--border-2:#2c3650;
+      --text:#c3ccda;--dim:#828c9d;--bright:#f3f7fc;--cyan:#22d3ee;--blue:#3b82f6;
+      --fd:'Sora',system-ui,sans-serif;--fb:'IBM Plex Sans',system-ui,sans-serif;--fm:'IBM Plex Mono',monospace;
     }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--color-bg); color: var(--color-text);
-      line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--color-primary-light); text-decoration: none; }
-    a:hover { color: #22d3ee; }
-    .container { max-width: 720px; margin: 0 auto; padding: 120px 24px 80px; }
-    h1 { font-size: 2rem; color: var(--color-text-heading); margin-bottom: 40px; }
-    h2 { font-size: 1.2rem; color: var(--color-text-heading); margin: 32px 0 12px; }
-    h3 { font-size: 1.05rem; color: var(--color-text-heading); margin: 20px 0 8px; }
-    p, li { margin-bottom: 8px; }
-    ul { margin-left: 20px; margin-bottom: 12px; }
-    .back { display: inline-block; margin-bottom: 32px; font-size: 0.9rem; }
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(15, 17, 23, 0.85); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-border); height: 72px;
-      display: flex; align-items: center; padding: 0 24px;
-    }
-    nav a { color: var(--color-text-muted); font-weight: 500; }
-    nav img { height: 40px; filter: invert(1); }
-    /* Kontaktdaten als Bild, um Crawler/Spam-Bots zu erschweren */
-    .contact-img { vertical-align: middle; display: inline-block; }
-    .contact-img.address { height: 42px; width: auto; }
-    .contact-img.email { height: 20px; width: auto; cursor: pointer; }
-    button.mail-link {
-      background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
-      color: var(--color-primary-light); font: inherit;
-    }
-    button.mail-link:hover { color: #22d3ee; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    body::before{content:"";position:fixed;inset:0;background:radial-gradient(55% 45% at 85% 0%,rgba(34,211,238,.10),transparent 60%),radial-gradient(50% 40% at 5% 10%,rgba(59,130,246,.08),transparent 60%);pointer-events:none;z-index:0}
+    nav{position:sticky;top:0;background:rgba(8,10,15,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:10}
+    nav .in{max-width:820px;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:11px}
+    nav img{height:38px;width:auto;filter:drop-shadow(0 0 9px rgba(34,211,238,.35))}
+    nav b{font-family:var(--fd);color:var(--bright);font-weight:700;font-size:.98rem}
+    nav b span{color:var(--cyan);font-weight:800}
+    .container{max-width:820px;margin-inline:auto;padding:48px 24px 90px;position:relative;z-index:1}
+    .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--fd);font-weight:600;font-size:.9rem;color:var(--cyan);text-decoration:none;margin-bottom:30px}
+    .back:hover{color:#67e8f9}
+    h1{font-family:var(--fd);font-weight:800;letter-spacing:-.02em;color:var(--bright);font-size:clamp(2rem,5vw,2.7rem);margin-bottom:8px}
+    h2{font-family:var(--fd);font-weight:700;color:var(--bright);font-size:1.25rem;margin:34px 0 10px;padding-top:22px;border-top:1px solid var(--border)}
+    h2:first-of-type{border-top:0;padding-top:0}
+    h3{font-family:var(--fd);font-weight:600;color:var(--bright);font-size:1.02rem;margin:18px 0 6px}
+    p{color:var(--text);margin-bottom:12px}
+    ul{margin:0 0 12px;padding-left:22px}
+    li{margin-bottom:5px}
+    li strong{color:var(--bright)}
+    a{color:var(--cyan)}
+    .mail-link{background:none;border:0;padding:0;cursor:pointer;vertical-align:middle}
+    .contact-img{height:16px;width:auto;filter:brightness(0) invert(.85);transition:filter .2s}
+    .contact-img.address{height:42px;margin-top:6px}
+    .mail-link:hover .contact-img{filter:brightness(0) saturate(100%) invert(72%) sepia(64%) saturate(2000%) hue-rotate(140deg)}
   </style>
 </head>
 <body>
-  <nav><a href="index.html"><img src="img/logo_simple_short.png" alt="CK IAS"></a></nav>
+  <nav><div class="in">
+    <a href="index.html" aria-label="Zur Startseite"><img src="img/logo_animated_v4_glow.svg" alt="CK IAS"></a>
+    <b>CK <span>Industrial</span> Automation</b>
+  </div></nav>
+
   <div class="container">
     <a href="index.html" class="back">← Zurück zur Startseite</a>
     <h1>Datenschutzerklärung</h1>
@@ -145,17 +141,14 @@
     <h2>8. Aktualität</h2>
     <p>Stand: März 2026</p>
   </div>
+
   <script>
-    // Baut die E-Mail-Adresse erst im Browser zusammen, damit sie nicht
-    // im HTML-Quelltext steht (Schutz vor Crawlern/Spam-Bots).
     (function () {
       var u = ['ck', '-industrial-', 'automation', '-services'].join('');
       var d = ['paderborn', '.', 'com'].join('');
       var mail = u + '\u0040' + d;
       document.querySelectorAll('[data-mail]').forEach(function (el) {
-        el.addEventListener('click', function () {
-          window.location.href = 'mailto:' + mail;
-        });
+        el.addEventListener('click', function () { window.location.href = 'mailto:' + mail; });
       });
     })();
   </script>
