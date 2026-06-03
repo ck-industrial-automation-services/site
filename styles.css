@@ -447,7 +447,7 @@ nav.open .nav-toggle .i-close { display: block; }
 .contact-item span { color: var(--text-dim); font-size: .95rem; }
 .mail-link { background: none; border: 0; padding: 0; cursor: pointer; display: inline-block; }
 .contact-img-email { height: 16px; width: auto; filter: brightness(0) invert(.85); transition: filter .2s; }
-.contact-img-address { height: 17px; width: auto; max-width: 100%; filter: brightness(0) invert(.85); }
+.contact-img-address { height: 42px; width: auto; max-width: 100%; filter: brightness(0) invert(.85); }
 .mail-link:hover .contact-img-email { filter: brightness(0) saturate(100%) invert(72%) sepia(64%) saturate(2000%) hue-rotate(140deg); }
 .legal-shortcuts {
   display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
