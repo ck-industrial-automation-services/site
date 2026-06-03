@@ -98,14 +98,14 @@ a:hover { color: var(--cyan-soft); }
 .btn-full { width: 100%; }
 
 /* ===================== NAV ===================== */
-nav {
+#nav {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   background: rgba(8,10,15,.55);
   backdrop-filter: blur(18px) saturate(140%);
   border-bottom: 1px solid transparent;
   transition: background .3s, border-color .3s;
 }
-nav.scrolled { background: rgba(8,10,15,.85); border-bottom-color: var(--border); }
+#nav.scrolled { background: rgba(8,10,15,.85); border-bottom-color: var(--border); }
 .nav-inner {
   max-width: var(--maxw); margin-inline: auto; padding: 0 24px;
   height: 70px; display: flex; align-items: center; gap: 22px;
@@ -130,8 +130,8 @@ nav.scrolled { background: rgba(8,10,15,.85); border-bottom-color: var(--border)
 .nav-toggle { display: none; background: none; border: 0; color: var(--text-bright); cursor: pointer; padding: 6px; }
 .nav-toggle svg { width: 26px; height: 26px; }
 .nav-toggle .i-close { display: none; }
-nav.open .nav-toggle .i-open { display: none; }
-nav.open .nav-toggle .i-close { display: block; }
+#nav.open .nav-toggle .i-open { display: none; }
+#nav.open .nav-toggle .i-close { display: block; }
 
 /* ===================== HERO ===================== */
 .hero { position: relative; padding: 138px 0 90px; overflow: hidden; }
@@ -493,7 +493,7 @@ footer { border-top: 1px solid var(--border); background: var(--bg-1); padding: 
     border-bottom: 1px solid var(--border); padding: 8px 0;
     transform: translateY(-130%); transition: transform .35s cubic-bezier(.22,1,.36,1); margin: 0;
   }
-  nav.open .nav-links { transform: none; }
+  #nav.open .nav-links { transform: none; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; padding: 14px 24px; font-size: 1rem; color: var(--text); }
   .nav-links .nav-legal { display: block; }
