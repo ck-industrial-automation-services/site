@@ -4,7 +4,7 @@
 
 Dieses Verzeichnis ist die aktive Website-Quelle für das Deployment nach GitHub Pages.
 
-Professionelle Website für das Ingenieurbüro Christoph Korn.
+Professionelle Website für CK Industrial Automation Services (Christoph Korn).
 
 ## Struktur
 
@@ -18,6 +18,8 @@ Professionelle Website für das Ingenieurbüro Christoph Korn.
 ├── robots.txt              ← Crawler-Steuerung
 ├── sitemap.xml             ← Sitemap für Suchmaschinen
 ├── manifest.webmanifest    ← PWA-Manifest
+├── fonts/                  ← Lokal gehostete Schriftarten (DSGVO)
+│   └── fonts.css           ← @font-face-Definitionen (WOFF2-Dateien ergänzen!)
 └── img/
     ├── logo_simple_long.webp
     ├── logo_simple_short.webp
@@ -68,6 +70,26 @@ Falls du eine eigene Domain nutzen möchtest (z.B. `ck-ias.de`):
    - `index.html` (`<link rel="canonical">`, `og:url`, `og:image`, `twitter:image`, JSON-LD `url`/`@id`/`image`)
    - `robots.txt` (`Sitemap:`-Zeile)
    - `sitemap.xml` (alle `<loc>`-Einträge)
+
+### Schriftarten lokal einbinden (DSGVO – einmalig erledigen!)
+
+Die Seiten laden Schriftarten **nicht mehr von Google**, sondern aus `fonts/fonts.css`.
+Damit die Original-Schriften (statt des System-Fallbacks) angezeigt werden, müssen die
+WOFF2-Dateien einmalig heruntergeladen und in den Ordner `fonts/` gelegt werden:
+
+1. https://gwfh.mranftl.com (google-webfonts-helper) öffnen
+2. **Sora** auswählen → Charset `latin`, Styles `500, 600, 700, 800` → "Modern Browsers" → Download
+3. **IBM Plex Sans** → `latin`, Styles `regular, 500, 600` → Download
+4. **IBM Plex Mono** → `latin`, Style `500` → Download
+5. Die `.woff2`-Dateien in `fonts/` ablegen. Erwartete Dateinamen (ggf. umbenennen):
+   `sora-v12-latin-500.woff2`, `-600`, `-700`, `-800`,
+   `ibm-plex-sans-v19-latin-regular.woff2`, `-500`, `-600`,
+   `ibm-plex-mono-v19-latin-500.woff2`
+   (Abweichende Versionsnummern im Dateinamen? Dann die `url(...)`-Einträge in `fonts/fonts.css` anpassen.)
+6. Lokal prüfen (siehe unten) und deployen.
+
+> Bis die Dateien vorliegen, fällt die Seite automatisch auf Systemschriften zurück –
+> sie bleibt voll funktionsfähig, sieht nur typografisch etwas anders aus.
 
 ### Lokale Vorschau
 

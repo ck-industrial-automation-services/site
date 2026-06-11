@@ -1,0 +1,45 @@
+/* ============================================================
+   Lokale Schriftarten – DSGVO-konform (kein Google-Fonts-CDN)
+   ------------------------------------------------------------
+   Benötigte Dateien in diesem Ordner (siehe README.md, Abschnitt
+   "Schriftarten lokal einbinden"):
+     sora-v12-latin-500.woff2 / -600 / -700 / -800
+     ibm-plex-sans-v19-latin-regular.woff2 / -500 / -600
+     ibm-plex-mono-v19-latin-500.woff2
+   Solange die Dateien fehlen, greift automatisch der System-
+   Font-Fallback (system-ui) aus styles.css – die Seite bleibt
+   voll funktionsfähig.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Sora'; font-style: normal; font-weight: 500;
+  font-display: swap; src: url('sora-v12-latin-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Sora'; font-style: normal; font-weight: 600;
+  font-display: swap; src: url('sora-v12-latin-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Sora'; font-style: normal; font-weight: 700;
+  font-display: swap; src: url('sora-v12-latin-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Sora'; font-style: normal; font-weight: 800;
+  font-display: swap; src: url('sora-v12-latin-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400;
+  font-display: swap; src: url('ibm-plex-sans-v19-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 500;
+  font-display: swap; src: url('ibm-plex-sans-v19-latin-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 600;
+  font-display: swap; src: url('ibm-plex-sans-v19-latin-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500;
+  font-display: swap; src: url('ibm-plex-mono-v19-latin-500.woff2') format('woff2');
+}
