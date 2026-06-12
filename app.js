@@ -90,7 +90,7 @@
     /* ===================== HERO WORD ROTATOR ===================== */
     var rotEl = document.querySelector('.rotator-word');
     if (rotEl) {
-      var words = ['Siemens S7 & TIA Portal', 'SPS-Programmierung', 'Inbetriebnahme & Fehlersuche', 'IIoT & Maschinendaten', 'Python & Node-RED'];
+      var words = ['Siemens S7 & TIA Portal', 'SPS-Programmierung', 'Inbetriebnahme', 'Fehlersuche', 'IIoT & Maschinendaten', 'Python & Node-RED'];
       var ri = 0;
       setInterval(function () {
         ri = (ri + 1) % words.length;
@@ -99,7 +99,7 @@
         span.textContent = words[ri];
         rotEl.replaceWith(span);
         rotEl = span;
-      }, 2400);
+      }, 1500);
     }
 
 
