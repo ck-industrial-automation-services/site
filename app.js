@@ -8,7 +8,7 @@
 
   /* ---------- E-Mail (erst im Browser zusammengesetzt, Spam-Schutz) ---------- */
   var MAIL = (function () {
-    var u = ['ck', '-industrial-', 'automation', '-services'].join('');
+    var u = ['ck', '-ias'].join('');
     var d = ['paderborn', '.', 'com'].join('');
     return u + '\u0040' + d;
   })();
