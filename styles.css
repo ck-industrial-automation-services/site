@@ -128,6 +128,20 @@ a:hover { color: var(--cyan-soft); }
 .nav-links a:hover { color: var(--text-bright); }
 .nav-links a:hover::after { right: 0; }
 .nav-cta { margin-left: 4px; }
+
+/* ===================== THEME TOGGLE ===================== */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%; flex: none;
+  border: 1px solid var(--border-2); background: rgba(255,255,255,.04);
+  color: var(--text-bright); cursor: pointer;
+  transition: border-color .25s, background .25s, transform .18s;
+}
+.theme-toggle:hover { border-color: var(--cyan); color: var(--cyan-soft); transform: translateY(-2px); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .i-sun { display: none; }
+html[data-theme="light"] .theme-toggle .i-moon { display: none; }
+html[data-theme="light"] .theme-toggle .i-sun { display: block; }
 .nav-toggle { display: none; background: none; border: 0; color: var(--text-bright); cursor: pointer; padding: 6px; }
 .nav-toggle svg { width: 26px; height: 26px; }
 .nav-toggle .i-close { display: none; }

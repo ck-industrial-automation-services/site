@@ -20,6 +20,31 @@
 
   ready(function () {
 
+    /* ===================== THEME TOGGLE (dunkel = Standard) ===================== */
+    var themeBtn = document.querySelector('[data-theme-toggle]');
+    if (themeBtn) {
+      var root = document.documentElement;
+      var syncThemeBtn = function () {
+        var isLight = root.getAttribute('data-theme') === 'light';
+        themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+        themeBtn.setAttribute('aria-label', isLight ? 'Dunkles Design aktivieren' : 'Helles Design aktivieren');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', isLight ? '#f4f6fa' : '#080a0f');
+      };
+      syncThemeBtn();
+      themeBtn.addEventListener('click', function () {
+        var isLight = root.getAttribute('data-theme') === 'light';
+        if (isLight) {
+          root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', 'light');
+        }
+        try { localStorage.setItem('ck-theme', isLight ? 'dark' : 'light'); } catch (e) {}
+        syncThemeBtn();
+      });
+    }
+
+
     /* ===================== NAV ===================== */
     var nav = document.getElementById('nav');
     var toggle = nav && nav.querySelector('.nav-toggle');

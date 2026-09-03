@@ -13,8 +13,9 @@ Professionelle Website für CK Industrial Automation Services (Christoph Korn).
 ├── index.html              ← Hauptseite (SEO, JSON-LD, OG, Twitter Card)
 ├── impressum.html          ← Impressum (Pflichtseite)
 ├── datenschutz.html        ← Datenschutzerklärung (Pflichtseite)
-├── styles.css              ← Ausgelagerter CSS (cacheable)
-├── app.js                  ← Ausgelagerter JS (rAF-Scheduler, A11y)
+├── styles.css              ← Ausgelagerter CSS (cacheable), dunkles Theme (Standard)
+├── styles-light.css        ← Helles Theme (aktiv via <html data-theme="light">)
+├── app.js                  ← Ausgelagerter JS (rAF-Scheduler, A11y, Theme-Toggle)
 ├── robots.txt              ← Crawler-Steuerung
 ├── sitemap.xml             ← Sitemap für Suchmaschinen
 ├── manifest.webmanifest    ← PWA-Manifest

@@ -1,0 +1,88 @@
+/* ============================================================
+   CK Industrial Automation Services
+   Helles Theme – "Engineered daylight"
+   Wird aktiv, sobald <html data-theme="light"> gesetzt ist
+   (siehe Blocking-Init-Script in <head> + Toggle in app.js).
+   Lädt immer, wirkt aber nur mit dem data-theme-Attribut,
+   damit der Wechsel ohne Nachladen möglich ist.
+   ============================================================ */
+
+html[data-theme="light"] {
+  --bg:          #f4f6fa;
+  --bg-1:        #eaeef4;
+  --surface:     #ffffff;
+  --surface-2:   #f2f5f9;
+  --surface-3:   #e7ecf3;
+  --border:      #dde3ec;
+  --border-2:    #c9d3e2;
+
+  --text:        #3b4453;
+  --text-dim:    #6b7686;
+  --text-bright: #10151f;
+
+  --cyan:        #0891b2;
+  --cyan-soft:   #0e7490;
+  --blue:        #2563eb;
+  --blue-light:  #3b82f6;
+
+  --grad:        linear-gradient(100deg, #0e7490 0%, #0891b2 35%, #2563eb 100%);
+  --grad-soft:   linear-gradient(135deg, rgba(8,145,178,.10), rgba(37,99,235,.10));
+
+  --shadow: 0 24px 60px -24px rgba(30,41,59,.16);
+  --glow: 0 0 0 1px rgba(8,145,178,.25), 0 18px 40px -22px rgba(8,145,178,.30);
+}
+
+/* ambient background: dunkle Radialverläufe wirken auf Hellgrund zu kontrastarm/schmutzig */
+html[data-theme="light"] body::before {
+  background:
+    radial-gradient(60% 50% at 80% -5%, rgba(8,145,178,.08), transparent 60%),
+    radial-gradient(55% 45% at 10% 8%, rgba(37,99,235,.07), transparent 60%);
+}
+
+html[data-theme="light"] ::selection { background: rgba(8,145,178,.22); color: #0b1520; }
+
+/* Buttons: Primary-Text bleibt auf Verlauf gut lesbar (dunkel), Ghost braucht mehr Kontrast */
+html[data-theme="light"] .btn-primary { color: #f7fbfd; }
+html[data-theme="light"] .btn-primary:hover { color: #f7fbfd; }
+html[data-theme="light"] .btn-ghost { background: rgba(15,23,42,.03); }
+html[data-theme="light"] .btn-ghost:hover { background: rgba(8,145,178,.08); }
+
+/* Navigation */
+html[data-theme="light"] #nav { background: rgba(244,246,250,.7); }
+html[data-theme="light"] #nav.scrolled { background: rgba(244,246,250,.92); }
+html[data-theme="light"] .nav-logo { color: var(--text-bright); }
+html[data-theme="light"] .nav-logo img,
+html[data-theme="light"] .footer-logo img { filter: drop-shadow(0 0 8px rgba(8,145,178,.22)); }
+html[data-theme="light"] .theme-toggle { border-color: var(--border-2); background: rgba(15,23,42,.03); }
+html[data-theme="light"] .theme-toggle:hover { border-color: var(--cyan); background: rgba(8,145,178,.08); }
+
+@media (max-width: 720px) {
+  html[data-theme="light"] .nav-links { background: rgba(255,255,255,.98); }
+}
+
+/* Hero */
+html[data-theme="light"] .hero-grid-bg {
+  background-image:
+    linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px);
+}
+html[data-theme="light"] .float-chip {
+  background: rgba(255,255,255,.9); color: var(--cyan-soft);
+  box-shadow: 0 8px 24px -10px rgba(30,41,59,.25);
+}
+html[data-theme="light"] .float-chip.chip-featured { color: #f7fbfd; }
+html[data-theme="light"] .hero-trust .dot { background: #16a34a; box-shadow: 0 0 10px #16a34a; }
+
+/* Logo-Wall & Kontakt-Icons: invert-Filter war auf Dunkelgrund abgestimmt */
+html[data-theme="light"] .logo-cell img { filter: brightness(0) invert(.35); opacity: .55; }
+html[data-theme="light"] .logo-cell:hover img { filter: none; opacity: 1; }
+html[data-theme="light"] .contact-img-email,
+html[data-theme="light"] .contact-img-address { filter: brightness(0) invert(.2); }
+
+/* CTA-Band: Bild-Overlay auf Hellgrund umkehren */
+html[data-theme="light"] .cta-band::after {
+  background: linear-gradient(180deg, rgba(244,246,250,.9), rgba(244,246,250,.82)), radial-gradient(60% 80% at 50% 50%, rgba(8,145,178,.10), transparent 70%);
+}
+html[data-theme="light"] .cta-bg { opacity: .16; }
+
+/* Skip-Link: dunkler Text auf hellem Cyan bleibt gut lesbar, keine Änderung nötig */
