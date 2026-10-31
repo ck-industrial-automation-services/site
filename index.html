@@ -1,437 +1,256 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#080a0f">
-  <script>
-    /* Theme so früh wie möglich setzen (verhindert Aufblitzen). Dunkel ist Standard. */
-    (function () {
-      try {
-        var t = localStorage.getItem('ck-theme');
-        if (t === 'light') {
-          document.documentElement.setAttribute('data-theme', 'light');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christoph Korn | Senior Automation Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        zincDark: '#09090b', // Deep black bg-zinc-950
+                        neonPurple: '#a855f7',
+                        neonCyan: '#22d3ee',
+                    }
+                }
+            }
         }
-      } catch (e) {}
-    })();
-  </script>
-  <title>SPS-Programmierung Siemens TIA Portal &amp; IIoT – CK Industrial Automation Services</title>
-  <meta name="description" content="SPS-Programmierung mit Siemens SIMATIC S7 &amp; TIA Portal: Neuentwicklung, Erweiterung, Migration S5/S7-Classic, Inbetriebnahme &amp; Fehlersuche. Dazu Beckhoff, CODESYS, IIoT und Python-Skripte. Freiberuflich aus Paderborn – vor Ort &amp; remote.">
-  <meta name="keywords" content="SPS Programmierung, Siemens TIA Portal, SIMATIC S7, S7-1500, S7-1200, S7-300, S5 Migration, SPS Programmierer Freelancer, Inbetriebnahme, Automatisierungstechnik, Beckhoff TwinCAT, CODESYS, IIoT, OPC UA, MQTT, Node-RED, Python, Paderborn, OWL, NRW">
-  <meta name="robots" content="index, follow">
+    </script>
 
-  <link rel="canonical" href="https://ck-industrial-automation-services.github.io/site/">
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="SPS-Programmierung Siemens TIA Portal &amp; IIoT – CK Industrial Automation Services">
-  <meta property="og:description" content="Ihr externes Entwicklungsteam für Siemens SIMATIC S7 &amp; TIA Portal – plus Beckhoff, CODESYS, IIoT und Skripte. Freiberuflich aus Paderborn.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:url" content="https://ck-industrial-automation-services.github.io/site/">
-  <meta property="og:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp">
-  <meta property="og:image:alt" content="CK Industrial Automation Services">
-  <meta property="og:site_name" content="CK Industrial Automation Services">
+        /* Marquee Animation */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CK Industrial Automation Services">
-  <meta name="twitter:description" content="SPS-Programmierung (Siemens TIA Portal) · Inbetriebnahme · IIoT &amp; Skripte – Ihr externes Entwicklungsteam aus Paderborn.">
-  <meta name="twitter:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp">
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-  <!-- Icons -->
-  <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
-  <link rel="apple-touch-icon" href="img/logo_simple_short.webp">
-  <link rel="manifest" href="manifest.webmanifest">
+        /* Gradient Text for Headings */
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #a855f7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-  <!-- Fonts: Sora (display) + IBM Plex Sans (body) + IBM Plex Mono (labels) -->
-  <!-- Lokal eingebunden (DSGVO): keine Verbindung zu Google-Servern. WOFF2-Dateien siehe README → "Schriftarten lokal einbinden". -->
-  <link rel="stylesheet" href="fonts/fonts.css">
-
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-light.css">
-  <script src="app.js" defer></script>
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://ck-industrial-automation-services.github.io/site/#business",
-        "name": "CK Industrial Automation Services",
-        "description": "Freiberuflicher Ingenieur für Automatisierungstechnik – SPS-Programmierung mit Schwerpunkt Siemens SIMATIC S7 und TIA Portal, dazu Beckhoff TwinCAT, CODESYS, Inbetriebnahme, IIoT-Anwendungen und Skripte für Maschinenbauer und produzierende KMU.",
-        "url": "https://ck-industrial-automation-services.github.io/site/",
-        "image": "https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp",
-        "priceRange": "€€",
-        "founder": { "@id": "https://ck-industrial-automation-services.github.io/site/#person" },
-        "areaServed": [
-          { "@type": "AdministrativeArea", "name": "Ostwestfalen-Lippe" },
-          { "@type": "AdministrativeArea", "name": "Nordrhein-Westfalen" },
-          { "@type": "Country", "name": "Deutschland" }
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "postalCode": "33102",
-          "addressLocality": "Paderborn",
-          "addressRegion": "NRW",
-          "addressCountry": "DE"
-        },
-        "makesOffer": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SPS-Programmierung – Siemens SIMATIC S7 & TIA Portal (Neuentwicklung, Erweiterung, Migration)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inbetriebnahme, Fehlersuche & Antriebstechnik" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Skript- & webbasierte Lösungen (Python, Node-RED, Dashboards)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IIoT-Anwendungen (OPC UA, MQTT, Cloud)" } }
-        ]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://ck-industrial-automation-services.github.io/site/#person",
-        "name": "Christoph Korn",
-        "jobTitle": "Freiberuflicher Ingenieur für Automatisierungstechnik",
-        "image": "https://ck-industrial-automation-services.github.io/site/img/portrait3.webp",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Paderborn",
-          "addressRegion": "NRW",
-          "addressCountry": "DE"
-        },
-        "knowsAbout": [
-          "SPS-Programmierung", "Siemens TIA Portal", "SIMATIC S7-1500", "SIMATIC S7-1200", "SIMATIC S7-300/400",
-          "Migration S5/S7-Classic zu TIA Portal", "Strukturierter Text (SCL/ST)", "PROFINET",
-          "Beckhoff TwinCAT", "CODESYS", "EtherCAT", "Inbetriebnahme", "Antriebstechnik",
-          "Python", "Node-RED", "Web-Dashboards", "SQL",
-          "OPC UA", "MQTT", "AWS", "Azure", "Edge Computing", "IIoT"
-        ]
-      }
-    ]
-  }
-  </script>
+        /* Neon Glow Effect on Hover */
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.1);
+            border-color: rgba(168, 85, 247, 0.5);
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-white font-sans antialiased selection:bg-neonPurple selection:text-black">
 
-<a href="#angebot" class="skip-link">Zum Inhalt springen</a>
-
-<!-- ===================== NAVIGATION ===================== -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo" aria-label="Zum Seitenanfang">
-      <img src="img/logo_animated_v4_glow.svg" alt="" width="44" height="44" aria-hidden="true">
-      <span class="nav-brand"><b>CK</b> Industrial&nbsp;Automation</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#angebot">Angebot</a></li>
-      <li><a href="#ueber">Über&nbsp;mich</a></li>
-      <li><a href="#partner">Technik</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-    <a href="#kontakt" class="btn btn-primary btn-sm nav-cta">Kontakt aufnehmen</a>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Helles Design aktivieren">
-      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    </button>
-    <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-controls="navLinks" aria-expanded="false">
-      <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 18 18 6M6 6l12 12"/></svg>
-    </button>
-  </div>
-</nav>
-
-<span id="top"></span>
-
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="container hero-layout">
-    <div class="hero-copy">
-      <span class="kicker" data-reveal>Freiberuflicher Automatisierungsingenieur · Paderborn</span>
-      <h1 data-reveal>
-        Kein eigenes Entwicklungs&shy;team?
-        <span class="grad">Ich bin Ihres.</span>
-      </h1>
-      <p class="hero-rotate" data-reveal>
-        Ihr Partner für
-        <span class="rotator" aria-live="polite"><span class="rotator-word">Siemens S7 &amp; TIA Portal</span></span>
-      </p>
-      <p class="hero-sub" data-reveal>
-        Schwerpunkt <strong>SPS-Programmierung</strong> mit Siemens SIMATIC S7 und TIA Portal –
-        von der Erweiterung über die S5/S7-Classic-Migration bis zur Inbetriebnahme. Dazu Beckhoff,
-        CODESYS, IIoT und Skripte, wenn Ihre Anlage mehr braucht.
-      </p>
-      <div class="hero-actions" data-reveal>
-        <a href="#kontakt" class="btn btn-primary">Projekt anfragen</a>
-        <a href="#angebot" class="btn btn-ghost">Was ich anbiete&nbsp;↓</a>
-      </div>
-      <p class="hero-trust" data-reveal>
-        <span class="dot"></span> Erstgespräch kostenlos &amp; unverbindlich · Antwort i.&nbsp;d.&nbsp;R. innerhalb eines Werktags
-      </p>
-    </div>
-
-    <div class="hero-visual" data-reveal>
-      <div class="hero-visual-frame">
-        <img src="img/service_sps.webp" alt="Industrielle Steuerung (SPS) mit Programmier-Oberfläche"
-             width="520" height="520" fetchpriority="high" decoding="async">
-      </div>
-      <span class="float-chip chip-1 chip-featured">TIA&nbsp;Portal</span>
-      <span class="float-chip chip-2">S7-1500</span>
-      <span class="float-chip chip-3">TwinCAT</span>
-      <span class="float-chip chip-4">Python</span>
-      <span class="float-chip chip-5">OPC&nbsp;UA</span>
-    </div>
-  </div>
-
-  <a href="#angebot" class="scroll-cue" aria-label="Nach unten scrollen">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
-  </a>
-</header>
-
-<!-- ===================== STATS ===================== -->
-<section class="stats" aria-label="Zahlen">
-  <div class="container stats-grid">
-    <div class="stat" data-reveal>
-      <div class="stat-num"><span data-count="13">0</span>+</div>
-      <div class="stat-label">Jahre Praxis in der Industrie</div>
-    </div>
-    <div class="stat" data-reveal>
-      <div class="stat-num stat-num-sm">S7-<span data-count="1500">0</span></div>
-      <div class="stat-label">Siemens-Praxis von S5 bis SIMATIC S7-1500</div>
-    </div>
-    <div class="stat" data-reveal>
-      <div class="stat-num"><span data-count="7">0</span>+</div>
-      <div class="stat-label">Steuerungs­plattformen – Siemens, Beckhoff &amp; Co.</div>
-    </div>
-    <div class="stat" data-reveal>
-      <div class="stat-num"><span data-count="15">0</span>&nbsp;Min</div>
-      <div class="stat-label">kostenloses Erstgespräch</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== ANGEBOT (auf einen Blick) ===================== -->
-<section id="angebot" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="label">// Was ich anbiete</span>
-      <h2>Schwerpunkt SPS – plus alles, was dazugehört.</h2>
-      <p class="section-sub">Im Kern: Siemens-Steuerungstechnik. Die Details dazu sind direkt aufgeklappt – bei Skripten und IIoT genügt ein Klick.</p>
-    </div>
-
-    <div class="offer-grid">
-
-      <!-- 1 · SPS (Schwerpunkt, Details standardmäßig sichtbar) -->
-      <article class="offer-card offer-featured open" data-reveal>
-        <div class="offer-media">
-          <img src="img/service_sps.webp" alt="SPS-Programmierung mit Siemens TIA Portal" loading="lazy" decoding="async">
-          <span class="offer-index">01</span>
-          <span class="offer-badge">Schwerpunkt</span>
+    <!-- Minimal Floating Navigation -->
+    <nav class="fixed top-4 left-0 right-0 z-50 flex justify-center px-6">
+        <div class="glass-panel px-6 py-3 rounded-full text-sm font-medium tracking-widest text-zinc-400 uppercase hover:text-white transition-colors cursor-pointer">
+            Portfolio 2024
         </div>
-        <div class="offer-body">
-          <h3>SPS-Programmierung</h3>
-          <p class="offer-tagline">Siemens SIMATIC S7 &amp; TIA Portal – Neuentwicklung, Erweiterung, Migration und Inbetriebnahme.</p>
-          <button class="offer-toggle" type="button" aria-expanded="true" aria-controls="det-sps">
-            <span class="t-more">Details ansehen</span>
-            <span class="t-less">Weniger anzeigen</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="offer-details" id="det-sps">
-            <ul>
-              <li>Siemens SIMATIC S7-300/400/1200/1500 – TIA&nbsp;Portal bis V19</li>
-              <li>Migration S5 &amp; S7-Classic → TIA Portal, auch ohne Ersatzteil­support</li>
-              <li>Neuprogrammierung, Erweiterung &amp; Umbau bestehender Anlagen</li>
-              <li>Inbetriebnahme, Fehlersuche &amp; Antriebstechnik (SEW, Lenze)</li>
-              <li>Auch Beckhoff TwinCAT &amp; CODESYS – inkl. verständlicher HMI &amp; Doku</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 · Web & Skripte -->
-      <article class="offer-card" data-reveal>
-        <div class="offer-media">
-          <img src="img/service_scripting.webp" alt="Skript- und webbasierte Lösungen" loading="lazy" decoding="async">
-          <span class="offer-index">02</span>
-        </div>
-        <div class="offer-body">
-          <h3>Web&nbsp;&amp; Skripte</h3>
-          <p class="offer-tagline">Die ideale Ergänzung zur SPS: wiederkehrende Aufgaben automatisieren, Daten sichtbar machen.</p>
-          <button class="offer-toggle" type="button" aria-expanded="false" aria-controls="det-web">
-            <span class="t-more">Details ansehen</span>
-            <span class="t-less">Weniger anzeigen</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="offer-details" id="det-web" hidden>
-            <ul>
-              <li>Python-Skripte für Auswertungen, Reports &amp; Schnittstellen</li>
-              <li>Node-RED-Flows zur Anlagen­anbindung &amp; Verarbeitung</li>
-              <li>Web-Dashboards (z.&nbsp;B. Grafana) &amp; kleine Web-Apps</li>
-              <li>Datenbank-Anbindung (SQL) &amp; Monitoring vor Ort</li>
-              <li>Ideal ergänzend zu Ihren SPS-Projekten</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 · IIoT -->
-      <article class="offer-card" data-reveal>
-        <div class="offer-media">
-          <img src="img/service_iiot.webp" alt="IIoT-Anwendungen" loading="lazy" decoding="async">
-          <span class="offer-index">03</span>
-        </div>
-        <div class="offer-body">
-          <h3>IIoT-Anwendungen</h3>
-          <p class="offer-tagline">Daten aus Ihrer SPS erfassen, übertragen und nutzbar machen – vom Sensor bis ins Dashboard.</p>
-          <button class="offer-toggle" type="button" aria-expanded="false" aria-controls="det-iiot">
-            <span class="t-more">Details ansehen</span>
-            <span class="t-less">Weniger anzeigen</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="offer-details" id="det-iiot" hidden>
-            <ul>
-              <li>Datenerfassung per OPC&nbsp;UA &amp; MQTT</li>
-              <li>Edge-Gateways &amp; lokale Vorverarbeitung</li>
-              <li>Lokale &amp; Cloud-Dashboards (AWS, Azure)</li>
-              <li>Zustands­überwachung, Trends &amp; Alarmierung</li>
-              <li>Schrittweiser Einstieg – ohne Großprojekt</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <p class="offer-foot" data-reveal>
-      Nicht sicher, was Sie brauchen? <a href="#kontakt">Schreiben Sie mir – wir klären es in einem kostenlosen Erstgespräch&nbsp;→</a>
-    </p>
-  </div>
-</section>
-
-<!-- ===================== PARTNER / TECHNIK ===================== -->
-<section id="partner" class="section section-alt">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="label">// Technik</span>
-      <h2>Zuhause bei Siemens – sattelfest darüber hinaus.</h2>
-      <p class="section-sub">Mein tägliches Werkzeug: SIMATIC S7 und das TIA Portal. Und wenn Ihre Anlage anders tickt, sind Beckhoff, CODESYS, KUKA, ABB, SEW und Lenze ebenso vertrautes Terrain.</p>
-    </div>
-    <div class="logo-wall" data-reveal>
-      <div class="logo-cell logo-featured"><img src="img/logos/siemens.svg" alt="Siemens – Schwerpunkt" loading="lazy"><span class="logo-tag">Schwerpunkt</span></div>
-      <div class="logo-cell"><img src="img/logos/beckhoff.svg" alt="Beckhoff" loading="lazy"></div>
-      <div class="logo-cell"><img src="img/logos/codesys.svg" alt="CODESYS" loading="lazy"></div>
-      <div class="logo-cell"><img src="img/logos/abb.svg" alt="ABB" loading="lazy"></div>
-      <div class="logo-cell"><img src="img/logos/kuka.svg" alt="KUKA" loading="lazy"></div>
-      <div class="logo-cell"><img src="img/logos/sew.svg" alt="SEW-Eurodrive" loading="lazy"></div>
-      <div class="logo-cell"><img src="img/logos/lenze.svg" alt="Lenze" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== ÜBER MICH ===================== -->
-<section id="ueber" class="section">
-  <div class="container about-layout">
-    <div class="about-photo" data-reveal>
-      <div class="about-photo-frame">
-        <img src="img/portrait3.webp" alt="Christoph Korn – Automatisierungsingenieur"
-             width="420" height="480" loading="lazy" decoding="async">
-      </div>
-    </div>
-    <div class="about-copy" data-reveal>
-      <span class="label">// Über mich</span>
-      <h2>Ein Ingenieur, der Ihre Maschine versteht.</h2>
-      <p>
-        Ich bin <strong>Christoph Korn</strong>, Elektroingenieur mit Schwerpunkt Automatisierungs­technik
-        und über 13 Jahren Praxis aus echten Produktions­umgebungen. Mein tägliches Werkzeug:
-        <strong>Siemens SIMATIC S7 und das TIA Portal</strong> – ergänzt um Beckhoff TwinCAT und CODESYS.
-        Freiberuflich springe ich dort ein, wo kleinen Maschinenbauern und KMU das eigene Entwicklungs­team fehlt.
-      </p>
-      <p>
-        Mein Anspruch: keine Buzzwords, sondern Lösungen, die im Schaltschrank und auf dem Bildschirm
-        funktionieren – sauber dokumentiert und so, dass Ihr Team danach damit arbeiten kann.
-      </p>
-      <ul class="about-points">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg> Siemens-Schwerpunkt, herstellerübergreifend einsetzbar</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg> Vor Ort, remote oder hybrid</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg> Vom Tagesauftrag bis zum mehrwöchigen Projekt</li>
-      </ul>
-      <a href="#kontakt" class="btn btn-ghost">Jetzt Kontakt aufnehmen</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== CTA-BAND ===================== -->
-<section class="cta-band">
-  <img class="cta-bg" src="img/logo_photorealistic_long.webp" alt="" aria-hidden="true" loading="lazy">
-  <div class="container cta-inner" data-reveal>
-    <h2>Bereit, Ihr Projekt zu besprechen?</h2>
-    <p>Schildern Sie kurz Anlage, Steuerung und Anliegen – Antwort kommt in der Regel innerhalb eines Werktags.</p>
-    <a href="#kontakt" class="btn btn-primary btn-lg">Jetzt Kontakt aufnehmen</a>
-  </div>
-</section>
-
-<!-- ===================== KONTAKT ===================== -->
-<section id="kontakt" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="label">// Kontakt</span>
-      <h2>So erreichen Sie mich.</h2>
-      <p class="section-sub">Am schnellsten per E-Mail: Schildern Sie kurz Anlage, Steuerung und Anliegen – das Erstgespräch ist kostenlos und unverbindlich.</p>
-    </div>
-    <div class="contact-grid" data-reveal>
-      <div class="contact-item">
-        <div class="ci-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="m3 7 9 6 9-6"/></svg>
-        </div>
-        <strong>E-Mail</strong>
-        <button type="button" class="mail-link" data-mail="1" aria-label="E-Mail-Adresse anzeigen und öffnen">
-          <img src="img/contact/email_link.png" alt="E-Mail-Adresse (Bild, zum Schutz vor Bots)" class="contact-img-email">
-        </button>
-      </div>
-      <div class="contact-item">
-        <div class="ci-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-        </div>
-        <strong>Postanschrift</strong>
-        <img src="img/contact/address.png" alt="Postanschrift" class="contact-img-address" loading="lazy" decoding="async">
-      </div>
-      <div class="contact-item">
-        <div class="ci-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-        </div>
-        <strong>Einsatzgebiet</strong>
-        <span>OWL / NRW · deutschlandweit · remote</span>
-      </div>
-      <div class="contact-item">
-        <div class="ci-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
-        </div>
-        <strong>Verfügbarkeit</strong>
-        <span>Abends, Wochenende &amp; nach Absprache</span>
-      </div>
-    </div>
-    <p class="contact-cta" data-reveal>
-      <button type="button" class="btn btn-primary btn-lg" data-mail="1" data-subject="Projektanfrage – SPS / Automatisierung">E-Mail schreiben</button>
-    </p>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="container footer-inner">
-    <a href="#top" class="footer-logo" aria-label="Zum Seitenanfang">
-      <img src="img/logo_animated_v4_glow.svg" alt="" width="36" height="36" aria-hidden="true">
-      <span>CK Industrial Automation Services</span>
-    </a>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="#angebot">Angebot</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
     </nav>
-    <span class="footer-copy">© 2026 Christoph Korn</span>
-  </div>
-</footer>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+        
+        <!-- Background Ambient Glow (Purple & Cyan for Engineering feel) -->
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neonPurple/20 rounded-full blur-[100px] opacity-30 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px] opacity-30"></div>
+
+        <div class="z-10 text-center max-w-4xl px-6">
+            <p class="text-neonPurple uppercase tracking-[0.2em] mb-4 text-sm font-semibold">Senior Automation Engineer</p>
+            
+            <!-- Name -->
+            <h1 class="text-7xl md:text-9xl font-bold tracking-tighter mb-2 text-gradient">
+                Christoph Korn.
+            </h1>
+            
+            <p class="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-light">
+                B. Eng. Elektro- und Informationstechnik. 13 Jahre Erfahrung in Automatisierung, Industrie 4.0 und IIoT-Architektur. Ich bringe industrielle Robustheit in digitale Projekte.
+            </p>
+        </div>
+
+        <!-- Scrolling Marquee of Skills (Industrial & Engineering Focus) -->
+        <div class="w-full mt-8 border-t border-b border-zinc-800 bg-black/50 backdrop-blur-sm overflow-hidden py-4">
+            <div class="marquee-container text-center">
+                <div class="marquee-content text-xl md:text-3xl font-mono uppercase tracking-widest text-zinc-500">
+                    TIA Portal &nbsp;•&nbsp; Simatic Step 7 &nbsp;•&nbsp; PLC Programming (SCL) &nbsp;•&nbsp; SCADA Systems &nbsp;•&nbsp; MQTT / OPC UA / Modbus &nbsp;•&nbsp; AWS IoT Core &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Python &nbsp;•&nbsp; C++ &nbsp;•&nbsp;
+                    TIA Portal &nbsp;•&nbsp; Simatic Step 7 &nbsp;•&nbsp; PLC Programming (SCL) &nbsp;•&nbsp; SCADA Systems &nbsp;•&nbsp; MQTT / OPC UA / Modbus &nbsp;•&nbsp; AWS IoT Core &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Python &nbsp;•&nbsp; C++ 
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- WORK SECTION (Bento Grid) -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-12">
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Projekte & Case Studies</h2>
+            <span class="hidden md:block text-zinc-500">Technische Umsetzung</span>
+        </div>
+
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(250px,auto)]">
+            
+            <!-- Project 1: Large Feature (Spans 2 cols) - Focus on Hardware/PLC -->
+            <div class="md:col-span-2 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group cursor-pointer relative overflow-hidden border border-white/5">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950/90 z-10"></div>
+                
+                <!-- Project Image - Industrial/Tech Vibe -->
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee1c8?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" alt="Project 1">
+                
+                <!-- Overlay Content -->
+                <div class="relative z-10 h-full flex flex-col justify-between mt-auto">
+                    <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonPurple backdrop-blur-md">Smart Factory</span>
+                    <div>
+                        <h3 class="text-4xl font-bold mb-2 group-hover:translate-x-2 transition-transform">IIoT Gateway System</h3>
+                        <p class="text-zinc-400 max-w-xl leading-relaxed">
+                            Entwicklung eines sicheren IIoT-Gateways zur Überbrückung von isolierten Maschinensteuerungen auf Basis Siemens S7 und TIA Portal in die Cloud. Realisierung der Konvertierung proprietärer Protokolle (OPC UA, Modbus) zu HTTP-APIs für Dashboard-Anwendungen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Tall Feature (Spans 1 col, 2 rows) - Focus on Python/Automation -->
+            <div class="md:col-span-1 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group cursor-pointer relative overflow-hidden border border-white/5">
+                <img src="https://images.unsplash.com/photo-1639327529784-54a995d0d07c?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" alt="Project 2">
+                <div class="relative z-10 h-full flex flex-col justify-between mt-auto">
+                    <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonCyan backdrop-blur-md">Data Processing</span>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform">Predictive Maintenance (Python)</h3>
+                        <p class="text-zinc-400 max-w-sm leading-relaxed">
+                            Implementierung von Algorithmen zur vorausschauenden Wartung in der Fertigungslinie. Datenanalyse mittels Python und Cloud Services zur Minimierung von Stillstandzeiten.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Short Card -->
+            <div class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex items-center justify-between glow-hover group cursor-pointer border border-white/5">
+                <div>
+                    <h4 class="text-xl font-bold mb-1">SCADA Migration</h4>
+                    <p class="text-zinc-500 text-sm">Visualisierung & Reporting</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </div>
+
+            <!-- Project 4: Short Card -->
+            <div class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex items-center justify-between glow-hover group cursor-pointer border border-white/5">
+                <div>
+                    <h4 class="text-xl font-bold mb-1">RFID Tracking</h4>
+                    <p class="text-zinc-500 text-sm">Logistik Automation</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Two Column Layout) -->
+    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-zinc-800/50">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
+            
+            <!-- Left: Text -->
+            <div class="md:col-span-6 order-2 md:order-1">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-gradient">Über Mich</h2>
+                
+                <p class="text-xl text-zinc-400 leading-relaxed mb-6 font-light">
+                    Seit meinem Studium habe ich über 13 Jahre in der Automatisierungstechnik gearbeitet. Meistens war es Großprojekte: komplexe Anlagenausstattungen und kritische Systemintegrationen in der Industrie.
+                </p>
+                
+                <p class="text-xl text-zinc-400 leading-relaxed font-light">
+                    Jetzt suche ich nach einer neuen Balance. Ich möchte meine tiefe technische Expertise in kleinen, spannenden Projekten einbringen – nicht als Hauptberuf, sondern aus Leidenschaft als Hobby. Ich baue Dinge auf, die ich selbst verstehen und pflegen möchte.
+                </p>
+
+                <!-- Social Links with Hover Animation -->
+                <div class="flex gap-8 mt-12">
+                    <a href="#" class="hover-underline-animation flex flex-col items-center gap-2 group text-zinc-500 hover:text-white transition-colors">
+                        <span class="text-sm uppercase tracking-wider">GitHub</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                    </a>
+                    <a href="#" class="hover-underline-animation flex flex-col items-center gap-2 group text-zinc-500 hover:text-white transition-colors">
+                        <span class="text-sm uppercase tracking-wider">LinkedIn</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Headshot with Rounded Rect Mask -->
+            <div class="md:col-span-6 order-1 md:order-2 flex justify-center">
+                <div class="relative w-full aspect-square max-w-md rounded-[4rem] overflow-hidden glass-panel border-white/10 group cursor-pointer">
+                    <!-- Placeholder Image for Engineer Portrait -->
+                    <img src="https://images.unsplash.com/photo-1560250097-9b5da38e25b3?q=80&w=2664&auto=format&fit=crop" 
+                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 grayscale-[30%] group-hover:grayscale-0 hover:scale-105 transition-transform duration-700" 
+                         alt="Christoph Korn Headshot">
+                     <!-- Decorative Element -->
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-neonPurple/30 rounded-[3rem] pointer-events-none"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            
+            <div class="text-zinc-500 text-sm font-medium tracking-widest uppercase">
+                © 2024 Christoph Korn. Automation Engineer & Maker.
+            </div>
+
+            <!-- Minimal Social Links -->
+            <div class="flex gap-12 border-t border-white/10 pt-8 w-full md:w-auto justify-between md:justify-start items-center">
+                
+                <a href="#" class="relative group flex flex-col items-center gap-2 p-4 hover:text-white transition-colors">
+                    <span class="text-sm text-zinc-600 group-hover:text-neonPurple transition-colors">GitHub</span>
+                     <!-- Simple SVG Icon -->
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-zinc-700 group-hover:text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L21 12m-9-10a9 9 0 109 18 9 9 0 00-9-18zm0 0v10m0 0V14m0 6h-6" />
+                     </svg>
+                </a>
+
+                <a href="#" class="relative group flex flex-col items-center gap-2 p-4 hover:text-white transition-colors">
+                    <span class="text-sm text-zinc-600 group-hover:text-neonPurple transition-colors">Twitter</span>
+                     <!-- Simple SVG Icon -->
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-zinc-700 group-hover:text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728l-2.123-2.123m0 0L6.182 13.213M10.94 5.5c.549-.546 1.6-1.1.828-1.798l-2.123-2.123" />
+                    </svg>
+                </a>
+
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

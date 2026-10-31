@@ -6,16 +6,22 @@ Dieses Verzeichnis ist die aktive Website-Quelle für das Deployment nach GitHub
 
 Professionelle Website für CK Industrial Automation Services (Christoph Korn).
 
+## Pflegeprotokoll
+
+| Datum | Änderung |
+|-------|----------|
+| 31.10.2026 | `index.html` durch die neue Portfolio-Seite ersetzt (eine Datei, Tailwind per CDN, Schrift „Inter“ von Google Fonts). Die bisherige Website ist vollständig gesichert in `08_Marketing/20261031_Backup_Webpraesenz_reloaded/` (siehe `BACKUP_INFO.md` dort). Impressum, Datenschutz und die übrigen Dateien bleiben unverändert. |
+
 ## Struktur
 
 ```
 08_Marketing/Webpräsenz reloaded/
-├── index.html              ← Hauptseite (SEO, JSON-LD, OG, Twitter Card)
+├── index.html              ← Hauptseite (Portfolio, seit 31.10.2026; eigenständig, Tailwind-CDN)
 ├── impressum.html          ← Impressum (Pflichtseite)
 ├── datenschutz.html        ← Datenschutzerklärung (Pflichtseite)
-├── styles.css              ← Ausgelagerter CSS (cacheable), dunkles Theme (Standard)
-├── styles-light.css        ← Helles Theme (aktiv via <html data-theme="light">)
-├── app.js                  ← Ausgelagerter JS (rAF-Scheduler, A11y, Theme-Toggle)
+├── styles.css              ← nur von der alten Startseite genutzt (aktuell ungenutzt)
+├── styles-light.css        ← nur von der alten Startseite genutzt (aktuell ungenutzt)
+├── app.js                  ← nur von der alten Startseite genutzt (aktuell ungenutzt)
 ├── robots.txt              ← Crawler-Steuerung
 ├── sitemap.xml             ← Sitemap für Suchmaschinen
 ├── manifest.webmanifest    ← PWA-Manifest
