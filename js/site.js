@@ -1,18 +1,13 @@
 /* ============================================================
    CK Industrial Automation Services – site.js
-   Mobile Navigation, Einblenden beim Scrollen, Zähler,
-   E-Mail-Schutz (Adresse wird erst im Browser zusammengesetzt).
+   Mobile Navigation, Einblenden beim Scrollen, Zähler.
+   Hinweis: Kontaktdaten stehen bewusst NUR als Bild auf der Seite
+   (kein mailto-Link, keine Adresse im Quelltext).
    Stand: 31.10.2026
    ============================================================ */
 (function () {
   'use strict';
 
-  /* ---------- E-Mail (Spam-Schutz) ---------- */
-  var MAIL = (function () {
-    var u = ['ck', '-ias'].join('');
-    var d = ['paderborn', '.', 'com'].join('');
-    return u + '@' + d;
-  })();
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -82,16 +77,6 @@
       }, { threshold: 0.6 });
       counters.forEach(function (el) { co.observe(el); });
     }
-
-    /* ===================== E-MAIL-LINKS ([data-mail]) ===================== */
-    document.querySelectorAll('[data-mail]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        var url = 'mailto:' + MAIL;
-        var subj = el.getAttribute('data-subject');
-        if (subj) url += '?subject=' + encodeURIComponent(subj);
-        window.location.href = url;
-      });
-    });
 
   });
 })();

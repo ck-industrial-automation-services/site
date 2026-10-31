@@ -12,6 +12,7 @@ Professionelle Website für CK Industrial Automation Services (Christoph Korn).
 |-------|----------|
 | 31.10.2026 | `index.html` durch die neue Portfolio-Seite ersetzt (eine Datei, Tailwind per CDN, Schrift „Inter“ von Google Fonts). Die bisherige Website ist vollständig gesichert in `08_Marketing/20261031_Backup_Webpraesenz_reloaded/` (siehe `BACKUP_INFO.md` dort). |
 | 31.10.2026 | Portfolio-Seite ausgebaut: Inhalte der bisherigen Website übernommen (Angebot, Zahlen, Technik, Über mich, Kontakt, Footer mit Impressum/Datenschutz), neuer Bereich „Typische Anlässe“. Unsplash-Platzhalter durch eigene Bilder ersetzt (u. a. echtes Porträt), tote Links (GitHub/LinkedIn/Twitter `#`) entfernt. Tailwind und Inter jetzt **lokal** (keine Drittanbieter-Verbindungen). Impressum/Datenschutz optisch angeglichen, Hell-Modus entfernt, E-Mail-Fehler (alte lange Adresse im Mail-Skript) behoben, Datenschutzerklärung Abschnitte 5/6 aktualisiert. `styles.css`, `styles-light.css`, `app.js` entfernt (im Backup enthalten). |
+| 31.10.2026 | Neue Postanschrift im Bild `img/contact/address.png`; E-Mail-Bild neu (`img/contact/email.png`). Kontaktdaten stehen jetzt **ausschließlich als Bild** auf der Website: keine mailto-Links, kein Mail-Skript, keine PLZ in den strukturierten Daten (JSON-LD). `address_inline.png` und `email_link.png` entfernt. Bei Adress-/Mailänderung nur die beiden Bilder austauschen. |
 
 ## Struktur
 
