@@ -1,256 +1,538 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christoph Korn | Senior Automation Engineer</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stand: 31.10.2026 – Portfolio-Design (Dark/Glass) mit den Inhalten der bisherigen Website.
+       CSS wird lokal gebaut (08_Marketing/Website_Build), keine externen Server beim Seitenaufruf. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#09090b">
+  <script>document.documentElement.classList.add('js');</script>
 
-    <!-- Tailwind Configuration & Custom Styles -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        zincDark: '#09090b', // Deep black bg-zinc-950
-                        neonPurple: '#a855f7',
-                        neonCyan: '#22d3ee',
-                    }
-                }
-            }
-        }
-    </script>
+  <title>SPS-Programmierung Siemens TIA Portal &amp; IIoT – CK Industrial Automation Services</title>
+  <meta name="description" content="SPS-Programmierung mit Siemens SIMATIC S7 &amp; TIA Portal: Neuentwicklung, Erweiterung, Migration S5/S7-Classic, Inbetriebnahme &amp; Fehlersuche. Dazu Beckhoff, CODESYS, IIoT und Python-Skripte. Freiberuflich aus Paderborn – vor Ort &amp; remote.">
+  <meta name="keywords" content="SPS Programmierung, Siemens TIA Portal, SIMATIC S7, S7-1500, S7-1200, S7-300, S5 Migration, SPS Programmierer Freelancer, Inbetriebnahme, Automatisierungstechnik, Beckhoff TwinCAT, CODESYS, IIoT, OPC UA, MQTT, Node-RED, Python, Paderborn, OWL, NRW">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ck-industrial-automation-services.github.io/site/">
 
-    <style>
-        html { scroll-behavior: smooth; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+  <!-- Open Graph -->
+  <meta property="og:title" content="SPS-Programmierung Siemens TIA Portal &amp; IIoT – CK Industrial Automation Services">
+  <meta property="og:description" content="Ihr externes Entwicklungsteam für Siemens SIMATIC S7 &amp; TIA Portal – plus Beckhoff, CODESYS, IIoT und Skripte. Freiberuflich aus Paderborn.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:url" content="https://ck-industrial-automation-services.github.io/site/">
+  <meta property="og:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp">
+  <meta property="og:image:alt" content="CK Industrial Automation Services">
+  <meta property="og:site_name" content="CK Industrial Automation Services">
 
-        /* Marquee Animation */
-        .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CK Industrial Automation Services">
+  <meta name="twitter:description" content="SPS-Programmierung (Siemens TIA Portal) · Inbetriebnahme · IIoT &amp; Skripte – Ihr externes Entwicklungsteam aus Paderborn.">
+  <meta name="twitter:image" content="https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp">
 
-        /* Glassmorphism Utilities */
-        .glass-panel {
-            background: rgba(31, 41, 55, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+  <!-- Icons -->
+  <link rel="icon" type="image/webp" href="img/logo_simple_short.webp">
+  <link rel="apple-touch-icon" href="img/logo_simple_short.webp">
+  <link rel="manifest" href="manifest.webmanifest">
 
-        /* Gradient Text for Headings */
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #a855f7, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <!-- Schrift (Inter) und CSS lokal – keine Verbindung zu Google oder CDNs -->
+  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
 
-        /* Neon Glow Effect on Hover */
-        .glow-hover:hover {
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.1);
-            border-color: rgba(168, 85, 247, 0.5);
-            transition: all 0.3s ease;
-        }
-    </style>
+  <!-- Strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://ck-industrial-automation-services.github.io/site/#business",
+        "name": "CK Industrial Automation Services",
+        "description": "Freiberuflicher Ingenieur für Automatisierungstechnik – SPS-Programmierung mit Schwerpunkt Siemens SIMATIC S7 und TIA Portal, dazu Beckhoff TwinCAT, CODESYS, Inbetriebnahme, IIoT-Anwendungen und Skripte für Maschinenbauer und produzierende KMU.",
+        "url": "https://ck-industrial-automation-services.github.io/site/",
+        "image": "https://ck-industrial-automation-services.github.io/site/img/logo_photorealistic_long.webp",
+        "priceRange": "€€",
+        "founder": { "@id": "https://ck-industrial-automation-services.github.io/site/#person" },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Ostwestfalen-Lippe" },
+          { "@type": "AdministrativeArea", "name": "Nordrhein-Westfalen" },
+          { "@type": "Country", "name": "Deutschland" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "33102",
+          "addressLocality": "Paderborn",
+          "addressRegion": "NRW",
+          "addressCountry": "DE"
+        },
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SPS-Programmierung – Siemens SIMATIC S7 & TIA Portal (Neuentwicklung, Erweiterung, Migration)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inbetriebnahme, Fehlersuche & Antriebstechnik" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Skript- & webbasierte Lösungen (Python, Node-RED, Dashboards)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IIoT-Anwendungen (OPC UA, MQTT, Cloud)" } }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://ck-industrial-automation-services.github.io/site/#person",
+        "name": "Christoph Korn",
+        "jobTitle": "Freiberuflicher Ingenieur für Automatisierungstechnik",
+        "image": "https://ck-industrial-automation-services.github.io/site/img/portrait3.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paderborn",
+          "addressRegion": "NRW",
+          "addressCountry": "DE"
+        },
+        "knowsAbout": [
+          "SPS-Programmierung", "Siemens TIA Portal", "SIMATIC S7-1500", "SIMATIC S7-1200", "SIMATIC S7-300/400",
+          "Migration S5/S7-Classic zu TIA Portal", "Strukturierter Text (SCL/ST)", "PROFINET",
+          "Beckhoff TwinCAT", "CODESYS", "EtherCAT", "Inbetriebnahme", "Antriebstechnik",
+          "Python", "Node-RED", "Web-Dashboards", "SQL",
+          "OPC UA", "MQTT", "AWS", "Azure", "Edge Computing", "IIoT"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="bg-zinc-950 text-white font-sans antialiased selection:bg-neonPurple selection:text-black">
 
-    <!-- Minimal Floating Navigation -->
-    <nav class="fixed top-4 left-0 right-0 z-50 flex justify-center px-6">
-        <div class="glass-panel px-6 py-3 rounded-full text-sm font-medium tracking-widest text-zinc-400 uppercase hover:text-white transition-colors cursor-pointer">
-            Portfolio 2024
+  <a href="#angebot" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-neonPurple focus:px-4 focus:py-2 focus:text-black focus:font-semibold">Zum Inhalt springen</a>
+
+  <!-- ===================== NAVIGATION (schwebende Glas-Leiste) ===================== -->
+  <nav id="nav" class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6" aria-label="Hauptnavigation">
+    <div class="glass-panel mx-auto max-w-5xl rounded-full pl-3 pr-2 py-2 flex items-center gap-2 shadow-lg shadow-black/30 transition-shadow duration-300">
+      <a href="#top" class="flex items-center gap-2.5 rounded-full pr-2" aria-label="CK Industrial Automation Services – zum Seitenanfang">
+        <img src="img/logo_animated_v4_glow.svg" alt="" width="96" height="36" class="h-9 w-auto">
+        <span class="hidden sm:inline text-sm font-semibold tracking-wide whitespace-nowrap"><span class="text-white">CK</span> <span class="text-zinc-400">IAS</span></span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-1 mx-auto text-sm font-medium text-zinc-400">
+        <li><a href="#angebot" class="px-3 py-2 rounded-full hover:text-white hover:bg-white/5 transition-colors duration-200">Angebot</a></li>
+        <li><a href="#technik" class="px-3 py-2 rounded-full hover:text-white hover:bg-white/5 transition-colors duration-200">Technik</a></li>
+        <li><a href="#ueber" class="px-3 py-2 rounded-full hover:text-white hover:bg-white/5 transition-colors duration-200">Über&nbsp;mich</a></li>
+        <li><a href="#kontakt" class="px-3 py-2 rounded-full hover:text-white hover:bg-white/5 transition-colors duration-200">Kontakt</a></li>
+      </ul>
+
+      <a href="#kontakt" class="hidden md:inline-flex items-center rounded-full bg-white text-zinc-950 px-4 py-2 text-sm font-semibold hover:bg-neonPurple hover:text-white transition-colors duration-200">Projekt anfragen</a>
+
+      <button type="button" id="navToggle" class="md:hidden ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-300 hover:text-white hover:bg-white/5 transition-colors duration-200 cursor-pointer" aria-controls="navMenu" aria-expanded="false" aria-label="Menü öffnen">
+        <svg data-icon="open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg data-icon="close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="hidden h-6 w-6" aria-hidden="true"><path stroke-linecap="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobiles Menü -->
+    <div id="navMenu" class="hidden md:hidden glass-panel mx-auto mt-2 max-w-5xl rounded-3xl p-3 shadow-lg shadow-black/40">
+      <ul class="flex flex-col text-base font-medium text-zinc-300">
+        <li><a href="#angebot" class="block rounded-2xl px-4 py-3 hover:bg-white/5 hover:text-white transition-colors duration-200">Angebot</a></li>
+        <li><a href="#technik" class="block rounded-2xl px-4 py-3 hover:bg-white/5 hover:text-white transition-colors duration-200">Technik</a></li>
+        <li><a href="#ueber" class="block rounded-2xl px-4 py-3 hover:bg-white/5 hover:text-white transition-colors duration-200">Über mich</a></li>
+        <li><a href="#kontakt" class="block rounded-2xl px-4 py-3 hover:bg-white/5 hover:text-white transition-colors duration-200">Kontakt</a></li>
+        <li class="pt-2"><a href="#kontakt" class="block rounded-full bg-white px-4 py-3 text-center font-semibold text-zinc-950 hover:bg-neonPurple hover:text-white transition-colors duration-200">Projekt anfragen</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <span id="top"></span>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-0">
+
+    <!-- Hintergrund: Raster + Glow (Purple & Blue) -->
+    <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] max-w-[90vw] bg-neonPurple/20 rounded-full blur-[100px] opacity-30 animate-pulse" aria-hidden="true"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] max-w-[80vw] bg-blue-500/10 rounded-full blur-[80px] opacity-30" aria-hidden="true"></div>
+
+    <div class="relative z-10 text-center max-w-4xl px-6 mb-16">
+      <p class="text-neonPurple uppercase tracking-[0.2em] mb-5 text-xs sm:text-sm font-semibold" data-reveal>Freiberuflicher Automatisierungsingenieur · Paderborn</p>
+
+      <h1 class="text-6xl sm:text-7xl md:text-9xl font-bold tracking-tighter mb-4 text-gradient leading-[0.95] pb-2" data-reveal>
+        Christoph Korn.
+      </h1>
+
+      <p class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-6" data-reveal>
+        Kein eigenes Entwicklungs&shy;team? <span class="text-gradient-cyan">Ich bin Ihres.</span>
+      </p>
+
+      <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light" data-reveal>
+        Schwerpunkt <strong class="font-medium text-zinc-200">SPS-Programmierung</strong> mit Siemens SIMATIC&nbsp;S7 und TIA&nbsp;Portal –
+        von der Erweiterung über die S5/S7-Classic-Migration bis zur Inbetriebnahme. Dazu Beckhoff,
+        CODESYS, IIoT und Skripte, wenn Ihre Anlage mehr braucht.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3" data-reveal>
+        <a href="#kontakt" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-neonPurple px-7 py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(168,85,247,0.35)] hover:bg-purple-400 hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-200">
+          Projekt anfragen
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="#angebot" class="w-full sm:w-auto glass-panel inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold text-zinc-200 hover:text-white glow-hover">
+          Was ich anbiete
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+        </a>
+      </div>
+
+      <p class="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-400" data-reveal>
+        <span class="relative flex h-2 w-2" aria-hidden="true"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span></span>
+        Erstgespräch kostenlos &amp; unverbindlich · Antwort i.&nbsp;d.&nbsp;R. innerhalb eines Werktags
+      </p>
+    </div>
+
+    <!-- Laufband: Technologien -->
+    <div class="relative z-10 w-full mt-auto border-t border-b border-zinc-800 bg-black/50 backdrop-blur-sm py-4">
+      <p class="sr-only">Technologien: Siemens TIA Portal, SIMATIC S7-1500, S7-1200, S7-300/400, S5/S7-Classic-Migration, SCL/ST, PROFINET, Beckhoff TwinCAT, CODESYS, EtherCAT, Antriebstechnik, OPC UA, MQTT, Node-RED, Python, SQL, Grafana, AWS, Azure.</p>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track text-lg md:text-2xl font-mono uppercase tracking-widest text-zinc-500">
+          <span class="px-4">TIA Portal &nbsp;•&nbsp; SIMATIC S7-1500 &nbsp;•&nbsp; S7-1200 &nbsp;•&nbsp; S7-300/400 &nbsp;•&nbsp; S5-Migration &nbsp;•&nbsp; SCL / ST &nbsp;•&nbsp; PROFINET &nbsp;•&nbsp; Beckhoff TwinCAT &nbsp;•&nbsp; CODESYS &nbsp;•&nbsp; EtherCAT &nbsp;•&nbsp; Antriebstechnik &nbsp;•&nbsp; OPC UA &nbsp;•&nbsp; MQTT &nbsp;•&nbsp; Node-RED &nbsp;•&nbsp; Python &nbsp;•&nbsp; SQL &nbsp;•&nbsp; Grafana &nbsp;•&nbsp; AWS &nbsp;•&nbsp; Azure &nbsp;•</span>
+          <span class="px-4">TIA Portal &nbsp;•&nbsp; SIMATIC S7-1500 &nbsp;•&nbsp; S7-1200 &nbsp;•&nbsp; S7-300/400 &nbsp;•&nbsp; S5-Migration &nbsp;•&nbsp; SCL / ST &nbsp;•&nbsp; PROFINET &nbsp;•&nbsp; Beckhoff TwinCAT &nbsp;•&nbsp; CODESYS &nbsp;•&nbsp; EtherCAT &nbsp;•&nbsp; Antriebstechnik &nbsp;•&nbsp; OPC UA &nbsp;•&nbsp; MQTT &nbsp;•&nbsp; Node-RED &nbsp;•&nbsp; Python &nbsp;•&nbsp; SQL &nbsp;•&nbsp; Grafana &nbsp;•&nbsp; AWS &nbsp;•&nbsp; Azure &nbsp;•</span>
         </div>
-    </nav>
+      </div>
+    </div>
+  </header>
 
-    <!-- HERO SECTION -->
-    <header class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        
-        <!-- Background Ambient Glow (Purple & Cyan for Engineering feel) -->
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neonPurple/20 rounded-full blur-[100px] opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px] opacity-30"></div>
+  <main>
 
-        <div class="z-10 text-center max-w-4xl px-6">
-            <p class="text-neonPurple uppercase tracking-[0.2em] mb-4 text-sm font-semibold">Senior Automation Engineer</p>
-            
-            <!-- Name -->
-            <h1 class="text-7xl md:text-9xl font-bold tracking-tighter mb-2 text-gradient">
-                Christoph Korn.
-            </h1>
-            
-            <p class="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-light">
-                B. Eng. Elektro- und Informationstechnik. 13 Jahre Erfahrung in Automatisierung, Industrie 4.0 und IIoT-Architektur. Ich bringe industrielle Robustheit in digitale Projekte.
-            </p>
+    <!-- ===================== ZAHLEN ===================== -->
+    <section class="px-6 pt-20 max-w-7xl mx-auto" aria-label="Zahlen">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="glass-panel rounded-3xl p-5 md:p-8 glow-hover" data-reveal>
+          <div class="text-[1.75rem] sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient whitespace-nowrap"><span data-count="13">13</span>+</div>
+          <div class="mt-2 text-sm md:text-base text-zinc-400">Jahre Praxis in der Industrie</div>
         </div>
-
-        <!-- Scrolling Marquee of Skills (Industrial & Engineering Focus) -->
-        <div class="w-full mt-8 border-t border-b border-zinc-800 bg-black/50 backdrop-blur-sm overflow-hidden py-4">
-            <div class="marquee-container text-center">
-                <div class="marquee-content text-xl md:text-3xl font-mono uppercase tracking-widest text-zinc-500">
-                    TIA Portal &nbsp;•&nbsp; Simatic Step 7 &nbsp;•&nbsp; PLC Programming (SCL) &nbsp;•&nbsp; SCADA Systems &nbsp;•&nbsp; MQTT / OPC UA / Modbus &nbsp;•&nbsp; AWS IoT Core &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Python &nbsp;•&nbsp; C++ &nbsp;•&nbsp;
-                    TIA Portal &nbsp;•&nbsp; Simatic Step 7 &nbsp;•&nbsp; PLC Programming (SCL) &nbsp;•&nbsp; SCADA Systems &nbsp;•&nbsp; MQTT / OPC UA / Modbus &nbsp;•&nbsp; AWS IoT Core &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Python &nbsp;•&nbsp; C++ 
-                </div>
-            </div>
+        <div class="glass-panel rounded-3xl p-5 md:p-8 glow-hover" data-reveal>
+          <div class="text-[1.75rem] sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient whitespace-nowrap">S7-<span data-count="1500">1500</span></div>
+          <div class="mt-2 text-sm md:text-base text-zinc-400">Siemens-Praxis von S5 bis SIMATIC S7-1500</div>
         </div>
-    </header>
-
-    <!-- WORK SECTION (Bento Grid) -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="flex justify-between items-end mb-12">
-            <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Projekte & Case Studies</h2>
-            <span class="hidden md:block text-zinc-500">Technische Umsetzung</span>
+        <div class="glass-panel rounded-3xl p-5 md:p-8 glow-hover" data-reveal>
+          <div class="text-[1.75rem] sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient whitespace-nowrap"><span data-count="7">7</span>+</div>
+          <div class="mt-2 text-sm md:text-base text-zinc-400">Steuerungs&shy;plattformen – Siemens, Beckhoff &amp; Co.</div>
         </div>
-
-        <!-- Bento Grid Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(250px,auto)]">
-            
-            <!-- Project 1: Large Feature (Spans 2 cols) - Focus on Hardware/PLC -->
-            <div class="md:col-span-2 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group cursor-pointer relative overflow-hidden border border-white/5">
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950/90 z-10"></div>
-                
-                <!-- Project Image - Industrial/Tech Vibe -->
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee1c8?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" alt="Project 1">
-                
-                <!-- Overlay Content -->
-                <div class="relative z-10 h-full flex flex-col justify-between mt-auto">
-                    <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonPurple backdrop-blur-md">Smart Factory</span>
-                    <div>
-                        <h3 class="text-4xl font-bold mb-2 group-hover:translate-x-2 transition-transform">IIoT Gateway System</h3>
-                        <p class="text-zinc-400 max-w-xl leading-relaxed">
-                            Entwicklung eines sicheren IIoT-Gateways zur Überbrückung von isolierten Maschinensteuerungen auf Basis Siemens S7 und TIA Portal in die Cloud. Realisierung der Konvertierung proprietärer Protokolle (OPC UA, Modbus) zu HTTP-APIs für Dashboard-Anwendungen.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2: Tall Feature (Spans 1 col, 2 rows) - Focus on Python/Automation -->
-            <div class="md:col-span-1 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group cursor-pointer relative overflow-hidden border border-white/5">
-                <img src="https://images.unsplash.com/photo-1639327529784-54a995d0d07c?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" alt="Project 2">
-                <div class="relative z-10 h-full flex flex-col justify-between mt-auto">
-                    <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonCyan backdrop-blur-md">Data Processing</span>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform">Predictive Maintenance (Python)</h3>
-                        <p class="text-zinc-400 max-w-sm leading-relaxed">
-                            Implementierung von Algorithmen zur vorausschauenden Wartung in der Fertigungslinie. Datenanalyse mittels Python und Cloud Services zur Minimierung von Stillstandzeiten.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3: Short Card -->
-            <div class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex items-center justify-between glow-hover group cursor-pointer border border-white/5">
-                <div>
-                    <h4 class="text-xl font-bold mb-1">SCADA Migration</h4>
-                    <p class="text-zinc-500 text-sm">Visualisierung & Reporting</p>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </div>
-
-            <!-- Project 4: Short Card -->
-            <div class="md:col-span-1 md:row-span-1 glass-panel rounded-3xl p-8 flex items-center justify-between glow-hover group cursor-pointer border border-white/5">
-                <div>
-                    <h4 class="text-xl font-bold mb-1">RFID Tracking</h4>
-                    <p class="text-zinc-500 text-sm">Logistik Automation</p>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </div>
-
+        <div class="glass-panel rounded-3xl p-5 md:p-8 glow-hover" data-reveal>
+          <div class="text-[1.75rem] sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient whitespace-nowrap"><span data-count="15">15</span>&nbsp;Min</div>
+          <div class="mt-2 text-sm md:text-base text-zinc-400">kostenloses Erstgespräch</div>
         </div>
+      </div>
     </section>
 
-    <!-- ABOUT SECTION (Two Column Layout) -->
-    <section class="py-24 px-6 max-w-6xl mx-auto border-t border-zinc-800/50">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
-            
-            <!-- Left: Text -->
-            <div class="md:col-span-6 order-2 md:order-1">
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-gradient">Über Mich</h2>
-                
-                <p class="text-xl text-zinc-400 leading-relaxed mb-6 font-light">
-                    Seit meinem Studium habe ich über 13 Jahre in der Automatisierungstechnik gearbeitet. Meistens war es Großprojekte: komplexe Anlagenausstattungen und kritische Systemintegrationen in der Industrie.
-                </p>
-                
-                <p class="text-xl text-zinc-400 leading-relaxed font-light">
-                    Jetzt suche ich nach einer neuen Balance. Ich möchte meine tiefe technische Expertise in kleinen, spannenden Projekten einbringen – nicht als Hauptberuf, sondern aus Leidenschaft als Hobby. Ich baue Dinge auf, die ich selbst verstehen und pflegen möchte.
-                </p>
-
-                <!-- Social Links with Hover Animation -->
-                <div class="flex gap-8 mt-12">
-                    <a href="#" class="hover-underline-animation flex flex-col items-center gap-2 group text-zinc-500 hover:text-white transition-colors">
-                        <span class="text-sm uppercase tracking-wider">GitHub</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                        </svg>
-                    </a>
-                    <a href="#" class="hover-underline-animation flex flex-col items-center gap-2 group text-zinc-500 hover:text-white transition-colors">
-                        <span class="text-sm uppercase tracking-wider">LinkedIn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right: Headshot with Rounded Rect Mask -->
-            <div class="md:col-span-6 order-1 md:order-2 flex justify-center">
-                <div class="relative w-full aspect-square max-w-md rounded-[4rem] overflow-hidden glass-panel border-white/10 group cursor-pointer">
-                    <!-- Placeholder Image for Engineer Portrait -->
-                    <img src="https://images.unsplash.com/photo-1560250097-9b5da38e25b3?q=80&w=2664&auto=format&fit=crop" 
-                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 grayscale-[30%] group-hover:grayscale-0 hover:scale-105 transition-transform duration-700" 
-                         alt="Christoph Korn Headshot">
-                     <!-- Decorative Element -->
-                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-neonPurple/30 rounded-[3rem] pointer-events-none"></div>
-                </div>
-            </div>
-
+    <!-- ===================== ANGEBOT (Bento Grid) ===================== -->
+    <section id="angebot" class="py-24 px-6 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-12" data-reveal>
+        <div>
+          <p class="font-mono text-sm text-neonPurple mb-3">// Was ich anbiete</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">Schwerpunkt SPS – plus alles, was dazugehört.</h2>
         </div>
+        <p class="text-zinc-400 max-w-sm md:text-right">Im Kern: Siemens-Steuerungstechnik. Dazu Skripte und IIoT, wenn Ihre Anlage mehr braucht.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(190px,auto)]">
+
+        <!-- 01 · SPS-Programmierung (Schwerpunkt) -->
+        <article class="md:col-span-2 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group relative overflow-hidden" data-reveal>
+          <img src="img/service_sps.webp" alt="" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/10 via-zinc-950/70 to-zinc-950/95" aria-hidden="true"></div>
+          <div class="relative z-10 h-full flex flex-col justify-between gap-16">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonPurple backdrop-blur-md">Schwerpunkt</span>
+              <span class="font-mono text-sm text-zinc-400">01</span>
+            </div>
+            <div>
+              <h3 class="text-3xl md:text-4xl font-bold mb-3 group-hover:translate-x-2 transition-transform duration-300">SPS-Programmierung</h3>
+              <p class="text-zinc-300 max-w-xl leading-relaxed mb-6">Siemens SIMATIC S7 &amp; TIA Portal – Neuentwicklung, Erweiterung, Migration und Inbetriebnahme.</p>
+              <ul class="grid gap-2.5 text-zinc-300 text-sm md:text-base">
+                <li class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-5 w-5 flex-none text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Siemens SIMATIC S7-300/400/1200/1500 – TIA&nbsp;Portal bis V19</li>
+                <li class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-5 w-5 flex-none text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Migration S5 &amp; S7-Classic → TIA Portal, auch ohne Ersatzteil&shy;support</li>
+                <li class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-5 w-5 flex-none text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Neuprogrammierung, Erweiterung &amp; Umbau bestehender Anlagen</li>
+                <li class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-5 w-5 flex-none text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Inbetriebnahme, Fehlersuche &amp; Antriebstechnik (SEW, Lenze)</li>
+                <li class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-5 w-5 flex-none text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Auch Beckhoff TwinCAT &amp; CODESYS – inkl. verständlicher HMI &amp; Doku</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 · IIoT-Anwendungen -->
+        <article class="md:col-span-1 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group relative overflow-hidden" data-reveal>
+          <img src="img/service_iiot.webp" alt="" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/10 via-zinc-950/70 to-zinc-950/95" aria-hidden="true"></div>
+          <div class="relative z-10 h-full flex flex-col justify-between gap-16">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonCyan backdrop-blur-md">Maschinendaten</span>
+              <span class="font-mono text-sm text-zinc-400">02</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:translate-x-2 transition-transform duration-300">IIoT-Anwendungen</h3>
+              <p class="text-zinc-300 leading-relaxed mb-5">Daten aus Ihrer SPS erfassen, übertragen und nutzbar machen – vom Sensor bis ins Dashboard.</p>
+              <ul class="grid gap-2 text-zinc-300 text-sm">
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Datenerfassung per OPC&nbsp;UA &amp; MQTT</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Edge-Gateways &amp; lokale Vorverarbeitung</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Lokale &amp; Cloud-Dashboards (AWS, Azure)</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Zustands&shy;überwachung, Trends &amp; Alarmierung</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Schrittweiser Einstieg – ohne Großprojekt</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 · Web & Skripte -->
+        <article class="md:col-span-1 md:row-span-2 glass-panel rounded-3xl p-8 glow-hover group relative overflow-hidden" data-reveal>
+          <img src="img/service_scripting.webp" alt="" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/10 via-zinc-950/70 to-zinc-950/95" aria-hidden="true"></div>
+          <div class="relative z-10 h-full flex flex-col justify-between gap-16">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold uppercase tracking-wider text-neonCyan backdrop-blur-md">Ergänzung</span>
+              <span class="font-mono text-sm text-zinc-400">03</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:translate-x-2 transition-transform duration-300">Web &amp; Skripte</h3>
+              <p class="text-zinc-300 leading-relaxed mb-5">Die ideale Ergänzung zur SPS: wiederkehrende Aufgaben automatisieren, Daten sichtbar machen.</p>
+              <ul class="grid gap-2 text-zinc-300 text-sm">
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Python-Skripte für Auswertungen, Reports &amp; Schnittstellen</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Node-RED-Flows zur Anlagen&shy;anbindung &amp; Verarbeitung</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Web-Dashboards (z.&nbsp;B. Grafana) &amp; kleine Web-Apps</li>
+                <li class="flex gap-2.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="mt-0.5 h-4 w-4 flex-none text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Datenbank-Anbindung (SQL) &amp; Monitoring vor Ort</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kurzkarten -->
+        <a href="#kontakt" class="glass-panel rounded-3xl p-8 flex items-center justify-between gap-4 glow-hover group" data-reveal>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Inbetriebnahme &amp; Fehlersuche</h3>
+            <p class="text-zinc-400 text-sm">Vor Ort, remote oder hybrid</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 flex-none text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <a href="#kontakt" class="glass-panel rounded-3xl p-8 flex items-center justify-between gap-4 glow-hover group" data-reveal>
+          <div>
+            <h3 class="text-xl font-bold mb-1">S5/S7-Classic-Migration</h3>
+            <p class="text-zinc-400 text-sm">Ins TIA Portal – auch ohne Ersatzteilsupport</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 flex-none text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <a href="#kontakt" class="glass-panel rounded-3xl p-8 flex items-center justify-between gap-4 glow-hover group" data-reveal>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Antriebstechnik</h3>
+            <p class="text-zinc-400 text-sm">SEW, Lenze &amp; Co. – Parametrierung &amp; Einbindung</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 flex-none text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <a href="#kontakt" class="glass-panel rounded-3xl p-8 flex items-center justify-between gap-4 glow-hover group" data-reveal>
+          <div>
+            <h3 class="text-xl font-bold mb-1">HMI &amp; Dokumentation</h3>
+            <p class="text-zinc-400 text-sm">Verständlich – damit Ihr Team damit arbeiten kann</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 flex-none text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+      </div>
+
+      <p class="mt-10 text-center text-zinc-400" data-reveal>
+        Nicht sicher, was Sie brauchen?
+        <a href="#kontakt" class="font-medium text-white underline decoration-neonPurple/60 underline-offset-4 hover:decoration-neonPurple transition-colors duration-200">Schreiben Sie mir – wir klären es in einem kostenlosen Erstgespräch&nbsp;→</a>
+      </p>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            
-            <div class="text-zinc-500 text-sm font-medium tracking-widest uppercase">
-                © 2024 Christoph Korn. Automation Engineer & Maker.
-            </div>
+    <!-- ===================== TYPISCHE ANLÄSSE ===================== -->
+    <section class="py-24 px-6 max-w-7xl mx-auto border-t border-zinc-800/50" aria-labelledby="anlaesse-title">
+      <div class="mb-12" data-reveal>
+        <p class="font-mono text-sm text-neonPurple mb-3">// Typische Anlässe</p>
+        <h2 id="anlaesse-title" class="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">Wann ich ins Spiel komme.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="glass-panel rounded-3xl p-5 glow-hover group" data-reveal>
+          <div class="overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
+            <img src="img/icon_problem_01_alte_steuerung.webp" alt="" loading="lazy" decoding="async" width="400" height="400" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="text-lg font-bold mb-2">Die Steuerung ist in die Jahre gekommen</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">S5 oder S7-Classic läuft noch, Ersatzteile werden knapp. Ich migriere ins TIA Portal – Schritt für Schritt.</p>
+        </article>
+        <article class="glass-panel rounded-3xl p-5 glow-hover group" data-reveal>
+          <div class="overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
+            <img src="img/icon_problem_02_sonderprojekt.webp" alt="" loading="lazy" decoding="async" width="400" height="400" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="text-lg font-bold mb-2">Ein Sonderprojekt, aber kein Team</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Ich springe ein, wo das eigene Entwicklungsteam fehlt – vom Tagesauftrag bis zum mehrwöchigen Projekt.</p>
+        </article>
+        <article class="glass-panel rounded-3xl p-5 glow-hover group" data-reveal>
+          <div class="overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
+            <img src="img/icon_problem_03_stillstand.webp" alt="" loading="lazy" decoding="async" width="400" height="400" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="text-lg font-bold mb-2">Die Anlage macht Probleme</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Systematische Fehlersuche in Programm, Antrieb und Kommunikation – vor Ort oder remote, nach Absprache.</p>
+        </article>
+        <article class="glass-panel rounded-3xl p-5 glow-hover group" data-reveal>
+          <div class="overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
+            <img src="img/icon_problem_04_erweiterung.webp" alt="" loading="lazy" decoding="async" width="400" height="400" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="text-lg font-bold mb-2">Die Maschine soll mehr können</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Neue Station, neue Funktion oder Daten fürs Dashboard: Erweiterung und Umbau – sauber dokumentiert.</p>
+        </article>
+      </div>
+    </section>
 
-            <!-- Minimal Social Links -->
-            <div class="flex gap-12 border-t border-white/10 pt-8 w-full md:w-auto justify-between md:justify-start items-center">
-                
-                <a href="#" class="relative group flex flex-col items-center gap-2 p-4 hover:text-white transition-colors">
-                    <span class="text-sm text-zinc-600 group-hover:text-neonPurple transition-colors">GitHub</span>
-                     <!-- Simple SVG Icon -->
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-zinc-700 group-hover:text-white">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L21 12m-9-10a9 9 0 109 18 9 9 0 00-9-18zm0 0v10m0 0V14m0 6h-6" />
-                     </svg>
-                </a>
-
-                <a href="#" class="relative group flex flex-col items-center gap-2 p-4 hover:text-white transition-colors">
-                    <span class="text-sm text-zinc-600 group-hover:text-neonPurple transition-colors">Twitter</span>
-                     <!-- Simple SVG Icon -->
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-zinc-700 group-hover:text-white">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728l-2.123-2.123m0 0L6.182 13.213M10.94 5.5c.549-.546 1.6-1.1.828-1.798l-2.123-2.123" />
-                    </svg>
-                </a>
-
-            </div>
+    <!-- ===================== TECHNIK ===================== -->
+    <section id="technik" class="py-24 px-6 max-w-7xl mx-auto border-t border-zinc-800/50">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-12" data-reveal>
+        <div>
+          <p class="font-mono text-sm text-neonPurple mb-3">// Technik</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl">Zuhause bei Siemens – sattelfest darüber hinaus.</h2>
         </div>
-    </footer>
+        <p class="text-zinc-400 max-w-md md:text-right">Mein tägliches Werkzeug: SIMATIC S7 und das TIA Portal. Und wenn Ihre Anlage anders tickt, sind Beckhoff, CODESYS, KUKA, ABB, SEW und Lenze ebenso vertrautes Terrain.</p>
+      </div>
+
+      <ul class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4" data-reveal>
+        <li class="col-span-2 sm:col-span-4 lg:col-span-1 glass-panel rounded-2xl h-28 flex flex-col items-center justify-center gap-2 border-neonPurple/40 shadow-[0_0_24px_rgba(168,85,247,0.2)] group">
+          <img src="img/logos/siemens.svg" alt="Siemens" loading="lazy" width="128" height="32" class="h-8 w-32 object-cover brightness-0 invert">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-neonPurple">Schwerpunkt</span>
+        </li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/beckhoff.svg" alt="Beckhoff" loading="lazy" class="h-11 w-auto max-w-[85%] brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/codesys.svg" alt="CODESYS" loading="lazy" class="h-11 w-auto max-w-[85%] brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/abb.svg" alt="ABB" loading="lazy" width="80" height="34" class="h-[34px] w-20 object-cover brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/kuka.svg" alt="KUKA" loading="lazy" class="h-11 w-auto max-w-[85%] brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/sew.svg" alt="SEW-Eurodrive" loading="lazy" class="h-11 w-auto max-w-[85%] brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+        <li class="glass-panel rounded-2xl h-28 flex items-center justify-center glow-hover group"><img src="img/logos/lenze.svg" alt="Lenze" loading="lazy" class="h-11 w-auto max-w-[85%] brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-200"></li>
+      </ul>
+    </section>
+
+    <!-- ===================== ÜBER MICH ===================== -->
+    <section id="ueber" class="py-24 px-6 max-w-6xl mx-auto border-t border-zinc-800/50">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+
+        <!-- Text -->
+        <div class="md:col-span-6 order-2 md:order-1" data-reveal>
+          <p class="font-mono text-sm text-neonPurple mb-3">// Über mich</p>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-gradient pb-1">Ein Ingenieur, der Ihre Maschine versteht.</h2>
+
+          <p class="text-lg md:text-xl text-zinc-400 leading-relaxed mb-6 font-light">
+            Ich bin <strong class="font-medium text-zinc-100">Christoph Korn</strong>, Elektroingenieur mit Schwerpunkt Automatisierungs&shy;technik
+            und über 13 Jahren Praxis aus echten Produktions&shy;umgebungen. Mein tägliches Werkzeug:
+            <strong class="font-medium text-zinc-100">Siemens SIMATIC S7 und das TIA Portal</strong> – ergänzt um Beckhoff TwinCAT und CODESYS.
+            Freiberuflich springe ich dort ein, wo kleinen Maschinenbauern und KMU das eigene Entwicklungs&shy;team fehlt.
+          </p>
+
+          <p class="text-lg md:text-xl text-zinc-400 leading-relaxed font-light">
+            Mein Anspruch: keine Buzzwords, sondern Lösungen, die im Schaltschrank und auf dem Bildschirm
+            funktionieren – sauber dokumentiert und so, dass Ihr Team danach damit arbeiten kann.
+          </p>
+
+          <ul class="mt-8 grid gap-3 text-zinc-200">
+            <li class="flex items-center gap-3"><span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-neonPurple/15 text-neonPurple" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.4" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg></span>Siemens-Schwerpunkt, herstellerübergreifend einsetzbar</li>
+            <li class="flex items-center gap-3"><span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-neonPurple/15 text-neonPurple" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.4" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg></span>Vor Ort, remote oder hybrid</li>
+            <li class="flex items-center gap-3"><span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-neonPurple/15 text-neonPurple" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.4" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg></span>Vom Tagesauftrag bis zum mehrwöchigen Projekt</li>
+          </ul>
+
+          <a href="#kontakt" class="mt-10 glass-panel inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-semibold text-zinc-200 hover:text-white glow-hover">
+            Jetzt Kontakt aufnehmen
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Porträt mit abgerundeter Maske -->
+        <div class="md:col-span-6 order-1 md:order-2 flex justify-center" data-reveal>
+          <div class="relative w-full max-w-md">
+            <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-neonPurple/30 rounded-[3rem] md:rounded-[4rem] pointer-events-none" aria-hidden="true"></div>
+            <div class="relative aspect-square rounded-[3rem] md:rounded-[4rem] overflow-hidden glass-panel group">
+              <img src="img/portrait3.webp" alt="Christoph Korn – Automatisierungsingenieur" width="1536" height="1024" loading="lazy" decoding="async"
+                   class="w-full h-full object-cover opacity-90 grayscale-[30%] group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== CTA-BAND ===================== -->
+    <section class="px-6 max-w-7xl mx-auto" aria-labelledby="cta-title">
+      <div class="glass-panel relative overflow-hidden rounded-[2.5rem] px-6 py-16 md:px-16 md:py-20 text-center" data-reveal>
+        <img src="img/logo_photorealistic_long.webp" alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover opacity-10" aria-hidden="true">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] max-w-full bg-neonPurple/25 rounded-full blur-[100px]" aria-hidden="true"></div>
+        <div class="relative z-10">
+          <h2 id="cta-title" class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Bereit, Ihr Projekt zu besprechen?</h2>
+          <p class="text-zinc-300 text-lg max-w-2xl mx-auto mb-8">Schildern Sie kurz Anlage, Steuerung und Anliegen – Antwort kommt in der Regel innerhalb eines Werktags.</p>
+          <a href="#kontakt" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-zinc-950 hover:bg-neonPurple hover:text-white transition-colors duration-200">
+            Jetzt Kontakt aufnehmen
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== KONTAKT ===================== -->
+    <section id="kontakt" class="py-24 px-6 max-w-7xl mx-auto">
+      <div class="mb-12 max-w-3xl" data-reveal>
+        <p class="font-mono text-sm text-neonPurple mb-3">// Kontakt</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">So erreichen Sie mich.</h2>
+        <p class="text-zinc-400 text-lg">Am schnellsten per E-Mail: Schildern Sie kurz Anlage, Steuerung und Anliegen – das Erstgespräch ist kostenlos und unverbindlich.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal>
+        <div class="glass-panel rounded-3xl p-6 glow-hover">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-neonPurple/15 text-neonPurple" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="m3 7 9 6 9-6"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">E-Mail</h3>
+          <button type="button" data-mail="1" class="block max-w-full rounded-md cursor-pointer opacity-90 hover:opacity-100 transition-opacity duration-200" aria-label="E-Mail an CK Industrial Automation Services schreiben">
+            <img src="img/contact/email_link.png" alt="E-Mail-Adresse (Bild, zum Schutz vor Bots)" width="311" height="45" class="contact-img w-[220px]">
+          </button>
+        </div>
+        <div class="glass-panel rounded-3xl p-6 glow-hover">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-neonPurple/15 text-neonPurple" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">Postanschrift</h3>
+          <img src="img/contact/address.png" alt="Postanschrift" width="280" height="104" loading="lazy" decoding="async" class="contact-img w-[180px]">
+        </div>
+        <div class="glass-panel rounded-3xl p-6 glow-hover">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-neonPurple/15 text-neonPurple" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">Einsatzgebiet</h3>
+          <p class="text-zinc-400">OWL / NRW · deutschlandweit · remote</p>
+        </div>
+        <div class="glass-panel rounded-3xl p-6 glow-hover">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-neonPurple/15 text-neonPurple" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3 class="font-semibold mb-2">Verfügbarkeit</h3>
+          <p class="text-zinc-400">Abends, Wochenende &amp; nach Absprache</p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center" data-reveal>
+        <button type="button" data-mail="1" data-subject="Projektanfrage – SPS / Automatisierung" class="inline-flex items-center justify-center gap-2 rounded-full bg-neonPurple px-8 py-4 text-lg font-semibold text-white shadow-[0_0_30px_rgba(168,85,247,0.35)] hover:bg-purple-400 hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-200 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-5 w-5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="m3 7 9 6 9-6"/></svg>
+          E-Mail schreiben
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-black py-12 px-6 border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <a href="#top" class="flex items-center gap-3 rounded-full" aria-label="Zum Seitenanfang">
+        <img src="img/logo_animated_v4_glow.svg" alt="" width="96" height="36" class="h-9 w-auto">
+        <span class="text-sm font-medium text-zinc-300">CK Industrial Automation Services</span>
+      </a>
+
+      <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-zinc-400">
+        <a href="#angebot" class="hover:text-neonPurple transition-colors duration-200">Angebot</a>
+        <a href="#kontakt" class="hover:text-neonPurple transition-colors duration-200">Kontakt</a>
+        <a href="impressum.html" class="hover:text-neonPurple transition-colors duration-200">Impressum</a>
+        <a href="datenschutz.html" class="hover:text-neonPurple transition-colors duration-200">Datenschutz</a>
+      </nav>
+
+      <div class="text-zinc-400 text-sm font-medium tracking-widest uppercase">© 2026 Christoph Korn</div>
+    </div>
+  </footer>
 
 </body>
 </html>

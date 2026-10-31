@@ -10,28 +10,39 @@ Professionelle Website für CK Industrial Automation Services (Christoph Korn).
 
 | Datum | Änderung |
 |-------|----------|
-| 31.10.2026 | `index.html` durch die neue Portfolio-Seite ersetzt (eine Datei, Tailwind per CDN, Schrift „Inter“ von Google Fonts). Die bisherige Website ist vollständig gesichert in `08_Marketing/20261031_Backup_Webpraesenz_reloaded/` (siehe `BACKUP_INFO.md` dort). Impressum, Datenschutz und die übrigen Dateien bleiben unverändert. |
+| 31.10.2026 | `index.html` durch die neue Portfolio-Seite ersetzt (eine Datei, Tailwind per CDN, Schrift „Inter“ von Google Fonts). Die bisherige Website ist vollständig gesichert in `08_Marketing/20261031_Backup_Webpraesenz_reloaded/` (siehe `BACKUP_INFO.md` dort). |
+| 31.10.2026 | Portfolio-Seite ausgebaut: Inhalte der bisherigen Website übernommen (Angebot, Zahlen, Technik, Über mich, Kontakt, Footer mit Impressum/Datenschutz), neuer Bereich „Typische Anlässe“. Unsplash-Platzhalter durch eigene Bilder ersetzt (u. a. echtes Porträt), tote Links (GitHub/LinkedIn/Twitter `#`) entfernt. Tailwind und Inter jetzt **lokal** (keine Drittanbieter-Verbindungen). Impressum/Datenschutz optisch angeglichen, Hell-Modus entfernt, E-Mail-Fehler (alte lange Adresse im Mail-Skript) behoben, Datenschutzerklärung Abschnitte 5/6 aktualisiert. `styles.css`, `styles-light.css`, `app.js` entfernt (im Backup enthalten). |
 
 ## Struktur
 
 ```
 08_Marketing/Webpräsenz reloaded/
-├── index.html              ← Hauptseite (Portfolio, seit 31.10.2026; eigenständig, Tailwind-CDN)
-├── impressum.html          ← Impressum (Pflichtseite)
-├── datenschutz.html        ← Datenschutzerklärung (Pflichtseite)
-├── styles.css              ← nur von der alten Startseite genutzt (aktuell ungenutzt)
-├── styles-light.css        ← nur von der alten Startseite genutzt (aktuell ungenutzt)
-├── app.js                  ← nur von der alten Startseite genutzt (aktuell ungenutzt)
+├── index.html              ← Hauptseite (Portfolio-Design, SEO, JSON-LD, OG, Twitter Card)
+├── impressum.html          ← Impressum (Pflichtseite, CSS inline)
+├── datenschutz.html        ← Datenschutzerklärung (Pflichtseite, CSS inline)
+├── css/site.css            ← GEBAUT aus 08_Marketing/Website_Build (nicht von Hand ändern!)
+├── js/site.js              ← Mobile Navigation, Einblenden, Zähler, E-Mail-Schutz
 ├── robots.txt              ← Crawler-Steuerung
 ├── sitemap.xml             ← Sitemap für Suchmaschinen
 ├── manifest.webmanifest    ← PWA-Manifest
-├── fonts/                  ← Lokal gehostete Schriftarten (DSGVO)
-│   └── fonts.css           ← @font-face-Definitionen (WOFF2-Dateien ergänzen!)
-└── img/
-    ├── logo_simple_long.webp
-    ├── logo_simple_short.webp
-    └── …
+├── fonts/                  ← Lokal gehostete Schrift „Inter“ (DSGVO) + Lizenz (SIL OFL)
+│   ├── fonts.css
+│   └── inter-latin-wght-normal.woff2
+└── img/                    ← Logos, Leistungsbilder, Porträt, Kontakt-Grafiken
 ```
+
+## CSS ändern / neu bauen
+
+Die Startseite nutzt Tailwind-Klassen. Das CSS wird **lokal gebaut** (kein CDN beim Seitenaufruf):
+
+```bash
+cd "08_Marketing/Website_Build"
+npm install        # einmalig
+npm run build      # erzeugt ../Webpräsenz reloaded/css/site.css
+```
+
+Nach jeder Änderung an Klassen in `index.html` oder `js/site.js` neu bauen und `css/site.css` mit committen.
+Eigene Stile (Glas-Effekt, Verlaufstext, Laufband …) stehen in `Website_Build/src/input.css`.
 
 ## Deployment auf GitHub Pages
 
@@ -78,25 +89,10 @@ Falls du eine eigene Domain nutzen möchtest (z.B. `ck-ias.de`):
    - `robots.txt` (`Sitemap:`-Zeile)
    - `sitemap.xml` (alle `<loc>`-Einträge)
 
-### Schriftarten lokal einbinden (DSGVO – einmalig erledigen!)
+### Schriftarten (DSGVO)
 
-Die Seiten laden Schriftarten **nicht mehr von Google**, sondern aus `fonts/fonts.css`.
-Damit die Original-Schriften (statt des System-Fallbacks) angezeigt werden, müssen die
-WOFF2-Dateien einmalig heruntergeladen und in den Ordner `fonts/` gelegt werden:
-
-1. https://gwfh.mranftl.com (google-webfonts-helper) öffnen
-2. **Sora** auswählen → Charset `latin`, Styles `500, 600, 700, 800` → "Modern Browsers" → Download
-3. **IBM Plex Sans** → `latin`, Styles `regular, 500, 600` → Download
-4. **IBM Plex Mono** → `latin`, Style `500` → Download
-5. Die `.woff2`-Dateien in `fonts/` ablegen. Erwartete Dateinamen (ggf. umbenennen):
-   `sora-v12-latin-500.woff2`, `-600`, `-700`, `-800`,
-   `ibm-plex-sans-v19-latin-regular.woff2`, `-500`, `-600`,
-   `ibm-plex-mono-v19-latin-500.woff2`
-   (Abweichende Versionsnummern im Dateinamen? Dann die `url(...)`-Einträge in `fonts/fonts.css` anpassen.)
-6. Lokal prüfen (siehe unten) und deployen.
-
-> Bis die Dateien vorliegen, fällt die Seite automatisch auf Systemschriften zurück –
-> sie bleibt voll funktionsfähig, sieht nur typografisch etwas anders aus.
+Die Schrift **Inter** liegt lokal in `fonts/` (Variable Font, Gewichte 100–900, Zeichensatz latin,
+Quelle `@fontsource-variable/inter` 5.3.0, Lizenz SIL OFL 1.1). Es wird nichts von Google geladen.
 
 ### Lokale Vorschau
 
@@ -116,7 +112,7 @@ npx serve .
 ## Termin-Kalender (deaktiviert)
 
 Der frühere Online-Buchungskalender wurde bewusst entfernt: Einzige Kontaktmöglichkeit
-ist jetzt der Bereich **Kontakt** (E-Mail). Die zugehörige Logik wurde aus `index.html`,
-`app.js`, `styles.css` und der Datenschutzerklärung entfernt. Falls der Kalender später
+ist der Bereich **Kontakt** (E-Mail). Die zugehörige Logik wurde aus der Website und der
+Datenschutzerklärung entfernt. Falls der Kalender später
 wieder gewünscht ist, liegt der alte Stand im Projektarchiv (Marketing.7z) – oder ein
 Dienst wie Cal.com/Calendly lässt sich im Kontakt-Bereich einbetten.
