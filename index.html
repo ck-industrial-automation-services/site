@@ -342,7 +342,7 @@
 
     <!-- ===================== KI-GESTÜTZTE UMSETZUNG ===================== -->
     <section id="ki" class="px-6 max-w-7xl mx-auto pb-24" aria-labelledby="ki-title">
-      <div class="glass-panel relative overflow-hidden rounded-[2.5rem] px-6 py-14 md:px-14 md:py-20" data-reveal>
+      <div class="glass-panel relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] px-4 sm:px-6 py-12 md:px-14 md:py-20" data-reveal>
         <img src="img/ki_hintergrund.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" class="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover opacity-80 lg:w-[140%] lg:-left-[4%]" aria-hidden="true">
         <div class="absolute -top-32 -left-24 w-[520px] h-[520px] max-w-full bg-neonPurple/25 rounded-full blur-[110px]" aria-hidden="true"></div>
         <div class="absolute inset-0 bg-zinc-950/60 lg:bg-transparent lg:bg-gradient-to-r lg:from-zinc-950/95 lg:via-zinc-950/55 lg:to-transparent" aria-hidden="true"></div>
@@ -394,7 +394,7 @@
           </ul>
 
           <!-- Eigenentwicklung: CK-IAS App (Stand der Angaben: Testprotokoll/Übergabe CK-IAS-APP, 08.08.2026) -->
-          <div class="mt-6 glass-panel rounded-3xl p-6 md:p-8 border-neonPurple/40 shadow-[0_0_30px_rgba(168,85,247,0.18)]">
+          <div class="mt-6 glass-panel rounded-3xl p-4 sm:p-6 md:p-8 border-neonPurple/40 shadow-[0_0_30px_rgba(168,85,247,0.18)]">
             <div class="flex flex-col lg:flex-row lg:items-start gap-8">
               <div class="lg:w-5/12">
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -426,10 +426,92 @@
                 </li>
               </ul>
             </div>
-            <p class="mt-6 pt-5 border-t border-white/10 text-sm text-zinc-400 leading-relaxed">
-              Die Projekterstellung läuft offline auf dem Engineering-PC – ohne Verbindung ins Internet.
-              <span class="text-zinc-300">In Entwicklung:</span> KI-gestützte Erzeugung der Programmlogik.
-            </p>
+
+            <!-- Ablaufgrafik CK-IAS App (Quelle: CK-IAS-APP, Installation_und_Bedienung Kap. 1 + 6, Stand 08/2026) -->
+            <figure class="mt-8 pt-6 border-t border-white/10" aria-labelledby="ckias-flow-title">
+              <p id="ckias-flow-title" class="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-4">So arbeitet die App</p>
+              <figcaption class="sr-only">Ablauf: Der EPLAN-Export wird im CK-IAS Backend geprüft und zu Projektdaten aufbereitet. Ein verschlüsselter Container gelangt ohne Netzwerkverbindung per Datenträger auf den Engineering-PC. Dort erzeugt der lokale Agent per TIA Openness das TIA-Portal-Projekt. Firmenstandards und Fehlerberichte gehen über einen Rückkanal zurück.</figcaption>
+
+              <div class="flex flex-col xl:flex-row xl:items-stretch gap-3 xl:gap-0">
+                <!-- Bereich 1: Backend -->
+                <div class="xl:flex-[3] rounded-2xl border border-white/10 bg-white/[0.03] p-3 md:p-4">
+                  <p class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-4 w-4 text-neonPurple" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z"/></svg>
+                    Aufbereitung · CK-IAS Backend
+                  </p>
+                  <ol class="flex flex-col sm:flex-row gap-2 items-stretch">
+                  <li class="flex-1 rounded-xl bg-zinc-950/70 border border-white/10 p-3">
+                    <span class="font-mono text-[11px] text-neonPurple">01</span>
+                    <p class="text-sm font-semibold text-white leading-snug">EPLAN-Export</p>
+                    <p class="text-xs text-zinc-400 leading-snug mt-0.5">Schaltplan als AutomationML</p>
+                  </li>
+                  <li aria-hidden="true" class="flex items-center justify-center text-zinc-500"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4 rotate-90 sm:rotate-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></li>
+                  <li class="flex-1 rounded-xl bg-zinc-950/70 border border-white/10 p-3">
+                    <span class="font-mono text-[11px] text-neonPurple">02</span>
+                    <p class="text-sm font-semibold text-white leading-snug">Prüfen &amp; zuordnen</p>
+                    <p class="text-xs text-zinc-400 leading-snug mt-0.5">Kennzeichen abgleichen, Artikelnummern ergänzen</p>
+                  </li>
+                  <li aria-hidden="true" class="flex items-center justify-center text-zinc-500"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4 rotate-90 sm:rotate-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></li>
+                  <li class="flex-1 rounded-xl bg-zinc-950/70 border border-white/10 p-3">
+                    <span class="font-mono text-[11px] text-neonPurple">03</span>
+                    <p class="text-sm font-semibold text-white leading-snug">Projektdaten</p>
+                    <p class="text-xs text-zinc-400 leading-snug mt-0.5">Hardware, Variablen, Bausteine</p>
+                    <span class="mt-1.5 inline-block rounded-full bg-neonCyan/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-neonCyan">KI-Logik in Entwicklung</span>
+                  </li>
+                  </ol>
+                </div>
+
+                <!-- Air Gap -->
+                <div class="flex xl:flex-col items-center gap-3 py-1 xl:py-0 xl:px-4">
+                  <span class="flex-1 h-px xl:h-auto xl:w-px border-t-2 xl:border-t-0 xl:border-l-2 border-dashed border-neonPurple/60" aria-hidden="true"></span>
+                  <span class="flex flex-col items-center text-center gap-1 shrink-0 max-w-[9.5rem]">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-neonPurple/20 text-neonPurple ring-1 ring-neonPurple/40" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+                    </span>
+                    <span class="text-xs font-semibold text-white">Air Gap</span>
+                    <span class="text-[11px] leading-snug text-zinc-400">verschlüsselter Container per Datenträger</span>
+                  </span>
+                  <span class="flex-1 h-px xl:h-auto xl:w-px border-t-2 xl:border-t-0 xl:border-l-2 border-dashed border-neonPurple/60" aria-hidden="true"></span>
+                </div>
+
+                <!-- Bereich 2: Engineering-PC -->
+                <div class="xl:flex-[2] rounded-2xl border border-neonCyan/25 bg-neonCyan/[0.04] p-3 md:p-4">
+                  <p class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-4 w-4 text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"/></svg>
+                    Ihr Engineering-PC · offline
+                  </p>
+                  <ol class="flex flex-col sm:flex-row gap-2 items-stretch">
+                  <li class="flex-1 rounded-xl bg-zinc-950/70 border border-white/10 p-3">
+                    <span class="font-mono text-[11px] text-neonCyan">04</span>
+                    <p class="text-sm font-semibold text-white leading-snug">Lokaler Agent</p>
+                    <p class="text-xs text-zinc-400 leading-snug mt-0.5">baut das Projekt per TIA Openness</p>
+                  </li>
+                  <li aria-hidden="true" class="flex items-center justify-center text-zinc-500"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4 rotate-90 sm:rotate-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></li>
+                  <li class="flex-1 rounded-xl bg-zinc-950/70 border border-white/10 p-3">
+                    <span class="font-mono text-[11px] text-neonCyan">05</span>
+                    <p class="text-sm font-semibold text-white leading-snug">TIA-Projekt V18</p>
+                    <p class="text-xs text-zinc-400 leading-snug mt-0.5">übersetzbar, Hinweis zur Inbetriebnahme im OB1</p>
+                  </li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Rückkanal -->
+              <div class="mt-3 flex flex-col md:flex-row md:items-center gap-2 md:gap-4 rounded-2xl border border-dashed border-white/15 px-4 py-3">
+                <span class="flex items-center gap-2 font-mono text-xs text-neonPurple shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"/></svg>
+                  Rückkanal
+                </span>
+                <p class="text-xs md:text-sm text-zinc-400 leading-relaxed"><span class="text-zinc-200">Firmenstandards</span> aus Ihrem bestehenden Projekt (nur lesend) fließen als Vorlage ein · Ein <span class="text-zinc-200">Fehlerbericht</span> führt zur gezielten Nachbesserung einzelner Bausteine</p>
+              </div>
+
+              <!-- Garantien -->
+              <ul class="mt-4 flex flex-wrap gap-2 text-xs text-zinc-300">
+                <li class="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-1.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="h-3.5 w-3.5 text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Kein Netzwerk zwischen Backend und Engineering-PC</li>
+                <li class="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-1.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="h-3.5 w-3.5 text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Alles oder nichts – keine halbfertigen Projekte</li>
+                <li class="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-1.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="h-3.5 w-3.5 text-neonCyan" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>Sicherheitsprogramm (F-Code) wird nie erzeugt</li>
+              </ul>
+            </figure>
           </div>
         </div>
       </div>
