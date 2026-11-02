@@ -1,7 +1,7 @@
 {
   "name": "CK Industrial Automation Services",
   "short_name": "CK IAS",
-  "description": "Freiberuflicher Automatisierungsingenieur aus Paderborn – SPS (Siemens TIA Portal), IIoT & Skripte.",
+  "description": "Freiberuflicher SPS-Entwickler aus Paderborn – TIA Portal V18 & TwinCAT 3, KI-gestützt, IIoT & smarte Anlagen.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
