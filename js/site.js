@@ -1,9 +1,9 @@
 /* ============================================================
    CK Industrial Automation Services – site.js
-   Mobile Navigation, Einblenden beim Scrollen, Zähler.
+   Mobile Navigation, Einblenden beim Scrollen, Zähler, Reiter (Referenz).
    Hinweis: Kontaktdaten stehen bewusst NUR als Bild auf der Seite
    (kein mailto-Link, keine Adresse im Quelltext).
-   Stand: 31.10.2026
+   Stand: 12.11.2026 (Reiter ergänzt) · Erstfassung 31.10.2026
    ============================================================ */
 (function () {
   'use strict';
@@ -77,6 +77,35 @@
       }, { threshold: 0.6 });
       counters.forEach(function (el) { co.observe(el); });
     }
+
+    /* ===================== REITER (Referenz: Anlagenteile) ===================== */
+    /* Ohne JS sind alle Bereiche sichtbar und die Reiter springen per Anker dorthin. */
+    document.querySelectorAll('[data-tabs]').forEach(function (box) {
+      var tabs = Array.prototype.slice.call(box.querySelectorAll('[role="tab"]'));
+      var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+      var select = function (i, focus) {
+        tabs.forEach(function (t, j) {
+          var on = j === i;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.setAttribute('tabindex', on ? '0' : '-1');
+          if (panels[j]) panels[j].hidden = !on;
+        });
+        if (focus) tabs[i].focus();
+      };
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function (e) { e.preventDefault(); select(i, false); });
+        t.addEventListener('keydown', function (e) {
+          var n = tabs.length, k = e.key, to = null;
+          if (k === 'ArrowRight' || k === 'ArrowDown') to = (i + 1) % n;
+          else if (k === 'ArrowLeft' || k === 'ArrowUp') to = (i - 1 + n) % n;
+          else if (k === 'Home') to = 0;
+          else if (k === 'End') to = n - 1;
+          if (to !== null) { e.preventDefault(); select(to, true); }
+        });
+      });
+      var start = tabs.findIndex(function (t) { return t.getAttribute('aria-selected') === 'true'; });
+      select(start < 0 ? 0 : start, false);
+    });
 
   });
 })();
